@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-  // CORS और Method चेक
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -10,11 +9,13 @@ export default async function handler(req, res) {
   }
 
   const cleanNum = number.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
-  const apiKey = "Key_live_38a0b79045fd4cd08ce63e6b638fe81c";
-  const apiSecret = "Secret_live_bed1d5fddb2c43bfaa1b8356c2f78bd1";
+  
+  // Exact lowercase keys
+  const apiKey = "key_live_38a0b79045fd4cd08ce63e6b638fe81c";
+  const apiSecret = "secret_live_bed1d5fddb2c43bfaa1b8356c2f78bd1";
 
   try {
-    // 1. Sandbox ऑथेंटिकेशन टोकन
+    // 1. Sandbox ऑथेंटिकेशन टोकन जनरेट करना
     const authRes = await fetch("https://api.sandbox.co.in/authenticate", {
       method: "POST",
       headers: {
@@ -34,8 +35,7 @@ export default async function handler(req, res) {
       });
     }
 
-    // 2. Sandbox Vahan / Sarathi API कॉल
-    // Sandbox KYC V2/V1 स्टैंडर्ड एंडपॉइंट्स
+    // 2. असली RC / DL सरकारी रिकॉर्ड फेच करना
     let targetUrl = "";
     if (type === 'RC') {
       targetUrl = `https://api.sandbox.co.in/kyc/rc/verify?rc_number=${cleanNum}`;
@@ -54,8 +54,6 @@ export default async function handler(req, res) {
     });
 
     const verifyData = await verifyRes.json();
-
-    // 500 एरर देने के बजाय जो भी जवाब आए, उसे 200 के साथ भेजें ताकि स्क्रीन पर असली वजह दिखे
     return res.status(200).json(verifyData);
 
   } catch (err) {
