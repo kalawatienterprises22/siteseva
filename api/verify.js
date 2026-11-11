@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   const apiSecret = "secret_live_bed1d5fddb2c43bfaa1b8356c2f78bd1";
 
   try {
-    // 1. Authenticate
+    // 1. Sandbox Authenticate
     const authRes = await fetch("https://api.sandbox.co.in/authenticate", {
       method: "POST",
       headers: {
@@ -31,23 +31,36 @@ export default async function handler(req, res) {
       return res.status(200).json({ message: "Auth Error: " + (authData.message || JSON.stringify(authData)) });
     }
 
-    // 2. Query KYC API
-    // Sandbox RC Search standard route
+    // 2. Sandbox Vahan / Sarathi Post Call
     let targetUrl = "";
+    let payload = {};
+
     if (type === 'RC') {
-      targetUrl = `https://api.sandbox.co.in/kyc/rc/search?vehicle_number=${cleanNum}&consent=Y&reason=Verification`;
+      targetUrl = "https://api.sandbox.co.in/rc/verify";
+      payload = {
+        rc_number: cleanNum,
+        consent: "Y",
+        reason: "Vehicle Verification"
+      };
     } else {
-      targetUrl = `https://api.sandbox.co.in/kyc/dl/verify?dl_number=${cleanNum}&consent=Y&reason=Verification`;
+      targetUrl = "https://api.sandbox.co.in/dl/verify";
+      payload = {
+        dl_number: cleanNum,
+        consent: "Y",
+        reason: "Operator Verification"
+      };
     }
 
     const verifyRes = await fetch(targetUrl, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Authorization": token,
         "x-api-key": apiKey,
         "x-api-version": "1.0",
+        "Content-Type": "application/json",
         "accept": "application/json"
-      }
+      },
+      body: JSON.stringify(payload)
     });
 
     const verifyData = await verifyRes.json();
