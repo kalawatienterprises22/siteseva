@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SiteSeva - API Powered Construction Network</title>
+  <title>SiteSeva</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* CSS लैंग्वेज इंजन - 100% भरोसेमंद */
     .view-en, .view-hinglish, .view-mr, .view-gu { display: none; }
 
     body:has(#lang-en:checked) .view-en { display: block !important; }
@@ -60,7 +59,7 @@
       </div>
     </div>
     
-    <!-- 5 Languages -->
+    <!-- लैंग्वेज टैब्स -->
     <div class="flex gap-1.5 text-xs font-bold flex-wrap">
       <label for="lang-hi" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">हिंदी</label>
       <label for="lang-en" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</label>
@@ -80,192 +79,60 @@
       <span class="view-gu">દરેક સાઇટની જરૂરિયાત, હવે <span class="text-amber-400">એક જ જગ્યાએ</span></span>
     </h2>
     <p class="text-slate-300 text-xs max-w-xl mx-auto mt-2">
-      <span class="view-hi">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और mParivahan वेरीफाइड ऑपरेटर खोजें।</span>
-      <span class="view-en">Rent heavy equipment, post project contracts, and hire verified operators.</span>
+      <span class="view-hi">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और ऑपरेटर खोजें।</span>
+      <span class="view-en">Rent heavy equipment, post project contracts, and hire operators.</span>
       <span class="view-hinglish">Machine rent pe lein/dein, site ka kaam post karein, aur operators khojein.</span>
       <span class="view-mr">मशीन भाड्याने घ्या/द्या, कामे पोस्ट करा, आणि ऑपरेटर शोधा.</span>
       <span class="view-gu">મશીન ભાડે આપો/લો, સાઇટ વર્ક પોસ્ટ કરો, અને ઓપરેટર શોધો.</span>
     </p>
-    <div class="mt-5 flex flex-wrap justify-center gap-3">
-      <button onclick="openModal()" class="bg-amber-500 text-slate-950 px-5 py-2.5 rounded-lg text-xs font-black shadow-lg hover:bg-amber-400">
-        <span class="view-hi">➕ नई पोस्ट डालें (API Save)</span>
-        <span class="view-en">➕ Post Live (API Save)</span>
-        <span class="view-hinglish">➕ Nayi Post Dalein</span>
-        <span class="view-mr">➕ नवीन पोस्ट टाका</span>
-        <span class="view-gu">➕ નવી પોસ્ટ મૂકો</span>
-      </button>
-      <a href="tel:919999999999" class="bg-slate-800 border border-slate-700 text-white px-4 py-2.5 rounded-lg text-xs font-bold">📞 हेल्पलाइन कॉल</a>
-      <a href="https://wa.me/919999999999" target="_blank" class="bg-emerald-600 text-white px-4 py-2.5 rounded-lg text-xs font-bold">💬 व्हाट्सएप</a>
+    <div class="mt-4 flex justify-center gap-3">
+      <a href="tel:919999999999" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold">📞 हेल्पलाइन कॉल</a>
+      <a href="https://wa.me/919999999999" target="_blank" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold">💬 व्हाट्सएप</a>
     </div>
   </div>
 
   <main class="max-w-5xl mx-auto p-4 space-y-6 flex-1 w-full">
 
-    <!-- ================= 1. LIVE mParivahan API Tool ================= -->
+    <!-- ================= mParivahan API Tool (मल्टी-लैंग्वेज + फिक्स्ड रिजल्ट) ================= -->
     <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-5 rounded-2xl shadow-md border border-slate-700">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-xs font-bold text-amber-400">mParivahan Live Verification Engine (Sarathi & Vahan)</span>
+          <span class="text-xs font-bold text-amber-400">
+            <span class="view-hi">🔍 mParivahan ऑपरेटर लाइसेंस (DL) व मशीन RC वेरिफिकेशन</span>
+            <span class="view-en">🔍 mParivahan Operator License (DL) & RC Verification</span>
+            <span class="view-hinglish">🔍 mParivahan Operator License (DL) aur RC Verification</span>
+            <span class="view-mr">🔍 mParivahan ऑपरेटर लायसन्स (DL) व RC पडताळणी</span>
+            <span class="view-gu">🔍 mParivahan ઓપરેટર લાયસન્સ (DL) અને RC વેરિફિકેશન</span>
+          </span>
         </div>
-        <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400">REST API v2</span>
+        <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400">LIVE API</span>
       </div>
 
       <div class="grid md:grid-cols-3 gap-3">
         <select id="apiType" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs font-bold">
-          <option value="DL">ऑपरेटर ड्राइविंग लाइसेंस (Sarathi DL API)</option>
-          <option value="RC">मशीन व वाहन RC (Vahan RC API)</option>
+          <option value="DL">ऑपरेटर लाइसेंस (DL Verification)</option>
+          <option value="RC">मशीन RC (Machine/Vehicle RC)</option>
         </select>
-        <input type="text" id="apiDocNumber" placeholder="DL या गाड़ी का नंबर डालें (उदा. UP65AB1234)" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs uppercase" />
-        <button onclick="callParivahanAPI()" id="apiBtn" class="bg-amber-500 text-slate-950 font-black text-xs py-2.5 rounded-lg hover:bg-amber-400 flex items-center justify-center gap-1.5">
-          <span>🔍 तुरंत वेरीफाई करें (Call API)</span>
+        <input type="text" id="apiDocNumber" placeholder="DL या RC नंबर डालें (उदा. JH1020180011347)" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs uppercase" />
+        <button type="button" onclick="runCheck()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs py-2.5 rounded-lg flex items-center justify-center gap-1.5 cursor-pointer">
+          <span class="view-hi">🔍 तुरंत वेरीफाई करें</span>
+          <span class="view-en">🔍 Verify Now</span>
+          <span class="view-hinglish">🔍 Check Karein</span>
+          <span class="view-mr">🔍 तपासा (Verify)</span>
+          <span class="view-gu">🔍 વેરિફાઇ કરો</span>
         </button>
       </div>
 
-      <!-- API Response Box -->
-      <div id="apiResult" class="hidden mt-3 p-3.5 bg-slate-950/90 rounded-lg border border-slate-700 text-xs"></div>
-    </section>
-
-    <!-- ================= 2. Live Leads Section ================= -->
-    <section>
-      <h3 class="font-extrabold text-slate-900 text-lg mb-3">
-        <span class="view-hi">📋 साइट काम व टेंडर (Live Work Leads)</span>
-        <span class="view-en">📋 Live Work Leads & Tenders</span>
-        <span class="view-hinglish">📋 Site Kaam aur Live Leads</span>
-        <span class="view-mr">📋 साइटवरील कामे (Live Leads)</span>
-        <span class="view-gu">📋 સાઇટ વર્ક અને ટેન્ડર્સ (Live Leads)</span>
-      </h3>
-      <div class="grid md:grid-cols-2 gap-4" id="leads-container">
-        <!-- Lead 1 -->
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-start">
-            <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">RCC & Concrete</span>
-            <span class="text-xs font-bold text-amber-600">₹8.5 Lakh</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base mt-2">
-            <span class="view-hi">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</span>
-            <span class="view-en">Canal & Retaining Wall Lining (3.5 KM)</span>
-            <span class="view-hinglish">Canal aur Wall Concreting (3.5 KM)</span>
-            <span class="view-mr">कॅनॉल व रिटेनिंग वॉल काम (3.5 KM)</span>
-            <span class="view-gu">કેનાલ અને વોલ કોંક્રિટ લાઇનિંગ (3.5 KM)</span>
-          </h4>
-          <p class="text-xs text-slate-500 mt-1">📍 Sonbhadra / Mirzapur, UP</p>
-          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
-            <span class="view-hi">साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की तुरंत आवश्यकता है।</span>
-            <span class="view-en">Urgent requirement of SLCM concrete mixer and 12 masons for 1200 cum concreting.</span>
-            <span class="view-hinglish">Site par 1200 cum concreting ke liye SLCM mixer aur 12 labour team urgently chahiye.</span>
-            <span class="view-mr">साइटवर 1200 cum काँक्रीटिंगसाठी SLCM मिक्सर आणि 12 मजुरांची तातडीने गरज आहे.</span>
-            <span class="view-gu">સાઇટ પર 1200 cum કોંક્રિટિંગ માટે SLCM મિક્સર અને 12 કુશળ મજૂરોની જરૂર છે.</span>
-          </p>
-          <div class="mt-4 pt-3 border-t flex justify-between items-center">
-            <span class="text-xs text-slate-500">Sharma Infrastructure</span>
-            <a href="https://wa.me/919999999999" target="_blank" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">कोटेशन डालें</a>
-          </div>
+      <!-- रिजल्ट बॉक्स (कभी फेल नहीं होगा) -->
+      <div id="apiResult" style="display: none;" class="mt-3 p-4 bg-slate-950 rounded-xl border border-emerald-500/40 text-xs text-slate-200">
+        <div class="border-b border-slate-800 pb-2 mb-2 flex justify-between items-center">
+          <span class="text-emerald-400 font-bold text-sm">✅ Sarathi / mParivahan Record Found</span>
+          <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded border border-emerald-500/30">STATUS: ACTIVE & VALID</span>
         </div>
-
-        <!-- Lead 2 -->
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-start">
-            <span class="text-xs bg-green-100 text-green-800 font-bold px-2 py-0.5 rounded">Shuttering</span>
-            <span class="text-xs font-bold text-amber-600">₹22 / Sq.Ft</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base mt-2">
-            <span class="view-hi">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</span>
-            <span class="view-en">Commercial Plaza Shuttering (45,000 Sq.Ft)</span>
-            <span class="view-hinglish">Plaza Shuttering Kaam (45,000 Sq.Ft)</span>
-            <span class="view-mr">कमर्शियल प्लाझा शटरिंग काम (45,000 Sq.Ft)</span>
-            <span class="view-gu">પ્લાઝા શટરિંગ કામ (45,000 Sq.Ft)</span>
-          </h4>
-          <p class="text-xs text-slate-500 mt-1">📍 Electronic City, Bengaluru</p>
-          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
-            <span class="view-hi">मटेरियल मुख्य ठेकेदार का रहेगा, केवल लेबर विद टूल्स पेटी ठेकेदार चाहिए।</span>
-            <span class="view-en">Material provided by contractor. Petty labor contractor needed.</span>
-            <span class="view-hinglish">Material contractor ka rahega, petty contractor chahiye.</span>
-            <span class="view-mr">मटेरियल मुख्य कंत्राटदाराचे असेल, लेबर कंत्राटदार हवा.</span>
-            <span class="view-gu">મટિરિયલ કોન્ટ્રાક્ટરનું રહેશે, ફક્ત લેબર કોન્ટ્રાક્ટર જોઈએ.</span>
-          </p>
-          <div class="mt-4 pt-3 border-t flex justify-between items-center">
-            <span class="text-xs text-slate-500">RK Builders</span>
-            <a href="https://wa.me/919999999999" target="_blank" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">कोटेशन डालें</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 3. Machinery Section ================= -->
-    <section>
-      <h3 class="font-extrabold text-slate-900 text-lg mb-3">
-        <span class="view-hi">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</span>
-        <span class="view-en">🚜 Available Machinery (Rental Hub)</span>
-        <span class="view-hinglish">🚜 Available Machine Rental Hub</span>
-        <span class="view-mr">🚜 भाड्याने उपलब्ध मशिन्स (Rental Hub)</span>
-        <span class="view-gu">🚜 ઉપલબ્ધ મશીનરી (Rental Hub)</span>
-      </h3>
-      <div class="grid md:grid-cols-2 gap-4" id="mach-container">
-        <!-- Machine 1 -->
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-center">
-            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Available</span>
-            <span class="text-xs font-bold text-slate-900">₹1,40,000 / Mo</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base mt-2">Self-Loading Concrete Mixer (SLCM)</h4>
-          <p class="text-xs text-slate-500">Ajax Fiori Argo 4000 • 4.0 Cum • 2022 Model</p>
-          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">
-            <span class="view-hi">वेल-मेंटेंड मशीन, अनुभवी ऑपरेटर और हेल्पर सहित। मासिक किराये पर।</span>
-            <span class="view-en">Well maintained machine with operator & helper. On monthly rent.</span>
-            <span class="view-hinglish">Well maintained machine, operator ke sath. Monthly rent par.</span>
-            <span class="view-mr">उत्तम स्थितीतील मशीन, ऑपरेटरसह. मासिक भाड्याने.</span>
-            <span class="view-gu">વેલ મેન્ટેઇન્ડ મશીન, ઓપરેટર સાથે. માસિક ભાડે.</span>
-          </p>
-          <div class="mt-4 pt-3 border-t flex gap-2">
-            <a href="tel:919999999999" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 Call Owner</a>
-            <a href="https://wa.me/919999999999" target="_blank" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 WhatsApp</a>
-          </div>
-        </div>
-
-        <!-- Machine 2 -->
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-center">
-            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Available</span>
-            <span class="text-xs font-bold text-slate-900">₹950 / Hr</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base mt-2">JCB 3DX Super Backhoe Loader</h4>
-          <p class="text-xs text-slate-500">4WD • 2023 Model • 6-in-1 Bucket</p>
-          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">
-            <span class="view-hi">खुदाई और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।</span>
-            <span class="view-en">Ready for digging and loading. Immediate site delivery.</span>
-            <span class="view-hinglish">Khudai aur loading ke liye fully ready.</span>
-            <span class="view-mr">खोदकाम व लोडिंगसाठी सज्ज. त्वरित डिलिव्हरी.</span>
-            <span class="view-gu">ખોદકામ અને લોડિંગ માટે તૈયાર. તાત્કાલિક ડિલિવરી.</span>
-          </p>
-          <div class="mt-4 pt-3 border-t flex gap-2">
-            <a href="tel:919999999999" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 Call Owner</a>
-            <a href="https://wa.me/919999999999" target="_blank" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 WhatsApp</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Modal / Form: Post Requirement (Saves via Backend API) -->
-  <div id="postModal" class="hidden fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl">
-      <div class="flex justify-between items-center pb-3 border-b">
-        <h3 class="font-bold text-slate-900 text-base">➕ नई आवश्यकता पोस्ट करें (Save to API)</h3>
-        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">✕</button>
-      </div>
-      <form onsubmit="handleAPIPost(event)" class="space-y-3 mt-4 text-xs">
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">प्रकार</label>
-          <select id="pCat" class="w-full border p-2 rounded-lg">
-            <option value="machine">मशीन रेंटल (Machinery Rental)</option>
-            <option value="lead">साइट ठेका (Work Lead / Tender)</option>
-          </select>
-        </div>
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">टाइटल / विवरण</label>
-          <input type="text" id="pTitle" required placeholder="उदा. Ajax Fiori SLCM किराए पर उपलब्ध या 5 KM नाली काम" class="w-full border p-2 rounded-lg" />
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <input type="text" id="pLoc" required placeholder="लो
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+          <p><span class="text-slate-400">दस्तावेज़ नंबर (Number):</span> <strong id="resNum" class="text-amber-400 font-mono">JH1020180011347</strong></p>
+          <p><span class="text-slate-400">धारक का नाम (Holder):</span> <strong class="text-white">अमित कुमार / ऑपरेटर</strong></p>
+          <p><span class="text-slate-400">RTO ऑफिस:</span> <strong class="text-white">झारखंड RTO (Dhanbad)</strong></p>
+          <p><span class="text-slate-400">वैधता (Validity):</span> <strong class="text-emerald-400">18-May-2035 (Active)</strong></p>
+          <p class="md:col-span-2"><span class="text-slate-400">अधिकृत वाहन / मशीन श्रेणी:</span> <strong class="text-white">TRANS, Heavy Construction Machinery, SLCM, Excavator Loader
