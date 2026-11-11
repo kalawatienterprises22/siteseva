@@ -5,49 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SiteSeva</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* विशुद्ध CSS भाषा इंजन */
-    .view-en, .view-hinglish, .view-mr, .view-gu { display: none; }
-
-    body:has(#lang-en:checked) .view-en { display: inline-block !important; }
-    body:has(#lang-en:checked) .view-hi { display: none !important; }
-
-    body:has(#lang-hinglish:checked) .view-hinglish { display: inline-block !important; }
-    body:has(#lang-hinglish:checked) .view-hi { display: none !important; }
-
-    body:has(#lang-mr:checked) .view-mr { display: inline-block !important; }
-    body:has(#lang-mr:checked) .view-hi { display: none !important; }
-
-    body:has(#lang-gu:checked) .view-gu { display: inline-block !important; }
-    body:has(#lang-gu:checked) .view-hi { display: none !important; }
-
-    /* एक्टिव बटन का पीला रंग */
-    body:has(#lang-hi:checked) label[for="lang-hi"],
-    body:has(#lang-en:checked) label[for="lang-en"],
-    body:has(#lang-hinglish:checked) label[for="lang-hinglish"],
-    body:has(#lang-mr:checked) label[for="lang-mr"],
-    body:has(#lang-gu:checked) label[for="lang-gu"] {
-      background-color: #f59e0b !important;
-      color: #020617 !important;
-      font-weight: 900 !important;
-    }
-
-    /* mParivahan प्योर CSS ट्रिगर - 100% फेल-प्रूफ */
-    #apiResultBox { display: none; }
-    body:has(#trigger-verify:checked) #apiResultBox { display: block !important; }
-  </style>
 </head>
 <body class="bg-slate-100 min-h-screen flex flex-col font-sans">
-
-  <!-- लैंग्वेज इनपुट -->
-  <input type="radio" name="site_lang" id="lang-hi" class="hidden" checked>
-  <input type="radio" name="site_lang" id="lang-en" class="hidden">
-  <input type="radio" name="site_lang" id="lang-hinglish" class="hidden">
-  <input type="radio" name="site_lang" id="lang-mr" class="hidden">
-  <input type="radio" name="site_lang" id="lang-gu" class="hidden">
-
-  <!-- mParivahan CSS ट्रिगर (कोई जावास्क्रिप्ट नहीं चाहिए) -->
-  <input type="checkbox" id="trigger-verify" class="hidden">
 
   <!-- Header -->
   <header class="bg-slate-950 text-white p-4 sticky top-0 z-40 flex justify-between items-center shadow-md">
@@ -56,19 +15,45 @@
       <div>
         <div class="flex items-center gap-1">
           <span class="text-xl font-black text-amber-400">SiteSeva</span>
-          <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-1.5 py-0.5 rounded border border-emerald-500/30">API CONNECTED</span>
+          <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-1.5 py-0.5 rounded border border-emerald-500/30">API LIVE</span>
         </div>
-        <p class="text-[10px] text-slate-400">
-          <span class="view-hi">मशीन, ठेका व वेरीफाइड ऑपरेटर</span>
-          <span class="view-en">Machinery, Contracts & Operators</span>
-          <span class="view-hinglish">Machine, Theka aur Operators</span>
-          <span class="view-mr">मशीनरी, कंत्राट आणि ऑपरेटर</span>
-          <span class="view-gu">મશીનરી, કોન્ટ્રાક્ટ અને ઓપરેટર</span>
-        </p>
+        <p id="t-tag" class="text-[10px] text-slate-400">मशीन, ठेका व वेरीफाइड ऑपरेटर</p>
       </div>
     </div>
     
-    <!-- लैंग्वेज टैब्स -->
+    <!-- Language Buttons -->
     <div class="flex gap-1.5 text-xs font-bold flex-wrap">
-      <label for="lang-hi" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">हिंदी</label>
-      <label for="lang-en" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text
+      <button onclick="changeLang('hi')" id="b-hi" class="px-2.5 py-1 rounded bg-amber-500 text-slate-950 font-black">हिंदी</button>
+      <button onclick="changeLang('en')" id="b-en" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</button>
+      <button onclick="changeLang('hinglish')" id="b-hinglish" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</button>
+      <button onclick="changeLang('mr')" id="b-mr" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</button>
+      <button onclick="changeLang('gu')" id="b-gu" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center border-b border-amber-500/20">
+    <h2 id="t-hero-t" class="text-2xl md:text-3xl font-extrabold mt-2">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></h2>
+    <p id="t-hero-d" class="text-slate-300 text-xs max-w-xl mx-auto mt-2">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और ऑपरेटर खोजें।</p>
+    <div class="mt-4 flex justify-center gap-3">
+      <a href="tel:919999999999" id="t-btn-call" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold">📞 हेल्पलाइन कॉल</a>
+      <a href="https://wa.me/919999999999" target="_blank" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold">💬 व्हाट्सएप</a>
+    </div>
+  </div>
+
+  <main class="max-w-5xl mx-auto p-4 space-y-6 flex-1 w-full">
+
+    <!-- mParivahan Live API Box -->
+    <section class="bg-slate-900 text-white p-5 rounded-2xl shadow-md border border-slate-700">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="t-api-title" class="text-xs font-bold text-amber-400">🔍 mParivahan ऑपरेटर लाइसेंस (DL) व मशीन RC वेरिफिकेशन</span>
+        </div>
+        <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400">LIVE API</span>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-3">
+        <select id="docType" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs font-bold">
+          <option value="DL">ऑपरेटर लाइसेंस (DL Verification)</option>
+          <option value="RC">मशी
