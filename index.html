@@ -3,47 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SiteSeva - Construction & Machinery Network</title>
+  <title>SiteSeva</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background: #f8fafc; color: #0f172a; padding-bottom: 60px; }
-
-    /* भाषा स्विच इंजन */
-    .view-en, .view-hinglish, .view-mr, .view-gu { display: none !important; }
-    .view-hi { display: inline-block; }
-
-    body:has(#r-en:checked) .view-en { display: inline-block !important; }
-    body:has(#r-en:checked) .view-hi { display: none !important; }
-
-    body:has(#r-hinglish:checked) .view-hinglish { display: inline-block !important; }
-    body:has(#r-hinglish:checked) .view-hi { display: none !important; }
-
-    body:has(#r-mr:checked) .view-mr { display: inline-block !important; }
-    body:has(#r-mr:checked) .view-hi { display: none !important; }
-
-    body:has(#r-gu:checked) .view-gu { display: inline-block !important; }
-    body:has(#r-gu:checked) .view-hi { display: none !important; }
-
-    /* एक्टिव बटन का पीला रंग */
-    body:has(#r-hi:checked) label[for="r-hi"],
-    body:has(#r-en:checked) label[for="r-en"],
-    body:has(#r-hinglish:checked) label[for="r-hinglish"],
-    body:has(#r-mr:checked) label[for="r-mr"],
-    body:has(#r-gu:checked) label[for="r-gu"] {
-      background: #f59e0b !important;
-      color: #020617 !important;
-      border-color: #f59e0b !important;
-    }
-
-    header { background: #020617; color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; }
-    .logo-area { display: flex; align-items: center; gap: 8px; }
-    .logo-icon { background: #f59e0b; color: #020617; font-weight: 900; padding: 5px 8px; border-radius: 6px; font-size: 15px; }
-    .lang-bar { display: flex; gap: 5px; flex-wrap: wrap; }
-    .lbl-btn { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer; user-select: none; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+    body { background: #0f172a; color: #f8fafc; padding: 15px; }
+    .box { max-width: 800px; margin: 0 auto; }
+    .nav { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f59e0b; padding-bottom: 12px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 20px; font-weight: 900; color: #f59e0b; }
+    .btns { display: flex; gap: 5px; flex-wrap: wrap; }
+    .b-lang { background: #1e293b; color: #cbd5e1; border: 1px solid #475569; padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; cursor: pointer; }
+    .b-lang.active { background: #f59e0b; color: #020617; border-color: #f59e0b; }
+    .hero { text-align: center; margin-bottom: 25px; }
+    .hero h1 { font-size: 22px; margin-bottom: 8px; color: #fff; }
+    .hero p { font-size: 12px; color: #94a3b8; margin-bottom: 15px; }
+    .links a { padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0 4px; display: inline-block; }
+    .c-call { background: #f59e0b; color: #020617; }
+    .c-wa { background: #16a34a; color: #fff; }
+    .card { background: #1e293b; border-radius: 10px; padding: 16px; margin-bottom: 15px; border: 1px solid #334155; }
+    .form-row { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+    select, input { background: #0f172a; border: 1px solid #475569; color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 12px; flex: 1; min-width: 130px; }
+    .btn-v { background: #f59e0b; color: #020617; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 12px; }
+    .res { background: #020617; border: 1px solid #10b981; border-radius: 8px; padding: 12px; margin-top: 10px; font-size: 12px; line-height: 1.6; }
+    .res-head { color: #10b981; font-weight: bold; border-bottom: 1px solid #1e293b; padding-bottom: 4px; margin-bottom: 6px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media(max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+    .lead { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 12px; }
+    .badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="box">
     
-    .hero { background: #0f172a; color: white; padding: 30px 15px; text-align: center; border-bottom: 2px solid #f59e0b; }
-    .hero h1 { font-size: 22px; margin-bottom: 8px; }
-    .hero p { font-size: 12px; color: #94a3b8; max-width: 550px; margin: 0 auto 15px auto; }
-    .hero-links { display: flex; justify-content: center; gap: 10px; }
-    .btn-c { background: #f59e0b; color: #020617; font-weight: bold; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 12px; }
-    .btn-w { background: #16a34a; color: white; font-weight: bold; padding: 8px 14px; border-radius: 6
+    <!-- Header -->
+    <div class="nav">
+      <div>
+        <div class="logo">SiteSeva</div>
+        <div id="u_tag" style="font-size: 10px; color: #94a3b8;">मशीन, ठेका व ऑपरेटर नेटवर्क</div>
+      </div>
+      <div class="btns">
+        <button class="b-lang active" id="btn_hi" onclick="changeL('hi')">हिंदी</button>
+        <button class="b-lang" id="btn_en" onclick="changeL('en')">English</button>
+        <button class="b-lang" id="btn_hinglish" onclick="changeL('hinglish')">Hinglish</button>
+        <button class="b-lang" id="btn_mr" onclick="changeL('mr')">मराठी</button>
+        <button class="b-lang" id="btn_gu" onclick="changeL('gu')">ગુજરાતી</button>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <h1 id="u_ht">हर साइट की ज़रूरत, अब <span style="color:#f59e0b;">एक ही जगह</span></h1>
+      <p id="u_hd">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और ऑपरेटर खोजें।</p>
+      <div class="links">
+        <a href="tel:919999999999" id="u_call" class="c-call">📞 हेल्पलाइन कॉल</a>
+        <a href="https://wa.me/919999999999" class="c-wa">💬 व्हाट्सएप</a>
+      </div>
+    </div>
+
+    <!-- mParivahan Live DL / RC Verification Tool -->
+    <div class="card">
+      <div style="color: #f59e0b; font-weight: bold; font-size: 13px;" id="u_at">🔍 mParivahan ऑपरेटर लाइसेंस (DL) व मशीन RC वेरिफिकेशन</div>
+      <div class="form-row">
+        <select id="selType" onchange="onTypeSwitch()">
+          <option value="DL">ऑपरेटर ड्राइविंग लाइसेंस (DL)</option>
+          <option value="RC">मशीन / वाहन RC (Vehicle RC)</option>
+        </select>
+        <input type="text" id="inpNum" value="JH1020180011347">
+        <button type="button" class="btn-v" id="u_bv" onclick="doSearch()">🔍 तुरंत वेरीफाई करें</button>
+      </div>
+
+      <!-- Live RTO Result Panel -->
+      <div class="res" id="resBox">
+        <div class="res-head" id="rTitle">✅ Sarathi / mParivahan Record Verified (Active)</div>
+        <div>नंबर: <strong id="rNum" style="color: #f59e0b; font-family: monospace;">JH1020180011347</strong></div>
+        <div>धारक का नाम: <strong id="rOwner" style="color: #fff;">अमित कुमार</strong></div>
+        <div>RTO कार्यालय: <strong id="rRto" style="color: #fff;">झारखंड RTO (Dhanbad - JH10)</strong></div>
+        <div>वैधता (Validity): <strong id="rVal" style="color: #10b981;">18-May-2035 (Active & Valid)</strong></div>
+        <div>अधिकृत श्रेणी (COV): <strong id="rClass" style="color: #38bdf8;">LMV-NT (Light Motor Vehicle), MCWG</strong></div>
+      </div>
+    </div>
+
+    <!-- Live Work Leads -->
+    <div style="font-size: 15px; font-weight: bold; margin: 20px 0 10px 0;" id="u_sleads">📋 साइट काम व टेंडर (Live Work Leads)</div>
+    <div class="grid">
+      <div class="lead">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <span class="badge" style="background:#0369a1; color:#fff;">RCC & Concrete</span>
+          <span style="color:#f59e0b; font-weight:bold; font-size:11px;">₹8.5 Lakh</span>
+        </div>
+        <h4 id="u_l1t" style="font-size:13px; margin-bottom:4px;">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</h4>
+        <p style="font-size:11px; color:#94a3b8; margin-bottom:6px;">📍 Sonbhadra / Mirzapur, UP</p>
+        <p id="u_l1d" style="font-size:11px; color:#cbd5e1; background:#0f172a; padding:6px; border-radius:4px;">साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की आवश्यकता है।</p>
+      </div>
+
+      <div class="lead">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <span class="badge" style="background:#15803d; color:#fff;">Shuttering</span>
+          <span style="color:#f59e0b; font-weight:bold; font-size:11px;">₹22 / Sq.Ft</span>
+        </div>
+        <h4 id="u_l2t" style="font-size:13px; margin-bottom:4px;">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</h4>
+        <p style="font-size:11px; color:#94a3b8; margin-bottom:6px;">📍 Electronic City, Bengaluru</p>
+        <p id="u_l2d" style="font-size:11px; color:#cbd5e1; background:#0f172a; padding:6px; border-radius:4px;">मटेरियल मुख्य ठेकेदार का रहेगा, लेबर विद टूल्स पेटी ठेकेदार चाहिए।</p>
+      </div>
+    </div>
+
+    <!-- Machinery Hub -->
+    <div style="font-size: 15px; font-weight: bold; margin: 20px 0 10px 0;" id="u_smach">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</div>
+    <div class="grid">
+      <div class="lead">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <span class="badge" style="background:#15803d; color:#fff;">Available</span>
+          <span style="font-weight:bold; font-size:11px;">₹1,40,000 / Mo</span>
+        </div>
+        <h4 style="font-size:13px; margin-bottom:4px;">Self-Loading Concrete Mixer (SLCM)</h4>
+        <p style="font-size:11px; color:#94a3b8; margin-bottom:6px;">Ajax Fiori Argo 4000 • 4.0 Cum</p>
+        <p id="u_m1d" style="font-size:11px; color:#cbd5e1; background:#0f172a; padding:6px; border-radius:4px;">वेल-मेंटेंड मशीन, ऑपरेटर और हेल्पर सहित। मासिक किराये पर।</p>
+      </div>
+
+      <div class="lead">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <span class="badge" style="background:#15803d; color:#fff;">Available</span>
+          <span style="font-weight:bold; font-size:11px;">₹950 / Hr</span>
+        </div>
+        <h4 style="font-size:13px; margin-bottom:4px;">JCB 3DX Super Backhoe Loader</h4>
+        <p style="font-size:11px; color:#94a3b8; margin-bottom:6px;">4WD • 2023 Model</p>
+        <p id="u_m2d" style="font-size:11px; color:#cbd5e1; background:#0f172a; padding:6px; border-radius:4px;">खुदाई और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।</
