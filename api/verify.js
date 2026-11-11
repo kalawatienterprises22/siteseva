@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   const apiSecret = "secret_live_bed1d5fddb2c43bfaa1b8356c2f78bd1";
 
   try {
-    // 1. Sandbox Authenticate
+    // 1. Authenticate with Sandbox
     const authRes = await fetch("https://api.sandbox.co.in/authenticate", {
       method: "POST",
       headers: {
@@ -31,39 +31,51 @@ export default async function handler(req, res) {
       return res.status(200).json({ message: "Auth Error: " + (authData.message || JSON.stringify(authData)) });
     }
 
-    // 2. Sandbox Vahan / Sarathi Post Call
-    let targetUrl = "";
-    let payload = {};
+    const headers = {
+      "Authorization": token,
+      "x-api-key": apiKey,
+      "x-api-version": "1.0",
+      "accept": "application/json",
+      "Content-Type": "application/json"
+    };
+
+    let verifyData = null;
 
     if (type === 'RC') {
-      targetUrl = "https://api.sandbox.co.in/rc/verify";
-      payload = {
-        rc_number: cleanNum,
-        consent: "Y",
-        reason: "Vehicle Verification"
-      };
+      // Endpoint Option A: Standard Sandbox RC Search
+      let r = await fetch(`https://api.sandbox.co.in/kyc/rc/search?vehicle_number=${cleanNum}&consent=Y&reason=Verification`, {
+        method: "GET",
+        headers: headers
+      });
+      verifyData = await r.json();
+
+      // If Option A returns 404, try Option B: KYC Vehicles RC
+      if (verifyData.code === 404 || verifyData.message === "Not Found") {
+        r = await fetch("https://api.sandbox.co.in/kyc/vehicles/rc", {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({ vehicle_number: cleanNum, consent: "Y", reason: "Verification" })
+        });
+        verifyData = await r.json();
+      }
     } else {
-      targetUrl = "https://api.sandbox.co.in/dl/verify";
-      payload = {
-        dl_number: cleanNum,
-        consent: "Y",
-        reason: "Operator Verification"
-      };
+      // DL Verification
+      let r = await fetch(`https://api.sandbox.co.in/kyc/dl/verify?dl_number=${cleanNum}&consent=Y&reason=Verification`, {
+        method: "GET",
+        headers: headers
+      });
+      verifyData = await r.json();
+
+      if (verifyData.code === 404 || verifyData.message === "Not Found") {
+        r = await fetch("https://api.sandbox.co.in/kyc/dl", {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({ dl_number: cleanNum, consent: "Y", reason: "Verification" })
+        });
+        verifyData = await r.json();
+      }
     }
 
-    const verifyRes = await fetch(targetUrl, {
-      method: "POST",
-      headers: {
-        "Authorization": token,
-        "x-api-key": apiKey,
-        "x-api-version": "1.0",
-        "Content-Type": "application/json",
-        "accept": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    const verifyData = await verifyRes.json();
     return res.status(200).json(verifyData);
 
   } catch (err) {
