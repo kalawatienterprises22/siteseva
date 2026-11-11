@@ -3,10 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SiteSeva - Construction & Machinery Network</title>
+  <title>SiteSeva</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* विशुद्ध CSS इंजन - इसमें जावास्क्रिप्ट की ज़रूरत ही नहीं है */
+    .view-en, .view-hinglish, .view-mr, .view-gu { display: none; }
+
+    body:has(#lang-en:checked) .view-en { display: block !important; }
+    body:has(#lang-en:checked) .view-hi { display: none !important; }
+
+    body:has(#lang-hinglish:checked) .view-hinglish { display: block !important; }
+    body:has(#lang-hinglish:checked) .view-hi { display: none !important; }
+
+    body:has(#lang-mr:checked) .view-mr { display: block !important; }
+    body:has(#lang-mr:checked) .view-hi { display: none !important; }
+
+    body:has(#lang-gu:checked) .view-gu { display: block !important; }
+    body:has(#lang-gu:checked) .view-hi { display: none !important; }
+
+    /* एक्टिव बटन का पीला रंग */
+    body:has(#lang-hi:checked) label[for="lang-hi"],
+    body:has(#lang-en:checked) label[for="lang-en"],
+    body:has(#lang-hinglish:checked) label[for="lang-hinglish"],
+    body:has(#lang-mr:checked) label[for="lang-mr"],
+    body:has(#lang-gu:checked) label[for="lang-gu"] {
+      background-color: #f59e0b !important;
+      color: #020617 !important;
+      font-weight: 900 !important;
+    }
+  </style>
 </head>
 <body class="bg-slate-100 min-h-screen flex flex-col font-sans">
+
+  <!-- हिडन रेडियो इनपुट्स -->
+  <input type="radio" name="site_lang" id="lang-hi" class="hidden" checked>
+  <input type="radio" name="site_lang" id="lang-en" class="hidden">
+  <input type="radio" name="site_lang" id="lang-hinglish" class="hidden">
+  <input type="radio" name="site_lang" id="lang-mr" class="hidden">
+  <input type="radio" name="site_lang" id="lang-gu" class="hidden">
 
   <!-- Header -->
   <header class="bg-slate-950 text-white p-4 sticky top-0 z-40 flex justify-between items-center shadow-md">
@@ -18,167 +52,140 @@
           <span class="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-1.5 py-0.5 rounded">LIVE</span>
         </div>
         <p class="text-[10px] text-slate-400">
-          <span class="l-hi">मशीन, ठेका व वेरीफाइड ऑपरेटर नेटवर्क</span>
-          <span class="l-en hidden">Machinery, Contracts & Verified Operators</span>
-          <span class="l-hinglish hidden">Machine, Theka aur Operator Network</span>
-          <span class="l-mr hidden">मशीनरी, कंत्राट आणि ऑपरेटर नेटवर्क</span>
-          <span class="l-gu hidden">મશીનરી, કોન્ટ્રાક્ટ અને ઓપરેટર નેટવર્ક</span>
+          <span class="view-hi">मशीन, ठेका व वेरीफाइड ऑपरेटर</span>
+          <span class="view-en">Machinery, Contracts & Operators</span>
+          <span class="view-hinglish">Machine, Theka aur Operators</span>
+          <span class="view-mr">मशीनरी, कंत्राट आणि ऑपरेटर</span>
+          <span class="view-gu">મશીનરી, કોન્ટ્રાક્ટ અને ઓપરેટર</span>
         </p>
       </div>
     </div>
     
-    <!-- 5 Instant Switch Buttons -->
+    <!-- लैंग्वेज क्लिक लेबल्स -->
     <div class="flex gap-1.5 text-xs font-bold flex-wrap">
-      <button onclick="setLanguage('hi')" id="btn-hi" class="px-2.5 py-1 rounded bg-amber-500 text-slate-950 font-black">हिंदी</button>
-      <button onclick="setLanguage('en')" id="btn-en" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</button>
-      <button onclick="setLanguage('hinglish')" id="btn-hinglish" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</button>
-      <button onclick="setLanguage('mr')" id="btn-mr" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</button>
-      <button onclick="setLanguage('gu')" id="btn-gu" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</button>
+      <label for="lang-hi" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">हिंदी</label>
+      <label for="lang-en" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</label>
+      <label for="lang-hinglish" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</label>
+      <label for="lang-mr" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</label>
+      <label for="lang-gu" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</label>
     </div>
   </header>
 
   <!-- Hero Section -->
   <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center border-b border-amber-500/20">
-    <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold">
-      <span class="l-hi">भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क</span>
-      <span class="l-en hidden">India's #1 Construction Network</span>
-      <span class="l-hinglish hidden">Bharat Ka #1 Construction Network</span>
-      <span class="l-mr hidden">भारतातील पहिले संपूर्ण कन्स्ट्रक्शन नेटवर्क</span>
-      <span class="l-gu hidden">ભારતનું પ્રથમ સંપૂર્ણ કન્સ્ટ્રક્શન નેટવર્ક</span>
-    </span>
-    <h2 class="text-2xl md:text-3xl font-extrabold mt-3">
-      <span class="l-hi">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></span>
-      <span class="l-en hidden">Every Site Requirement, <span class="text-amber-400">In One Place</span></span>
-      <span class="l-hinglish hidden">Har Site Ki Zaroorat, <span class="text-amber-400">Ek Hi Jagah</span></span>
-      <span class="l-mr hidden">प्रत्येक साइटची गरज, आता <span class="text-amber-400">एकाच ठिकाणी</span></span>
-      <span class="l-gu hidden">દરેક સાઇટની જરૂરિયાત, હવે <span class="text-amber-400">એક જ જગ્યાએ</span></span>
+    <h2 class="text-2xl md:text-3xl font-extrabold mt-2">
+      <span class="view-hi">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></span>
+      <span class="view-en">Every Site Requirement, <span class="text-amber-400">In One Place</span></span>
+      <span class="view-hinglish">Har Site Ki Zaroorat, <span class="text-amber-400">Ek Hi Jagah</span></span>
+      <span class="view-mr">प्रत्येक साइटची गरज, आता <span class="text-amber-400">एकाच ठिकाणी</span></span>
+      <span class="view-gu">દરેક સાઇટની જરૂરિયાત, હવે <span class="text-amber-400">એક જ જગ્યાએ</span></span>
     </h2>
     <p class="text-slate-300 text-xs max-w-xl mx-auto mt-2">
-      <span class="l-hi">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और mParivahan वेरीफाइड ऑपरेटर खोजें।</span>
-      <span class="l-en hidden">Rent heavy equipment, post project contracts, and hire mParivahan verified operators.</span>
-      <span class="l-hinglish hidden">Machine rent pe lein/dein, site ka theka post karein, aur verified operators khojein.</span>
-      <span class="l-mr hidden">मशीन भाड्याने घ्या/द्या, साइटवरील कामे पोस्ट करा, आणि कुशल ऑपरेटर शोधा.</span>
-      <span class="l-gu hidden">મશીન ભાડે આપો/લો, સાઇટ વર્ક પોસ્ટ કરો, અને વેરિફાઇડ ડ્રાઈવર શોધો.</span>
+      <span class="view-hi">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और ऑपरेटर खोजें।</span>
+      <span class="view-en">Rent heavy equipment, post project contracts, and hire operators.</span>
+      <span class="view-hinglish">Machine rent pe lein/dein, site ka kaam post karein, aur operators khojein.</span>
+      <span class="view-mr">मशीन भाड्याने घ्या/द्या, कामे पोस्ट करा, आणि ऑपरेटर शोधा.</span>
+      <span class="view-gu">મશીન ભાડે આપો/લો, સાઇટ વર્ક પોસ્ટ કરો, અને ઓપરેટર શોધો.</span>
     </p>
-    
-    <div class="mt-5 flex flex-wrap justify-center gap-3">
-      <button onclick="openModal()" class="bg-amber-500 text-slate-950 px-5 py-2.5 rounded-lg text-xs font-black shadow-lg hover:bg-amber-400">
-        <span class="l-hi">➕ नई ज़रूरत / मशीन पोस्ट करें</span>
-        <span class="l-en hidden">➕ Post Requirement / Machine</span>
-        <span class="l-hinglish hidden">➕ Nayi Post Dalein</span>
-        <span class="l-mr hidden">➕ नवीन गरज पोस्ट करा</span>
-        <span class="l-gu hidden">➕ નવી પોસ્ટ મૂકો</span>
-      </button>
-      <a href="tel:919999999999" class="bg-slate-800 border border-slate-700 text-white px-4 py-2.5 rounded-lg text-xs font-bold">
-        <span class="l-hi">📞 डायरेक्ट कॉल</span>
-        <span class="l-en hidden">📞 Direct Call</span>
-        <span class="l-hinglish hidden">📞 Direct Call</span>
-        <span class="l-mr hidden">📞 थेट कॉल</span>
-        <span class="l-gu hidden">📞 સીધો કોલ</span>
-      </a>
-      <a href="https://wa.me/919999999999" target="_blank" class="bg-emerald-600 text-white px-4 py-2.5 rounded-lg text-xs font-bold">
-        <span class="l-hi">💬 व्हाट्सएप सहायता</span>
-        <span class="l-en hidden">💬 WhatsApp Support</span>
-        <span class="l-hinglish hidden">💬 WhatsApp Support</span>
-        <span class="l-mr hidden">💬 व्हॉट्सअ‍ॅप सपोर्ट</span>
-        <span class="l-gu hidden">💬 વોટ્સએપ સપોર્ટ</span>
-      </a>
+    <div class="mt-4 flex justify-center gap-3">
+      <a href="tel:919999999999" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold">📞 हेल्पलाइन कॉल</a>
+      <a href="https://wa.me/919999999999" target="_blank" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold">💬 व्हाट्सएप</a>
     </div>
   </div>
 
-  <main class="max-w-5xl mx-auto p-4 space-y-8 flex-1 w-full">
+  <main class="max-w-5xl mx-auto p-4 space-y-6 flex-1 w-full">
 
-    <!-- mParivahan Verification Tool -->
-    <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-5 rounded-2xl shadow-md border border-slate-700">
-      <div class="mb-3">
-        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-500/30">mParivahan API Engine</span>
-        <h3 class="text-base font-extrabold text-amber-400 mt-1">
-          <span class="l-hi">🔍 ऑपरेटर लाइसेंस (DL) व मशीन RC तुरंत वेरीफाई करें</span>
-          <span class="l-en hidden">🔍 Verify Operator License (DL) & Machine RC</span>
-          <span class="l-hinglish hidden">🔍 Operator License (DL) aur Machine RC Verify Karein</span>
-          <span class="l-mr hidden">🔍 ड्रायव्हिंग लायसन्स (DL) व मशीन RC तपासा</span>
-          <span class="l-gu hidden">🔍 ડ્રાઇવિંગ લાઇસન્સ (DL) અને મશીન RC તપાસો</span>
-        </h3>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-3">
-        <select id="verifyType" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs font-bold">
-          <option value="DL">ड्राइविंग लाइसेंस (DL Verification)</option>
-          <option value="RC">मशीन RC (Vehicle RC)</option>
-        </select>
-        <input type="text" id="verifyNumber" placeholder="उदा. DL-0420110012345 या UP65AB1234" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs uppercase" />
-        <button onclick="runVerify()" class="bg-amber-500 text-slate-950 font-black text-xs py-2.5 rounded-lg hover:bg-amber-400">
-          <span class="l-hi">जांचें (Verify)</span>
-          <span class="l-en hidden">Verify Now</span>
-          <span class="l-hinglish hidden">Check Karein</span>
-          <span class="l-mr hidden">तपासा</span>
-          <span class="l-gu hidden">તપાસો</span>
-        </button>
-      </div>
-      <div id="verifyResult" class="hidden mt-3 p-3 bg-slate-950 rounded-lg border border-slate-700 text-xs"></div>
-    </section>
-
-    <!-- 1. Live Leads Section -->
+    <!-- 1. Live Leads -->
     <section>
-      <div class="flex justify-between items-center mb-3">
-        <h3 class="font-extrabold text-slate-900 text-lg">
-          <span class="l-hi">📋 साइट काम व टेंडर (Live Work Leads)</span>
-          <span class="l-en hidden">📋 Live Work Leads & Tenders</span>
-          <span class="l-hinglish hidden">📋 Site Kaam aur Live Leads</span>
-          <span class="l-mr hidden">📋 साइटवरील कामे आणि कंत्राट (Live Leads)</span>
-          <span class="l-gu hidden">📋 સાઇટ વર્ક અને ટેન્ડર્સ (Live Leads)</span>
-        </h3>
-        <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-1 rounded">2 Active Leads</span>
-      </div>
+      <h3 class="font-extrabold text-slate-900 text-lg mb-3">
+        <span class="view-hi">📋 साइट काम व टेंडर (Live Leads)</span>
+        <span class="view-en">📋 Live Work Leads & Tenders</span>
+        <span class="view-hinglish">📋 Site Kaam aur Live Leads</span>
+        <span class="view-mr">📋 साइटवरील कामे (Live Leads)</span>
+        <span class="view-gu">📋 સાઇટ વર્ક અને ટેન્ડર્સ (Live Leads)</span>
+      </h3>
 
-      <div class="grid md:grid-cols-2 gap-4" id="leads-container">
-        <!-- Lead 1 -->
+      <div class="grid md:grid-cols-2 gap-4">
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
           <div class="flex justify-between items-start">
             <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">RCC & Concrete</span>
             <span class="text-xs font-bold text-amber-600">₹8.5 Lakh</span>
           </div>
           <h4 class="font-bold text-slate-900 text-base mt-2">
-            <span class="l-hi">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</span>
-            <span class="l-en hidden">Canal & Retaining Wall Lining (3.5 KM)</span>
-            <span class="l-hinglish hidden">Canal aur Wall Concreting (3.5 KM)</span>
-            <span class="l-mr hidden">कॅनॉल व रिटेनिंग वॉल काम (3.5 KM)</span>
-            <span class="l-gu hidden">કેનાલ અને વોલ કોંક્રિટ લાઇનિંગ (3.5 KM)</span>
+            <span class="view-hi">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</span>
+            <span class="view-en">Canal & Retaining Wall Lining (3.5 KM)</span>
+            <span class="view-hinglish">Canal aur Wall Concreting (3.5 KM)</span>
+            <span class="view-mr">कॅनॉल व रिटेनिंग वॉल काम (3.5 KM)</span>
+            <span class="view-gu">કેનાલ અને વોલ કોંક્રિટ લાઇનિંગ (3.5 KM)</span>
           </h4>
           <p class="text-xs text-slate-500 mt-1">📍 Sonbhadra / Mirzapur, UP</p>
           <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
-            <span class="l-hi">साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की तुरंत आवश्यकता है।</span>
-            <span class="l-en hidden">Urgent requirement of SLCM concrete mixer and 12-member mason gang for 1200 cum concreting.</span>
-            <span class="l-hinglish hidden">Site par 1200 cum concreting ke liye SLCM mixer aur 12 labour team urgently chahiye.</span>
-            <span class="l-mr hidden">साइटवर 1200 cum काँक्रीटिंगसाठी SLCM मिक्सर आणि 12 मजुरांची तातडीने गरज आहे.</span>
-            <span class="l-gu hidden">સાઇટ પર 1200 cum કોંક્રિટિંગ માટે SLCM મિક્સર અને 12 કુશળ મજૂરોની જરૂર છે.</span>
+            <span class="view-hi">साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की तुरंत आवश्यकता है।</span>
+            <span class="view-en">Urgent requirement of SLCM concrete mixer and 12 masons for 1200 cum concreting.</span>
+            <span class="view-hinglish">Site par 1200 cum concreting ke liye SLCM mixer aur 12 labour team urgently chahiye.</span>
+            <span class="view-mr">साइटवर 1200 cum काँक्रीटिंगसाठी SLCM मिक्सर आणि 12 मजुरांची तातडीने गरज आहे.</span>
+            <span class="view-gu">સાઇટ પર 1200 cum કોંક્રિટિંગ માટે SLCM મિક્સર અને 12 કુશળ મજૂરોની જરૂર છે.</span>
           </p>
           <div class="mt-4 pt-3 border-t flex justify-between items-center">
             <span class="text-xs text-slate-500">Sharma Infrastructure</span>
             <a href="https://wa.me/919999999999" target="_blank" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">
-              <span class="l-hi">कोटेशन डालें</span>
-              <span class="l-en hidden">Submit Quote</span>
-              <span class="l-hinglish hidden">Rate Dalein</span>
-              <span class="l-mr hidden">दर द्या</span>
-              <span class="l-gu hidden">ભાવ મૂકો</span>
+              <span class="view-hi">कोटेशन डालें</span>
+              <span class="view-en">Submit Quote</span>
+              <span class="view-hinglish">Rate Dalein</span>
+              <span class="view-mr">दर द्या</span>
+              <span class="view-gu">ભાવ મૂકો</span>
             </a>
           </div>
         </div>
 
-        <!-- Lead 2 -->
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
           <div class="flex justify-between items-start">
-            <span class="text-xs bg-green-100 text-green-800 font-bold px-2 py-0.5 rounded">Shuttering & Civil</span>
+            <span class="text-xs bg-green-100 text-green-800 font-bold px-2 py-0.5 rounded">Shuttering</span>
             <span class="text-xs font-bold text-amber-600">₹22 / Sq.Ft</span>
           </div>
           <h4 class="font-bold text-slate-900 text-base mt-2">
-            <span class="l-hi">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</span>
-            <span class="l-en hidden">Commercial Plaza Shuttering (45,000 Sq.Ft)</span>
-            <span class="l-hinglish hidden">Plaza Shuttering Kaam (45,000 Sq.Ft)</span>
-            <span class="l-mr hidden">कमर्शियल प्लाझा शटरिंग काम (45,000 Sq.Ft)</span>
-            <span class="l-gu hidden">પ્લાઝા શટરિંગ કામ (45,000 Sq.Ft)</span>
+            <span class="view-hi">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</span>
+            <span class="view-en">Commercial Plaza Shuttering (45,000 Sq.Ft)</span>
+            <span class="view-hinglish">Plaza Shuttering Kaam (45,000 Sq.Ft)</span>
+            <span class="view-mr">कमर्शियल प्लाझा शटरिंग काम (45,000 Sq.Ft)</span>
+            <span class="view-gu">પ્લાઝા શટરિંગ કામ (45,000 Sq.Ft)</span>
           </h4>
-          <p class="text-xs text-slate-500 mt-1">📍 Electronic City, Bengaluru</p>
+          <p class="text-xs text-slate-500 mt-1">📍 Bengaluru</p>
           <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
-            <span class="l-hi">मटेरियल मुख्य ठेकेदार का रहेगा, केवल लेबर विद टूल्स पेटी ठेकेदार चाहिए। रनिंग बिलिंग हर 15 दिन में।</span>
-            <span class="l-en hidden">Material provided by contractor
+            <span class="view-hi">मटेरियल मुख्य ठेकेदार का रहेगा, लेबर विद टूल्स पेटी ठेकेदार चाहिए।</span>
+            <span class="view-en">Material provided by contractor. Petty labor contractor needed.</span>
+            <span class="view-hinglish">Material contractor ka rahega, petty contractor chahiye.</span>
+            <span class="view-mr">मटेरियल मुख्य कंत्राटदाराचे असेल, लेबर कंत्राटदार हवा.</span>
+            <span class="view-gu">મટિરિયલ કોન્ટ્રાક્ટરનું રહેશે, ફક્ત લેબર કોન્ટ્રાક્ટર જોઈએ.</span>
+          </p>
+          <div class="mt-4 pt-3 border-t flex justify-between items-center">
+            <span class="text-xs text-slate-500">RK Builders</span>
+            <a href="https://wa.me/919999999999" target="_blank" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">
+              <span class="view-hi">कोटेशन डालें</span>
+              <span class="view-en">Submit Quote</span>
+              <span class="view-hinglish">Rate Dalein</span>
+              <span class="view-mr">दर द्या</span>
+              <span class="view-gu">ભાવ મૂકો</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Machinery Rental -->
+    <section>
+      <h3 class="font-extrabold text-slate-900 text-lg mb-3">
+        <span class="view-hi">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</span>
+        <span class="view-en">🚜 Available Machinery (Rental Hub)</span>
+        <span class="view-hinglish">🚜 Available Machine Rental Hub</span>
+        <span class="view-mr">🚜 भाड्याने उपलब्ध मशिन्स (Rental Hub)</span>
+        <span class="view-gu">🚜 ઉપલબ્ધ મશીનરી (Rental Hub)</span>
+      </h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Available</span>
+            <span class="text-xs font-bold text-slate-900">₹1,40,000 / Mo</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mt-2">Self-Loading Concrete Mixer (SLCM)</h4>
+          <p
