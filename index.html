@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SiteSeva - कंस्ट्रक्शन व मशीनरी नेटवर्क</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .lang-active { background-color: #f59e0b !important; color: #020617 !important; font-weight: 800 !important; }
-  </style>
 </head>
 <body class="bg-slate-100 min-h-screen flex flex-col font-sans">
 
@@ -18,31 +15,30 @@
       <div>
         <span class="text-xl font-black text-amber-400">SiteSeva</span>
         <span class="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-1.5 py-0.5 rounded ml-1">LIVE</span>
-        <p data-i18n="tagline" class="text-[10px] text-slate-400">मशीन, ठेका व वेरीफाइड ऑपरेटर नेटवर्क</p>
+        <p id="t_tag" class="text-[10px] text-slate-400">मशीन, ठेका व वेरीफाइड ऑपरेटर नेटवर्क</p>
       </div>
     </div>
     
-    <!-- 5 Languages -->
-    <div class="flex gap-1.5 text-xs font-bold flex-wrap" id="lang-btns">
-      <button type="button" data-lang="hi" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">हिंदी</button>
-      <button type="button" data-lang="en" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</button>
-      <button type="button" data-lang="hinglish" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</button>
-      <button type="button" data-lang="mr" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</button>
-      <button type="button" data-lang="gu" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</button>
+    <!-- 5 Direct Click Buttons -->
+    <div class="flex gap-1.5 text-xs font-bold flex-wrap">
+      <button onclick="setLang('hi')" id="b_hi" class="px-2.5 py-1 rounded bg-amber-500 text-slate-950 font-black">हिंदी</button>
+      <button onclick="setLang('en')" id="b_en" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</button>
+      <button onclick="setLang('hinglish')" id="b_hinglish" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</button>
+      <button onclick="setLang('mr')" id="b_mr" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</button>
+      <button onclick="setLang('gu')" id="b_gu" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</button>
     </div>
   </header>
 
   <!-- Hero Banner -->
   <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center border-b border-amber-500/20">
-    <span data-i18n="hero_badge" class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold">भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क</span>
-    <h2 data-i18n="hero_title" class="text-2xl md:text-3xl font-extrabold mt-3">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></h2>
-    <p data-i18n="hero_desc" class="text-slate-300 text-xs max-w-xl mx-auto mt-2">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और mParivahan वेरीफाइड ऑपरेटर खोजें।</p>
+    <span id="t_badge" class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold">भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क</span>
+    <h2 id="t_title" class="text-2xl md:text-3xl font-extrabold mt-3">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></h2>
+    <p id="t_desc" class="text-slate-300 text-xs max-w-xl mx-auto mt-2">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और mParivahan वेरीफाइड ऑपरेटर खोजें।</p>
     
-    <!-- Action Buttons -->
     <div class="mt-5 flex flex-wrap justify-center gap-3">
-      <button onclick="openModal()" data-i18n="btn_post" class="bg-amber-500 text-slate-950 px-5 py-2.5 rounded-lg text-xs font-black shadow-lg hover:bg-amber-400">➕ नई ज़रूरत / मशीन पोस्ट करें</button>
-      <a href="tel:919999999999" data-i18n="call_btn" class="bg-slate-800 border border-slate-700 text-white px-4 py-2.5 rounded-lg text-xs font-bold hover:bg-slate-700">📞 डायरेक्ट कॉल</a>
-      <a href="https://wa.me/919999999999?text=Namaste%20SiteSeva,%20mujhe%20machine/kaam%20chahiye" target="_blank" data-i18n="wa_btn" class="bg-emerald-600 text-white px-4 py-2.5 rounded-lg text-xs font-bold hover:bg-emerald-500">💬 व्हाट्सएप सहायता</a>
+      <button onclick="openModal()" id="t_btn_post" class="bg-amber-500 text-slate-950 px-5 py-2.5 rounded-lg text-xs font-black shadow-lg hover:bg-amber-400">➕ नई ज़रूरत / मशीन पोस्ट करें</button>
+      <a href="tel:919999999999" id="t_btn_call" class="bg-slate-800 border border-slate-700 text-white px-4 py-2.5 rounded-lg text-xs font-bold">📞 डायरेक्ट कॉल</a>
+      <a href="https://wa.me/919999999999" target="_blank" id="t_btn_wa" class="bg-emerald-600 text-white px-4 py-2.5 rounded-lg text-xs font-bold">💬 व्हाट्सएप सहायता</a>
     </div>
   </div>
 
@@ -52,60 +48,59 @@
     <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-5 rounded-2xl shadow-md border border-slate-700">
       <div class="flex flex-col md:flex-row justify-between md:items-center gap-2 mb-3">
         <div>
-          <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-500/30">mParivahan & Vahan API Engine</span>
-          <h3 data-i18n="api_title" class="text-base font-extrabold text-amber-400 mt-1">🔍 ऑपरेटर लाइसेंस (DL) व मशीन RC तुरंत वेरीफाई करें</h3>
+          <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-500/30">mParivahan API Engine</span>
+          <h3 id="t_api_t" class="text-base font-extrabold text-amber-400 mt-1">🔍 ऑपरेटर लाइसेंस (DL) व मशीन RC तुरंत वेरीफाई करें</h3>
         </div>
-        <p class="text-xs text-slate-400">सरकारी डेटाबेस से तुरंत ऑपरेटर व मशीन की प्रामाणिकता जांचें</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-3">
         <select id="verifyType" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs font-bold">
           <option value="DL">ड्राइविंग लाइसेंस (DL Verification)</option>
-          <option value="RC">मशीन / वाहन RC (Vehicle RC)</option>
+          <option value="RC">मशीन RC (Vehicle RC)</option>
         </select>
         <input type="text" id="verifyNumber" placeholder="उदा. DL-0420110012345 या UP65AB1234" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs uppercase" />
-        <button onclick="verifyParivahan()" id="btnVerify" class="bg-amber-500 text-slate-950 font-black text-xs py-2.5 rounded-lg hover:bg-amber-400">जांचें (Verify Now)</button>
+        <button onclick="runVerify()" class="bg-amber-500 text-slate-950 font-black text-xs py-2.5 rounded-lg hover:bg-amber-400">जांचें (Verify)</button>
       </div>
 
-      <div id="verifyResult" class="hidden mt-3 p-3 bg-slate-950/80 rounded-lg border border-slate-700 text-xs"></div>
+      <div id="verifyResult" class="hidden mt-3 p-3 bg-slate-950 rounded-lg border border-slate-700 text-xs"></div>
     </section>
 
     <!-- 1. Live Leads Section -->
     <section>
       <div class="flex justify-between items-center mb-3">
-        <h3 data-i18n="sec_leads" class="font-extrabold text-slate-900 text-lg">📋 साइट काम व टेंडर (Live Work Leads)</h3>
-        <span data-i18n="lead_count" class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-1 rounded">2 एक्टिव काम</span>
+        <h3 id="t_sec_leads" class="font-extrabold text-slate-900 text-lg">📋 साइट काम व टेंडर (Live Work Leads)</h3>
+        <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-1 rounded">2 एक्टिव काम</span>
       </div>
       <div class="grid md:grid-cols-2 gap-4" id="leadsContainer">
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
           <div class="flex justify-between items-start">
             <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">RCC & Concrete</span>
-            <span data-i18n="lead1_b" class="text-xs font-bold text-amber-600">बजट: ₹8.5 लाख</span>
+            <span class="text-xs font-bold text-amber-600">बजट: ₹8.5 लाख</span>
           </div>
-          <h4 data-i18n="lead1_t" class="font-bold text-slate-900 text-base mt-2">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</h4>
+          <h4 id="t_l1_t" class="font-bold text-slate-900 text-base mt-2">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</h4>
           <p class="text-xs text-slate-500 mt-1">📍 सोनभद्र / मिर्जापुर, UP</p>
-          <p data-i18n="lead1_d" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
+          <p id="t_l1_d" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
             साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की तुरंत आवश्यकता है।
           </p>
           <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
             <span class="text-xs text-slate-500">शर्मा इंफ्रास्ट्रक्चर</span>
-            <a href="https://wa.me/919999999999?text=Mujhe%20Sonbhadra%20Canal%20Project%20ke%20liye%20rate%20dena%20hai" target="_blank" data-i18n="quote_btn" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">कोटेशन / रेट डालें</a>
+            <a href="https://wa.me/919999999999" target="_blank" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">कोटेशन डालें</a>
           </div>
         </div>
 
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
           <div class="flex justify-between items-start">
             <span class="text-xs bg-green-100 text-green-800 font-bold px-2 py-0.5 rounded">Shuttering & Civil</span>
-            <span data-i18n="lead2_b" class="text-xs font-bold text-amber-600">बजट: ₹22 / Sq.Ft</span>
+            <span class="text-xs font-bold text-amber-600">बजट: ₹22 / Sq.Ft</span>
           </div>
-          <h4 data-i18n="lead2_t" class="font-bold text-slate-900 text-base mt-2">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</h4>
+          <h4 id="t_l2_t" class="font-bold text-slate-900 text-base mt-2">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</h4>
           <p class="text-xs text-slate-500 mt-1">📍 इलेक्ट्रॉनिक सिटी, बेंगलुरु</p>
-          <p data-i18n="lead2_d" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
+          <p id="t_l2_d" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
             मटेरियल मुख्य ठेकेदार का रहेगा, केवल लेबर विद टूल्स पेटी ठेकेदार चाहिए। रनिंग बिलिंग हर 15 दिन में।
           </p>
           <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
             <span class="text-xs text-slate-500">RK बिल्डर्स</span>
-            <a href="https://wa.me/919999999999?text=Mujhe%20Bengaluru%20Shuttering%20ke%20liye%20rate%20dena%20hai" target="_blank" data-i18n="quote_btn" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">कोटेशन / रेट डालें</a>
+            <a href="https://wa.me/919999999999" target="_blank" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">कोटेशन डालें</a>
           </div>
         </div>
       </div>
@@ -114,50 +109,7 @@
     <!-- 2. Machinery Rental Section -->
     <section>
       <div class="flex justify-between items-center mb-3">
-        <h3 data-i18n="sec_mach" class="font-extrabold text-slate-900 text-lg">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</h3>
+        <h3 id="t_sec_mach" class="font-extrabold text-slate-900 text-lg">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</h3>
       </div>
       <div class="grid md:grid-cols-2 gap-4" id="machineryContainer">
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-center">
-            <span data-i18n="avail_badge" class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">तुरंत उपलब्ध</span>
-            <span data-i18n="mach1_p" class="text-xs font-bold text-slate-900">₹1,40,000 / महीना</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base mt-2">Self-Loading Concrete Mixer (SLCM)</h4>
-          <p class="text-xs text-slate-500">Ajax Fiori Argo 4000 • 4.0 Cum • 2022 मॉडल</p>
-          <p data-i18n="mach1_d" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">वेल-मेंटेंड मशीन, अनुभवी ऑपरेटर और हेल्पर सहित। मासिक किराये पर उपलब्ध।</p>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
-            <a href="tel:919999999999" data-i18n="mach_call" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 डायरेक्ट कॉल करें</a>
-            <a href="https://wa.me/919999999999?text=SLCM%20Mixer%20Rent%20pe%20chahiye" target="_blank" data-i18n="mach_wa" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 व्हाट्सएप करें</a>
-          </div>
-        </div>
-
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-center">
-            <span data-i18n="avail_badge" class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">तुरंत उपलब्ध</span>
-            <span data-i18n="mach2_p" class="text-xs font-bold text-slate-900">₹950 / घंटा (या ₹75,000/माह)</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base mt-2">JCB 3DX Super Backhoe Loader</h4>
-          <p class="text-xs text-slate-500">4WD • 2023 मॉडल • 6-in-1 बकेट</p>
-          <p data-i18n="mach2_d" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">खुदाई, लेवलिंग और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।</p>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
-            <a href="tel:919999999999" data-i18n="mach_call" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 डायरेक्ट कॉल करें</a>
-            <a href="https://wa.me/919999999999?text=JCB%20Rent%20pe%20chahiye" target="_blank" data-i18n="mach_wa" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 व्हाट्सएप करें</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. Workforce Section -->
-    <section>
-      <div class="flex justify-between items-center mb-3">
-        <h3 data-i18n="sec_work" class="font-extrabold text-slate-900 text-lg">👷 ऑपरेटर व लेबर टीम (Workforce)</h3>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-          <div>
-            <span data-i18n="op_badge" class="text-[10px] bg-slate-100 text-slate-800 font-bold px-2 py-0.5 rounded">वेरीफाइड ऑपरेटर</span>
-            <h4 class="font-bold text-slate-900 text-sm mt-1">रमेश कुमार (SLCM ऑपरेटर)</h4>
-            <p data-i18n="op_exp" class="text-xs text-slate-500">अनुभव: 6 वर्ष • Ajax एक्सपर्ट</p>
-            <p data-i18n="op_avail" class="text-xs text-emerald-600 font-bold mt-1">उपलब्ध: तुरंत जॉइनिंग</p>
-          </div>
-          <a href="tel:919999999
+        <div class="
