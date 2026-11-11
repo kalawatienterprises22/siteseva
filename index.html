@@ -30,100 +30,17 @@
     .lead { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 12px; }
     .badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
   </style>
-</head>
-<body>
-  <div class="box">
-    
-    <!-- Header -->
-    <div class="nav">
-      <div>
-        <div class="logo">SiteSeva</div>
-        <div id="u_tag" style="font-size: 10px; color: #94a3b8;">मशीन, ठेका व ऑपरेटर नेटवर्क</div>
-      </div>
-      <div class="btns">
-        <button class="b-lang active" id="btn_hi" onclick="changeL('hi')">हिंदी</button>
-        <button class="b-lang" id="btn_en" onclick="changeL('en')">English</button>
-        <button class="b-lang" id="btn_hinglish" onclick="changeL('hinglish')">Hinglish</button>
-        <button class="b-lang" id="btn_mr" onclick="changeL('mr')">मराठी</button>
-        <button class="b-lang" id="btn_gu" onclick="changeL('gu')">ગુજરાતી</button>
-      </div>
-    </div>
-
-    <!-- Hero -->
-    <div class="hero">
-      <h1 id="u_ht">हर साइट की ज़रूरत, अब <span style="color:#f59e0b;">एक ही जगह</span></h1>
-      <p id="u_hd">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और ऑपरेटर खोजें।</p>
-      <div class="links">
-        <a href="tel:919999999999" id="u_call" class="c-call">📞 हेल्पलाइन कॉल</a>
-        <a href="https://wa.me/919999999999" class="c-wa">💬 व्हाट्सएप</a>
-      </div>
-    </div>
-
-    <!-- mParivahan Live DL / RC Verification Tool -->
-    <div class="card">
-      <div style="color: #f59e0b; font-weight: bold; font-size: 13px;" id="u_at">🔍 mParivahan ऑपरेटर लाइसेंस (DL) व मशीन RC वेरिफिकेशन</div>
-      <div class="form-row">
-        <select id="selType" onchange="onTypeSwitch()">
-          <option value="DL">ऑपरेटर ड्राइविंग लाइसेंस (DL)</option>
-          <option value="RC">मशीन / वाहन RC (Vehicle RC)</option>
-        </select>
-        <input type="text" id="inpNum" value="JH1020180011347">
-        <button type="button" class="btn-v" id="u_bv" onclick="doSearch()">🔍 तुरंत वेरीफाई करें</button>
-      </div>
-
-      <!-- Live RTO Result Panel -->
-      <div class="res" id="resBox">
-        <div class="res-head" id="rTitle">✅ Sarathi / mParivahan Record Verified (Active)</div>
-        <div>नंबर: <strong id="rNum" style="color: #f59e0b; font-family: monospace;">JH1020180011347</strong></div>
-        <div>धारक का नाम: <strong id="rOwner" style="color: #fff;">अमित कुमार</strong></div>
-        <div>RTO कार्यालय: <strong id="rRto" style="color: #fff;">झारखंड RTO (Dhanbad - JH10)</strong></div>
-        <div>वैधता (Validity): <strong id="rVal" style="color: #10b981;">18-May-2035 (Active & Valid)</strong></div>
-        <div>अधिकृत श्रेणी (COV): <strong id="rClass" style="color: #38bdf8;">LMV-NT (Light Motor Vehicle), MCWG</strong></div>
-      </div>
-    </div>
-
-    <!-- Live Work Leads -->
-    <div style="font-size: 15px; font-weight: bold; margin: 20px 0 10px 0;" id="u_sleads">📋 साइट काम व टेंडर (Live Work Leads)</div>
-    <div class="grid">
-      <div class="lead">
-        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-          <span class="badge" style="background:#0369a1; color:#fff;">RCC & Concrete</span>
-          <span style="color:#f59e0b; font-weight:bold; font-size:11px;">₹8.5 Lakh</span>
-        </div>
-        <h4 id="u_l1t" style="font-size:13px; margin-bottom:4px;">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</h4>
-        <p style="font-size:11px; color:#94a3b8; margin-bottom:6px;">📍 Sonbhadra / Mirzapur, UP</p>
-        <p id="u_l1d" style="font-size:11px; color:#cbd5e1; background:#0f172a; padding:6px; border-radius:4px;">साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की आवश्यकता है।</p>
-      </div>
-
-      <div class="lead">
-        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-          <span class="badge" style="background:#15803d; color:#fff;">Shuttering</span>
-          <span style="color:#f59e0b; font-weight:bold; font-size:11px;">₹22 / Sq.Ft</span>
-        </div>
-        <h4 id="u_l2t" style="font-size:13px; margin-bottom:4px;">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</h4>
-        <p style="font-size:11px; color:#94a3b8; margin-bottom:6px;">📍 Electronic City, Bengaluru</p>
-        <p id="u_l2d" style="font-size:11px; color:#cbd5e1; background:#0f172a; padding:6px; border-radius:4px;">मटेरियल मुख्य ठेकेदार का रहेगा, लेबर विद टूल्स पेटी ठेकेदार चाहिए।</p>
-      </div>
-    </div>
-
-    <!-- Machinery Hub -->
-    <div style="font-size: 15px; font-weight: bold; margin: 20px 0 10px 0;" id="u_smach">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</div>
-    <div class="grid">
-      <div class="lead">
-        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-          <span class="badge" style="background:#15803d; color:#fff;">Available</span>
-          <span style="font-weight:bold; font-size:11px;">₹1,40,000 / Mo</span>
-        </div>
-        <h4 style="font-size:13px; margin-bottom:4px;">Self-Loading Concrete Mixer (SLCM)</h4>
-        <p style="font-size:11px; color:#94a3b8; margin-bottom:6px;">Ajax Fiori Argo 4000 • 4.0 Cum</p>
-        <p id="u_m1d" style="font-size:11px; color:#cbd5e1; background:#0f172a; padding:6px; border-radius:4px;">वेल-मेंटेंड मशीन, ऑपरेटर और हेल्पर सहित। मासिक किराये पर।</p>
-      </div>
-
-      <div class="lead">
-        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-          <span class="badge" style="background:#15803d; color:#fff;">Available</span>
-          <span style="font-weight:bold; font-size:11px;">₹950 / Hr</span>
-        </div>
-        <h4 style="font-size:13px; margin-bottom:4px;">JCB 3DX Super Backhoe Loader</h4>
-        <p style="font-size:11px; color:#94a3b8; margin-bottom:6px;">4WD • 2023 Model</p>
-        <p id="u_m2d" style="font-size:11px; color:#cbd5e1; background:#0f172a; padding:6px; border-radius:4px;">खुदाई और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।</
+  <script>
+    var Langs = {
+      hi: {
+        tag: "मशीन, ठेका व ऑपरेटर नेटवर्क",
+        ht: 'हर साइट की ज़रूरत, अब <span style="color:#f59e0b;">एक ही जगह</span>',
+        hd: "मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और ऑपरेटर खोजें।",
+        call: "📞 हेल्पलाइन कॉल",
+        at: "🔍 mParivahan ऑपरेटर लाइसेंस (DL) व मशीन RC वेरिफिकेशन",
+        bv: "🔍 तुरंत वेरीफाई करें",
+        sleads: "📋 साइट काम व टेंडर (Live Work Leads)",
+        l1t: "कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)",
+        l1d: "साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की आवश्यकता है।",
+        l2t: "कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)",
+        l2d: "मटे
