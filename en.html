@@ -6,11 +6,17 @@
   <title>SiteSeva - Construction Network</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-50 min-h-screen flex flex-col">
+<body class="bg-slate-100 min-h-screen flex flex-col font-sans">
+
+  <!-- Header -->
   <header class="bg-slate-950 text-white p-4 sticky top-0 z-50 flex justify-between items-center shadow-md">
     <div class="flex items-center gap-2">
-      <span class="text-xl font-black text-amber-400">SiteSeva</span>
-      <span class="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-2 py-0.5 rounded">LIVE</span>
+      <div class="w-9 h-9 bg-amber-500 rounded-lg flex items-center justify-center font-black text-slate-950 text-lg">SS</div>
+      <div>
+        <span class="text-xl font-black text-amber-400">SiteSeva</span>
+        <span class="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-1.5 py-0.5 rounded ml-1">LIVE</span>
+        <p class="text-[10px] text-slate-400">Machinery, Contracts & Operators</p>
+      </div>
     </div>
     <div class="flex gap-1.5 text-xs font-bold flex-wrap">
       <a href="index.html" class="px-2.5 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded hover:text-white">हिंदी</a>
@@ -21,32 +27,131 @@
     </div>
   </header>
 
-  <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center">
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center border-b border-amber-500/20">
     <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold">India's #1 Construction Network</span>
-    <h2 class="text-3xl font-extrabold mt-3">Every Site Requirement, <span class="text-amber-400">In One Place</span></h2>
-    <p class="text-slate-300 text-xs max-w-xl mx-auto mt-2">Rent heavy equipment, post contracts, get quotes, or hire verified operators.</p>
+    <h2 class="text-2xl md:text-3xl font-extrabold mt-3">Every Site Need, <span class="text-amber-400">In One Place</span></h2>
+    <p class="text-slate-300 text-xs max-w-xl mx-auto mt-2">Rent heavy equipment, post project contracts, get petty quotes, and hire verified operators.</p>
+    <div class="mt-4 flex justify-center gap-3">
+      <a href="tel:919999999999" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold shadow hover:bg-amber-400">📞 Call Helpline</a>
+      <a href="https://wa.me/919999999999" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold shadow hover:bg-emerald-500">💬 WhatsApp Support</a>
+    </div>
   </div>
 
-  <main class="max-w-4xl mx-auto p-4 space-y-4 flex-1 w-full">
-    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-      <div class="flex justify-between items-start">
-        <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2.5 py-1 rounded">RCC & Concrete Work</span>
-        <span class="text-xs font-bold text-amber-600">Budget: ₹8.5 Lakh</span>
+  <main class="max-w-5xl mx-auto p-4 space-y-8 flex-1 w-full">
+
+    <!-- 1. Live Leads Section -->
+    <section>
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2">📋 Live Work Leads & Tenders</h3>
+        <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-1 rounded">2 Active Leads</span>
       </div>
-      <h3 class="font-bold text-slate-900 text-base mt-2">Concrete Canal & Retaining Wall Lining (3.5 KM)</h3>
-      <p class="text-xs text-slate-500 mt-1">📍 Sonbhadra / Mirzapur, UP</p>
-      <p class="text-xs text-slate-600 mt-3 bg-slate-50 p-3 rounded">
-        Urgent requirement of SLCM concrete mixer and 12-member mason gang for 1200 cum concreting.
-      </p>
-      <div class="mt-4 pt-3 border-t flex justify-between items-center">
-        <span class="text-xs text-slate-500">Sharma Infrastructure</span>
-        <a href="tel:919999999999" class="bg-slate-900 text-amber-400 text-xs px-4 py-2 rounded-lg font-bold">Submit Quote / Bid</a>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-start">
+            <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">RCC & Concrete Work</span>
+            <span class="text-xs font-bold text-amber-600">Budget: ₹8.5 Lakh</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mt-2">Canal & Retaining Wall Concrete Lining (3.5 KM)</h4>
+          <p class="text-xs text-slate-500 mt-1">📍 Sonbhadra / Mirzapur, UP</p>
+          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
+            Urgent requirement of SLCM concrete mixer and 12-member skilled mason team for 1200 cum concreting.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
+            <span class="text-xs text-slate-500">Sharma Infrastructure</span>
+            <a href="tel:919999999999" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">Submit Quote</a>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-start">
+            <span class="text-xs bg-green-100 text-green-800 font-bold px-2 py-0.5 rounded">Shuttering & Civil</span>
+            <span class="text-xs font-bold text-amber-600">Budget: ₹22 / Sq.Ft</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mt-2">Commercial Plaza Shuttering Work (45,000 Sq.Ft)</h4>
+          <p class="text-xs text-slate-500 mt-1">📍 Electronic City, Bengaluru</p>
+          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
+            Material provided by main contractor. Need labor with tools on petty contract. 15-day running billing.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
+            <span class="text-xs text-slate-500">RK Builders</span>
+            <a href="tel:919999999999" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">Submit Quote</a>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- 2. Machinery Rental Section -->
+    <section>
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2">🚜 Available Machinery (Rental Hub)</h3>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Available Now</span>
+            <span class="text-xs font-bold text-slate-900">₹1,40,000 / Month</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mt-2">Self-Loading Concrete Mixer (SLCM)</h4>
+          <p class="text-xs text-slate-500">Ajax Fiori Argo 4000 • 4.0 Cum Capacity • 2022 Model</p>
+          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">Well-maintained machine with trained operator and helper. Available on monthly rent.</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
+            <a href="tel:919999999999" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 Direct Call Owner</a>
+            <a href="https://wa.me/919999999999" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Available Now</span>
+            <span class="text-xs font-bold text-slate-900">₹950 / Hour (or ₹75,000/Mo)</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mt-2">JCB 3DX Super Backhoe Loader</h4>
+          <p class="text-xs text-slate-500">4WD • 2023 Model • 6-in-1 Bucket</p>
+          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">Ready for digging, trenching, and material loading. Immediate site delivery.</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
+            <a href="tel:919999999999" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 Direct Call Owner</a>
+            <a href="https://wa.me/919999999999" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Operators & Workforce Section -->
+    <section>
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2">👷 Verified Operators & Workforce</h3>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <span class="text-[10px] bg-slate-100 text-slate-800 font-bold px-2 py-0.5 rounded">Certified Operator</span>
+            <h4 class="font-bold text-slate-900 text-sm mt-1">Ramesh Kumar (SLCM Operator)</h4>
+            <p class="text-xs text-slate-500">Exp: 6 Years • Ajax & Schwing Stetter Expert</p>
+            <p class="text-xs text-emerald-600 font-bold mt-1">Status: Ready to Join</p>
+          </div>
+          <a href="tel:919999999999" class="bg-slate-900 text-amber-400 text-xs px-3 py-2 rounded-lg font-bold">Call Now</a>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <span class="text-[10px] bg-slate-100 text-slate-800 font-bold px-2 py-0.5 rounded">Skilled Labor Gang</span>
+            <h4 class="font-bold text-slate-900 text-sm mt-1">Sharma Mason Gang (14 Persons)</h4>
+            <p class="text-xs text-slate-500">Expertise: Concreting, Plaster & Brickwork</p>
+            <p class="text-xs text-emerald-600 font-bold mt-1">Region: North & West India</p>
+          </div>
+          <a href="tel:919999999999" class="bg-slate-900 text-amber-400 text-xs px-3 py-2 rounded-lg font-bold">Call Now</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="bg-slate-950 text-slate-400 py-4 text-center text-xs border-t border-slate-800">
-    SiteSeva © 2026 — Machinery, Contracts & Workforce
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-400 py-6 border-t border-slate-800 text-center text-xs">
+    <p class="font-bold text-slate-300">SiteSeva © 2026</p>
+    <p class="mt-1">Your Trusted Construction Partner — Machinery, Contracts & Workforce</p>
   </footer>
+
 </body>
 </html>
