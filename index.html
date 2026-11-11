@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SiteSeva - कंस्ट्रक्शन साइट का सच्चा साथी</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-slate-950 text-white border-b border-amber-500/30 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20">
+          SS
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+            Site<span class="text-amber-400">Seva</span>
+            <span class="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-2 py-0.5 rounded-full border border-amber-400/30">LIVE</span>
+          </h1>
+          <p class="text-[11px] text-slate-400" data-i18n="tagline">मशीन, ठेका, कामगार व ऑपरेटर नेटवर्क</p>
+        </div>
+      </div>
+
+      <!-- Language Selector -->
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-amber-400 font-bold">🌐 Language:</span>
+        <select id="langSelector" class="bg-slate-900 text-amber-300 border border-amber-500/50 text-xs px-3 py-1.5 rounded-lg focus:outline-none cursor-pointer font-bold">
+          <option value="hi">🇮🇳 हिंदी (Hindi)</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="hinglish">🗣️ Hinglish</option>
+          <option value="mr">🚩 मराठी (Marathi)</option>
+          <option value="gu">🦁 ગુજરાતી (Gujarati)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="max-w-6xl mx-auto px-4 flex gap-4 text-xs font-bold overflow-x-auto border-t border-slate-800">
+      <button data-tab-btn="work" class="tab-button py-3 border-b-2 border-amber-400 text-amber-400 flex items-center gap-1.5 whitespace-nowrap">
+        📋 <span data-i18n="tabWork">साइट वर्क व ठेका</span>
+      </button>
+      <button data-tab-btn="machines" class="tab-button py-3 border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap">
+        🚜 <span data-i18n="tabMachines">मशीन रेंटल (JCB, AJAX)</span>
+      </button>
+      <button data-tab-btn="operators" class="tab-button py-3 border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap">
+        🪪 <span data-i18n="tabOperators">ऑपरेटर व ड्राइवर</span>
+      </button>
+      <button data-tab-btn="labour" class="tab-button py-3 border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap">
+        👷 <span data-i18n="tabLabour">लेबर व पेटीदार गैंग</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 border-b border-amber-500/20">
+    <div class="max-w-4xl mx-auto text-center space-y-3">
+      <span class="inline-block bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold" data-i18n="heroBadge">
+        भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क
+      </span>
+      <h2 class="text-2xl md:text-4xl font-extrabold leading-tight">
+        <span data-i18n="heroTitle1">हर साइट की ज़रूरत, अब </span>
+        <span class="text-amber-400" data-i18n="heroTitle2">एक ही जगह</span>
+      </h2>
+      <p class="text-slate-300 text-xs md:text-sm max-w-xl mx-auto" data-i18n="heroDesc">
+        मशीन रेंट पर दें या लें, साइट का काम पोस्ट करें, पेटीदार से रेट मांगें, या ऑपरेटर/ड्राइवर खोजें।
+      </p>
+    </div>
+  </section>
+
+  <!-- Content Panels -->
+  <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full">
+
+    <!-- Tab 1: Work -->
+    <div id="tab-work" class="tab-panel space-y-4">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-slate-900 text-lg" data-i18n="workHeading">चल रहे काम और टेंडर्स (Live Leads)</h3>
+        <button class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs shadow-md" data-i18n="postWorkBtn">
+          + नया काम पोस्ट करें
+        </button>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-amber-400 transition-all">
+          <div class="flex justify-between items-start">
+            <span class="text-[11px] bg-blue-50 text-blue-700 font-bold px-2.5 py-1 rounded-md">RCC & Concrete Work</span>
+            <span class="text-xs font-extrabold text-amber-600"><span data-i18n="budgetLabel">बजट</span>: ₹8.5 Lakh</span>
+          </div>
+          <h4 class="font-bold text-slate-900 mt-2 text-base">कंक्रीट कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</h4>
+          <p class="text-xs text-slate-500 mt-1">📍 सोनभद्र / मिर्जापुर, UP</p>
+          <p class="text-xs text-slate-600 mt-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+            साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori कंक्रीट मिक्सर (SLCM) और कुशल लेबर टीम की तुरंत आवश्यकता है।
+          </p>
+          <div class="mt-4 pt-3 border-t flex justify-between items-center">
+            <span class="text-xs text-slate-500 font-medium">शर्मा इंफ्रास्ट्रक्चर</span>
+            <button class="bg-slate-900 text-amber-400 text-xs px-3 py-1.5 rounded-lg font-bold hover:bg-slate-800" data-i18n="bidBtn">
+              रेट / कोटेशन डालें
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-amber-400 transition-all">
+          <div class="flex justify-between items-start">
+            <span class="text-[11px] bg-green-50 text-green-700 font-bold px-2.5 py-1 rounded-md">Shuttering & Civil</span>
+            <span class="text-xs font-extrabold text-amber-600"><span data-i18n="budgetLabel">बजट</span>: ₹22/Sq.Ft</span>
+          </div>
+          <h4 class="font-bold text-slate-900 mt-2 text-base">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</h4>
+          <p class="text-xs text-slate-500 mt-1">📍 इलेक्ट्रॉनिक सिटी, बेंगलुरु</p>
+          <p class="text-xs text-slate-600 mt-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+            मटेरियल ठेकेदार का रहेगा, केवल लेबर विद टूल्स पेटी ठेकेदार की आवश्यकता है। रनिंग बिलिंग हर 15 दिन में।
+          </p>
+          <div class="mt-4 pt-3 border-t flex justify-between items-center">
+            <span class="text-xs text-slate-500 font-medium">RK बिल्डर्स</span>
+            <button class="bg-slate-900 text-amber-400 text-xs px-3 py-1.5 rounded-lg font-bold hover:bg-slate-800" data-i18n="bidBtn">
+              रेट / कोटेशन डालें
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Machines -->
+    <div id="tab-machines" class="tab-panel space-y-4 hidden">
+      <h3 class="font-bold text-slate-900 text-lg" data-i18n="machHeading">उपलब्ध कंस्ट्रक्शन मशीनरी (Rental Hub)</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded" data-i18n="availBadge">उपलब्ध</span>
+          <h4 class="font-bold text-slate-900 mt-2">Ajax Fiori Argo 4000 (SLCM)</h4>
+          <p class="text-xs text-slate-500">4.0 Cum कंक्रीट मिक्सर • 2022 मॉडल</p>
+          <div class="mt-3 bg-slate-50 p-2.5 rounded-lg text-xs space-y-1">
+            <p class="font-bold text-slate-800">किराया: ₹1,40,000 / महीना</p>
+            <p class="text-slate-500">ऑपरेटर: साथ में उपलब्ध • डीजल साइट पर</p>
+          </div>
+          <button class="w-full mt-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-xl text-xs" data-i18n="callOwnerBtn">
+            📞 डायरेक्ट कॉल करें
+          </button>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded" data-i18n="availBadge">उपलब्ध</span>
+          <h4 class="font-bold text-slate-900 mt-2">JCB 3DX Super Backhoe Loader</h4>
+          <p class="text-xs text-slate-500">4WD • 2023 मॉडल</p>
+          <div class="mt-3 bg-slate-50 p-2.5 rounded-lg text-xs space-y-1">
+            <p class="font-bold text-slate-800">किराया: ₹950 / घंटा (या ₹75,000/माह)</p>
+            <p class="text-slate-500">अनुभवी ऑपरेटर सहित</p>
+          </div>
+          <button class="w-full mt-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-xl text-xs" data-i18n="callOwnerBtn">
+            📞 डायरेक्ट कॉल करें
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Operators -->
+    <div id="tab-operators" class="tab-panel space-y-4 hidden">
+      <h3 class="font-bold text-slate-900 text-lg" data-i18n="opHeading">प्रमाणित ऑपरेटर व ड्राइवर (Verified Profiles)</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center">
+            <h4 class="font-bold text-slate-900">रामेश्वर यादव (Ajax & JCB ऑपरेटर)</h4>
+            <span class="text-[10px] bg-green-100 text-green-700 font-bold px-2 py-0.5 rounded">HMV Verified</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1"><span data-i18n="expLabel">अनुभव</span>: 6 साल • DL No: UP-65-20180029XXX</p>
+          <p class="text-xs text-slate-700 mt-2"><span data-i18n="salLabel">अपेक्षित सैलरी</span>: ₹24,000 / महीना (रहना + खाना)</p>
+          <button class="w-full mt-3 bg-slate-900 text-amber-400 font-bold py-2 rounded-xl text-xs" data-i18n="contactOpBtn">
+            ऑपरेटर से संपर्क करें
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Labour -->
+    <div id="tab-labour" class="tab-panel space-y-4 hidden">
+      <h3 class="font-bold text-slate-900 text-lg" data-i18n="labHeading">लेबर सप्लायर व पेटी ठेकेदार डायरेक्टरी</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <h4 class="font-bold text-slate-900">माँ विंध्यवासिनी कंस्ट्रक्शन गैंग</h4>
+          <p class="text-xs text-slate-500">गैंग साइज: 25 कुशल मिस्त्री व लेबर</p>
+          <p class="text-xs text-slate-700 mt-2">विशेषज्ञता: शटरिंग, सरिया बाइंडिंग और आरसीसी स्लैब कास्टिंग</p>
+          <button class="w-full mt-3 bg-slate-900 text-white font-bold py-2 rounded-xl text-xs" data-i18n="inquiryLabBtn">
+            रेट व अवेलेबिलिटी पूछें
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-400 py-6 border-t border-slate-800 text-center text-xs">
+    <p class="font-bold text-slate-300">SiteSeva (साइटसेवा) © 2026</p>
+    <p class="mt-1" data-i18n="footerText">हर साइट का सच्चा साथी — मशीन, ठेका और कामगार</p>
+  </footer>
+
+  <!-- Script for Language Switch & Tabs -->
+  <script>
+    const translations = {
+      hi: {
+        tagline: "मशीन, ठेका, कामगार व ऑपरेटर नेटवर्क",
+        tabWork: "साइट वर्क व ठेका",
+        tabMachines: "मशीन रेंटल (JCB, AJAX)",
+        tabOperators: "ऑपरेटर व ड्राइवर",
+        tabLabour: "लेबर व पेटीदार गैंग",
+        heroBadge: "भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क",
+        heroTitle1: "हर साइट की ज़रूरत, अब ",
+        heroTitle2: "एक ही जगह",
+        heroDesc: "मशीन रेंट पर दें या लें, साइट का काम पोस्ट करें, पेटीदार से रेट मांगें, या ऑपरेटर/ड्राइवर खोजें।",
+        workHeading: "चल रहे काम और टेंडर्स (Live Leads)",
+        postWorkBtn: "+ नया काम पोस्ट करें",
+        budgetLabel: "बजट",
+        bidBtn: "रेट / कोटेशन डालें",
+        machHeading: "उपलब्ध कंस्ट्रक्शन मशीनरी (Rental Hub)",
+        availBadge: "उपलब्ध",
+        callOwnerBtn: "📞 डायरेक्ट कॉल करें",
+        opHeading: "प्रमाणित ऑपरेटर व ड्राइवर (Verified Profiles)",
+        expLabel: "अनुभव",
+        salLabel: "अपेक्षित सैलरी",
+        contactOpBtn: "ऑपरेटर से संपर्क करें",
+        labHeading: "लेबर सप्लायर व पेटी ठेकेदार डायरेक्टरी",
+        inquiryLabBtn: "रेट व अवेलेबिलिटी पूछें",
+        footerText: "हर साइट का सच्चा साथी — मशीन, ठेका और कामगार"
+      },
+      en: {
+        tagline: "Machinery, Contracts, Labour & Operator Network",
+        tabWork: "Site Work & Contracts",
+        tabMachines: "Machine Rental (JCB, AJAX)",
+        tabOperators: "Operators & Drivers",
+        tabLabour: "Labour & Petty Contractors",
+        heroBadge: "India's #1 Complete Construction Network",
+        heroTitle1: "Every Site Requirement, Now ",
+        heroTitle2: "In One Place",
+        heroDesc: "Rent heavy machinery, post project tenders, request petty contractor bids, or hire certified operators.",
+        workHeading: "Active Work Contracts & Tenders (Live Leads)",
+        postWorkBtn: "+ Post New Project",
+        budgetLabel: "Budget",
+        bidBtn: "Submit Quote / Bid",
+        machHeading: "Available Construction Machinery (Rental Hub)",
+        availBadge: "Available",
+        callOwnerBtn: "📞 Direct Call Owner",
+        opHeading: "Verified Heavy Equipment Operators & Drivers",
+        expLabel: "Experience",
+        salLabel: "Expected Salary",
+        contactOpBtn: "Contact Operator",
+        labHeading: "Labour Suppliers & Petty Contractors Directory",
+        inquiryLabBtn: "Check Rates & Availability",
+        footerText: "Your Trusted Site Partner — Machinery, Contracts & Workforce"
+      },
+      hinglish: {
+        tagline: "Machine, Theka, Labour aur Operator Network",
+        tabWork: "Site Work aur Theka",
+        tabMachines: "Machine Rental (JCB, AJAX)",
+        tabOperators: "Operator aur Driver",
+        tabLabour: "Labour aur Gang Suppliers",
+        heroBadge: "Bharat Ka No. 1 Construction Network",
+        heroTitle1: "Har Site Ki Zaroorat, Ab ",
+        heroTitle2: "Ek Hi Jagah",
+        heroDesc: "Machine rent pe dein ya lein, site ka kaam post karein, petty contractor se rate maangein, ya verified operator hire karein.",
+        workHeading: "Active Site Work aur Live Tenders",
+        postWorkBtn: "+ Naya Kaam Post Karein",
+        budgetLabel: "Budget",
+        bidBtn: "Apna Rate Dalein",
+        machHeading: "Available Machinery Rental Hub",
+        availBadge: "Available",
+        callOwnerBtn: "📞 Direct Call Karein",
+        opHeading: "Verified Machine Operators aur Drivers",
+        expLabel: "Experience",
+        salLabel: "Expected Salary",
+        contactOpBtn: "Operator Se Baat Karein",
+        labHeading: "Labour Supplier aur Petty Contractor Directory",
+        inquiryLabBtn: "Rate aur Availability Check Karein",
+        footerText: "Har Site Ka Sachha Saathi — Machine, Theka aur Kaamgaar"
+      },
+      mr: {
+        tagline: "मशीनरी, कंत्राट, मजूर आणि ऑपरेटर नेटवर्क",
+        tabWork: "साइटवरील कामे व कंत्राट",
+        tabMachines: "मशीन भाडेतत्त्वावर (JCB, AJAX)",
+        tabOperators: "ऑपरेटर व चालक",
+        tabLabour: "मजूर व पेटी कंत्राटदार",
+        heroBadge: "भारतातील पहिले संपूर्ण कन्स्ट्रक्शन नेटवर्क",
+        heroTitle1: "प्रत्येक साइटची गरज, आता ",
+        heroTitle2: "एकाच ठिकाणी",
+        heroDesc: "मशीन भाड्याने द्या किंवा घ्या, काम पोस्ट करा, पेटी कंत्राटदारांकडून दर मिळवा, किंवा चालक शोधा.",
+        workHeading: "सुरू असलेली कामे व टेंडर्स (Live Leads)",
+        postWorkBtn: "+ नवीन काम पोस्ट करा",
+        budgetLabel: "अंदाजपत्रक",
+        bidBtn: "दर / कोटेशन द्या",
+        machHeading: "उपलब्ध कन्स्ट्रक्शन मशिनरी (Rental Hub)",
+        availBadge: "उपलब्ध",
+        callOwnerBtn: "📞 थेट कॉल करा",
+        opHeading: "प्रमाणित ऑपरेटर व ड्रायव्हर्स",
+        expLabel: "अनुभव",
+        salLabel: "अपेक्षित पगार",
+        contactOpBtn: "ऑपरेटरशी संपर्क साधा",
+        labHeading: "मजूर पुरवठादार व पेटी कंत्राटदार",
+        inquiryLabBtn: "दर व उपलब्धता विचारा",
+        footerText: "प्रत्येक साइटचा खरा साथीदार — मशीन, कंत्राट आणि कामगार"
+      },
+      gu: {
+        tagline: "મશીનરી, કોન્ટ્રાક્ટ, મજૂર અને ડ્રાઈવર નેટવર્ક",
+        tabWork: "સાઇટ વર્ક અને કોન્ટ્રાક્ટ",
+        tabMachines: "મશીન ભાડે આપો/લો (JCB, AJAX)",
+        tabOperators: "ઓપરેટર અને ડ્રાઈવર",
+        tabLabour: "મજૂર અને પેટી કોન્ટ્રાક્ટર",
+        heroBadge: "ભારતનું પ્રથમ સંપૂર્ણ કન્સ્ટ્રક્શન નેટવર્ક",
+        heroTitle1: "દરેક સાઇટની જરૂરિયાત, હવે ",
+        heroTitle2: "એક જ જગ્યાએ",
+        heroDesc: "મશીન ભાડે આપો કે લો, નવું કામ પોસ્ટ કરો, પેટી કોન્ટ્રાક્ટર પાસેથી રેટ મેળવો, અથવા ડ્રાઈવર શોધો.",
+        workHeading: "ચાલુ કામ અને ટેન્ડર્સ (Live Leads)",
+        postWorkBtn: "+ નવું કામ પોસ્ટ કરો",
+        budgetLabel: "બજેટ",
+        bidBtn: "રેટ / બોલી લગાવો",
+        machHeading: "ઉપલબ્ધ કન્સ્ટ્રક્શન મશીનરી (Rental Hub)",
+        availBadge: "ઉપલબ્ધ",
+        callOwnerBtn: "📞 સીધો સંપર્ક કરો",
+        opHeading: "પ્રમાણિત ઓપરેટર અને ડ્રાઈવર",
+        expLabel: "અનુભવ",
+        salLabel: "અપેક્ષિત પગાર",
+        contactOpBtn: "ઓપરેટરનો સંપર્ક કરો",
+        labHeading: "મજૂર સપ્લાયર અને પેટી કોન્ટ્રાક્ટર",
+        inquiryLabBtn: "રેટ અને ઉપલબ્ધતા પૂછો",
+        footerText: "દરેક સાઇટનો સાચો સાથી — મશીન, કોન્ટ્રાક્ટ અને મજૂર"
+      }
+    };
+
+    function updateLanguage(selectedLang) {
+      const dict = translations[selectedLang] || translations.hi;
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.getAttribute('data-i18n');
+        if (dict[key]) {
+          element.textContent = dict[key];
+        }
+      });
+    }
+
+    // Attach Language Event
+    const selector = document.getElementById('langSelector');
+    if (selector) {
+      selector.addEventListener('change', function (e) {
+        updateLanguage(e.target.value);
+      });
+    }
+
+    // Attach Tab Events
+    const buttons = document.querySelectorAll('.tab-button');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', function () {
+        const targetTab = this.getAttribute('data-tab-btn');
+        panels.forEach((p) => p.classList.add('hidden'));
+        buttons.forEach((b) => {
+          b.classList.remove('border-amber-400', 'text-amber-400');
+          b.classList.add('border-transparent', 'text-slate-400');
+        });
+
+        const activePanel = document.getElementById('tab-' + targetTab);
+        if (activePanel) {
+          activePanel.classList.remove('hidden');
+        }
+        this.classList.add('border-amber-400', 'text-amber-400');
+        this.classList.remove('border-transparent', 'text-slate-400');
+      });
+    });
+  </script>
+</body>
+</html>
