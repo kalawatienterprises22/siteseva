@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SiteSeva - कंस्ट्रक्शन साइट का साथी</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-slate-950 text-white border-b border-amber-500/30 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20">
+          SS
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+            Site<span class="text-amber-400">Seva</span>
+            <span class="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-2 py-0.5 rounded-full border border-amber-400/30">LIVE</span>
+          </h1>
+          <p id="t_subtag" class="text-[11px] text-slate-400">मशीन, ठेका, कामगार व ऑपरेटर नेटवर्क</p>
+        </div>
+      </div>
+
+      <!-- Language Selector with Direct onchange -->
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-amber-400 font-bold">🌐 Language:</span>
+        <select id="lang_box" onchange="window.setLang(this.value)" class="bg-slate-900 text-amber-300 border border-amber-500/60 text-xs px-3 py-1.5 rounded-lg focus:outline-none cursor-pointer font-bold">
+          <option value="hi" selected>🇮🇳 हिंदी (Hindi)</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="hinglish">🗣️ Hinglish</option>
+          <option value="mr">🚩 मराठी (Marathi)</option>
+          <option value="gu">🦁 ગુજરાતી (Gujarati)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="max-w-6xl mx-auto px-4 flex gap-4 text-xs font-bold overflow-x-auto border-t border-slate-800">
+      <button id="btn_tab_work" onclick="window.switchTab('work')" class="py-3 border-b-2 border-amber-400 text-amber-400 flex items-center gap-1.5 whitespace-nowrap">
+        📋 <span id="t_tab_work">साइट वर्क व ठेका</span>
+      </button>
+      <button id="btn_tab_mach" onclick="window.switchTab('machines')" class="py-3 border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap">
+        🚜 <span id="t_tab_mach">मशीन रेंटल (JCB, AJAX)</span>
+      </button>
+      <button id="btn_tab_oper" onclick="window.switchTab('operators')" class="py-3 border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap">
+        🪪 <span id="t_tab_oper">ऑपरेटर व ड्राइवर</span>
+      </button>
+      <button id="btn_tab_lab" onclick="window.switchTab('labour')" class="py-3 border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap">
+        👷 <span id="t_tab_lab">लेबर व पेटीदार गैंग</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 border-b border-amber-500/20">
+    <div class="max-w-4xl mx-auto text-center space-y-3">
+      <span id="t_hero_badge" class="inline-block bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold">
+        भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क
+      </span>
+      <h2 class="text-2xl md:text-4xl font-extrabold leading-tight">
+        <span id="t_hero_t1">हर साइट की ज़रूरत, अब </span>
+        <span id="t_hero_t2" class="text-amber-400">एक ही जगह</span>
+      </h2>
+      <p id="t_hero_desc" class="text-slate-300 text-xs md:text-sm max-w-xl mx-auto">
+        मशीन रेंट पर दें या लें, साइट का काम पोस्ट करें, पेटीदार से रेट मांगें, या ऑपरेटर/ड्राइवर खोजें।
+      </p>
+    </div>
+  </section>
+
+  <!-- Content Sections -->
+  <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full">
+
+    <!-- Work Tab -->
+    <div id="sec_work" class="space-y-4">
+      <div class="flex justify-between items-center mb-4">
+        <h3 id="t_work_h" class="font-bold text-slate-900 text-lg">चल रहे काम और टेंडर्स (Live Leads)</h3>
+        <button id="t_post_b" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs shadow-md">
+          + नया काम पोस्ट करें
+        </button>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-amber-400 transition-all">
+          <div class="flex justify-between items-start">
+            <span class="text-[11px] bg-blue-50 text-blue-700 font-bold px-2.5 py-1 rounded-md">RCC & Concrete</span>
+            <span class="text-xs font-extrabold text-amber-600"><span class="cls_budget">बजट</span>: ₹8.5 Lakh</span>
+          </div>
+          <h4 id="t_card1_t" class="font-bold text-slate-900 mt-2 text-base">कंक्रीट कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</h4>
+          <p class="text-xs text-slate-500 mt-1">📍 सोनभद्र / मिर्जापुर, UP</p>
+          <p id="t_card1_d" class="text-xs text-slate-600 mt-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+            साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori कंक्रीट मिक्सर (SLCM) और कुशल लेबर टीम की आवश्यकता है।
+          </p>
+          <div class="mt-4 pt-3 border-t flex justify-between items-center">
+            <span class="text-xs text-slate-500 font-medium">शर्मा इंफ्रास्ट्रक्चर</span>
+            <button class="cls_bid_btn bg-slate-900 text-amber-400 text-xs px-3 py-1.5 rounded-lg font-bold hover:bg-slate-800">
+              रेट / कोटेशन डालें
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-amber-400 transition-all">
+          <div class="flex justify-between items-start">
+            <span class="text-[11px] bg-green-50 text-green-700 font-bold px-2.5 py-1 rounded-md">Shuttering & Civil</span>
+            <span class="text-xs font-extrabold text-amber-600"><span class="cls_budget">बजट</span>: ₹22/Sq.Ft</span>
+          </div>
+          <h4 id="t_card2_t" class="font-bold text-slate-900 mt-2 text-base">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</h4>
+          <p class="text-xs text-slate-500 mt-1">📍 इलेक्ट्रॉनिक सिटी, बेंगलुरु</p>
+          <p id="t_card2_d" class="text-xs text-slate-600 mt-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+            मटेरियल ठेकेदार का रहेगा, केवल लेबर विद टूल्स पेटी ठेकेदार की आवश्यकता है। रनिंग बिलिंग हर 15 दिन में।
+          </p>
+          <div class="mt-4 pt-3 border-t flex justify-between items-center">
+            <span class="text-xs text-slate-500 font-medium">RK बिल्डर्स</span>
+            <button class="cls_bid_btn bg-slate-900 text-amber-400 text-xs px-3 py-1.5 rounded-lg font-bold hover:bg-slate-800">
+              रेट / कोटेशन डालें
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Machines Tab -->
+    <div id="sec_mach" class="space-y-4 hidden">
+      <h3 id="t_mach_h" class="font-bold text-slate-900 text-lg">उपलब्ध कंस्ट्रक्शन मशीनरी (Rental Hub)</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <span class="cls_avail text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">उपलब्ध</span>
+          <h4 class="font-bold text-slate-900 mt-2">Ajax Fiori Argo 4000 (SLCM)</h4>
+          <p class="text-xs text-slate-500">4.0 Cum Concrete Mixer • 2022 Model</p>
+          <div class="mt-3 bg-slate-50 p-2.5 rounded-lg text-xs space-y-1">
+            <p id="t_m1_p" class="font-bold text-slate-800">किराया: ₹1,40,000 / महीना</p>
+            <p id="t_m1_s" class="text-slate-500">ऑपरेटर: साथ में उपलब्ध • डीजल साइट पर</p>
+          </div>
+          <button class="cls_call_b w-full mt-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-xl text-xs">
+            📞 डायरेक्ट कॉल करें
+          </button>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <span class="cls_avail text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">उपलब्ध</span>
+          <h4 class="font-bold text-slate-900 mt-2">JCB 3DX Super Backhoe</h4>
+          <p class="text-xs text-slate-500">4WD • 2023 Model</p>
+          <div class="mt-3 bg-slate-50 p-2.5 rounded-lg text-xs space-y-1">
+            <p id="t_m2_p" class="font-bold text-slate-800">किराया: ₹950 / घंटा (या ₹75,000/माह)</p>
+            <p id="t_m2_s" class="text-slate-500">अनुभवी ऑपरेटर सहित</p>
+          </div>
+          <button class="cls_call_b w-full mt-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-xl text-xs">
+            📞 डायरेक्ट कॉल करें
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Operators Tab -->
+    <div id="sec_oper" class="space-y-4 hidden">
+      <h3 id="t_oper_h" class="font-bold text-slate-900 text-lg">प्रमाणित ऑपरेटर व ड्राइवर (Verified Profiles)</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center">
+            <h4 class="font-bold text-slate-900">रामेश्वर यादव (Ajax & JCB)</h4>
+            <span class="text-[10px] bg-green-100 text-green-700 font-bold px-2 py-0.5 rounded">Verified</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1"><span class="cls_exp">अनुभव</span>: 6 साल • DL: UP-65-20180029XXX</p>
+          <p class="text-xs text-slate-700 mt-2"><span class="cls_sal">अपेक्षित सैलरी</span>: ₹24,000 / महीना</p>
+          <button class="cls_op_b w-full mt-3 bg-slate-900 text-amber-400 font-bold py-2 rounded-xl text-xs">
+            ऑपरेटर से संपर्क करें
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Labour Tab -->
+    <div id="sec_lab" class="space-y-4 hidden">
+      <h3 id="t_lab_h" class="font-bold text-slate-900 text-lg">लेबर सप्लायर व पेटी ठेकेदार डायरेक्टरी</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <h4 class="font-bold text-slate-900">माँ विंध्यवासिनी कंस्ट्रक्शन गैंग</h4>
+          <p class="text-xs text-slate-500">गैंग साइज: 25 कुशल मिस्त्री व लेबर</p>
+          <p class="text-xs text-slate-700 mt-2">विशेषज्ञता: शटरिंग, सरिया बाइंडिंग और आरसीसी स्लैब कास्टिंग</p>
+          <button class="cls_lab_b w-full mt-3 bg-slate-900 text-white font-bold py-2 rounded-xl text-xs">
+            रेट व अवेलेबिलिटी पूछें
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-400 py-6 border-t border-slate-800 text-center text-xs">
+    <p class="font-bold text-slate-300">SiteSeva (साइटसेवा) © 2026</p>
+    <p id="t_footer" class="mt-1">हर साइट का सच्चा साथी — मशीन, ठेका और कामगार</p>
+  </footer>
+
+  <script>
+    const D = {
+      hi: {
+        subtag: "मशीन, ठेका, कामगार व ऑपरेटर नेटवर्क",
+        t_work: "साइट वर्क व ठेका", t_mach: "मशीन रेंटल (JCB, AJAX)", t_oper: "ऑपरेटर व ड्राइवर", t_lab: "लेबर व पेटीदार गैंग",
+        badge: "भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क",
+        h1: "हर साइट की ज़रूरत, अब ", h2: "एक ही जगह",
+        desc: "मशीन रेंट पर दें या लें, साइट का काम पोस्ट करें, पेटीदार से रेट मांगें, या ऑपरेटर/ड्राइवर खोजें।",
+        work_h: "चल रहे काम और टेंडर्स (Live Leads)", post_b: "+ नया काम पोस्ट करें",
+        card1_t: "कंक्रीट कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)",
+        card1_d: "साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori कंक्रीट मिक्सर (SLCM) और कुशल लेबर टीम की आवश्यकता है।",
+        card2_t: "कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)",
+        card2_d: "मटेरियल ठेकेदार का रहेगा, केवल लेबर विद टूल्स पेटी ठेकेदार की आवश्यकता है। रनिंग बिलिंग हर 15 दिन में।",
+        mach_h: "उपलब्ध कंस्ट्रक्शन मशीनरी (Rental Hub)",
+        m1_p: "किराया: ₹1,40,000 / महीना", m1_s: "ऑपरेटर: साथ में उपलब्ध • डीजल साइट पर",
+        m2_p: "किराया: ₹950 / घंटा (या ₹75,000/माह)", m2_s: "अनुभवी ऑपरेटर सहित",
+        oper_h: "प्रमाणित ऑपरेटर व ड्राइवर (Verified Profiles)",
+        lab_h: "लेबर सप्लायर व पेटी ठेकेदार डायरेक्टरी",
+        budget: "बजट", bid: "रेट / कोटेशन डालें", avail: "उपलब्ध", call: "📞 डायरेक्ट कॉल करें",
+        exp: "अनुभव", sal: "अपेक्षित सैलरी", op_b: "ऑपरेटर से संपर्क करें", lab_b: "रेट व अवेलेबिलिटी पूछें",
+        footer: "हर साइट का सच्चा साथी — मशीन, ठेका और कामगार"
+      },
+      en: {
+        subtag: "Machinery, Contracts, Labour & Operator Network",
+        t_work: "Site Work & Contracts", t_mach: "Machine Rental (JCB, AJAX)", t_oper: "Operators & Drivers", t_lab: "Labour & Petty Gangs",
+        badge: "India's #1 Complete Construction Network",
+        h1: "Every Site Requirement, Now ", h2: "In One Place",
+        desc: "Rent heavy machinery, post project contracts, receive contractor bids, or hire certified operators.",
+        work_h: "Active Work Contracts & Tenders (Live Leads)", post_b: "+ Post New Project",
+        card1_t: "Concrete Canal & Retaining Wall Lining (3.5 KM)",
+        card1_d: "Ajax Fiori concrete mixer (SLCM) and skilled mason gang urgently required for 1200 cum concrete works.",
+        card2_t: "Commercial Plaza Shuttering Works (45,000 Sq.Ft)",
+        card2_d: "Material supplied by contractor, labour with tools needed on petty contract. Running billing every 15 days.",
+        mach_h: "Available Construction Equipment (Rental Hub)",
+        m1_p: "Rent: ₹1,40,000 / Month", m1_s: "Operator Included • Diesel on Client",
+        m2_p: "Rent: ₹950 / Hour (or ₹75,000/Mo)", m2_s: "Experienced Operator Included",
+        oper_h: "Verified Operators & Drivers Directory",
+        lab_h: "Labour Suppliers & Petty Contractors",
+        budget: "Budget", bid: "Submit Bid / Rate", avail: "Available", call: "📞 Call Owner Direct",
+        exp: "Experience", sal: "Expected Salary", op_b: "Contact Operator", lab_b: "Check Rates & Availability",
+        footer: "Your Trusted Site Partner — Machinery, Contracts & Workforce"
+      },
+      hinglish: {
+        subtag: "Machine, Theka, Labour aur Operator Network",
+        t_work: "Site Work aur Theka", t_mach: "Machine Rental (JCB, AJAX)", t_oper: "Operator aur Driver", t_lab: "Labour aur Gang Suppliers",
+        badge: "Bharat Ka No. 1 Construction Network",
+        h1: "Har Site Ki Zaroorat, Ab ", h2: "Ek Hi Jagah",
+        desc: "Machine rent pe dein ya lein, site ka kaam post karein, petty contractor se rate maangein, ya verified operator hire karein.",
+        work_h: "Active Site Work aur Live Tenders", post_b: "+ Naya Kaam Post Karein",
+        card1_t: "Concrete Canal & Retaining Wall Lining (3.5 KM)",
+        card1_d: "Site par 1200 cum concreting ke liye Ajax Fiori mixer (SLCM) aur skilled labour gang urgently chahiye.",
+        card2_t: "Commercial Plaza Shuttering Kaam (45,000 Sq.Ft)",
+        card2_d: "Material main contractor ka rahega, petty contractor ko labour with tools lana hai. Billing har 15 din me.",
+        mach_h: "Available Machine Rental Hub",
+        m1_p: "Rent: ₹1,40,000 / Month", m1_s: "Operator Sath Me • Diesel Site Par",
+        m2_p: "Rent: ₹950 / Hour (ya ₹75,000/Month)", m2_s: "Experienced Operator Ke Sath",
+        oper_h: "Verified Machine Operators aur Drivers",
+        lab_h: "Labour Suppliers aur Gang Directory",
+        budget: "Budget", bid: "Apna Rate Dalein", avail: "Available", call: "📞 Direct Call Karein",
+        exp: "Experience", sal: "Expected Salary", op_b: "Operator Se Contact Karein", lab_b: "Rate aur Availability Puchein",
+        footer: "Har Site Ka Sachha Saathi — Machine, Theka aur Kaamgaar"
+      },
+      mr: {
+        subtag: "मशीनरी, कंत्राट, मजूर आणि ऑपरेटर नेटवर्क",
+        t_work: "साइटवरील कामे व कंत्राट", t_mach: "मशीन भाडेतत्त्वावर (JCB, AJAX)", t_oper: "ऑपरेटर व चालक", t_lab: "मजूर व पेटी कंत्राटदार",
+        badge: "भारतातील पहिले संपूर्ण कन्स्ट्रक्शन नेटवर्क",
+        h1: "प्रत्येक साइटची गरज, आता ", h2: "एकाच ठिकाणी",
+        desc: "मशीन भाड्याने द्या किंवा घ्या, काम पोस्ट करा, पेटी कंत्राटदारांकडून दर मिळवा, किंवा चालक शोधा.",
+        work_h: "सुरू असलेली कामे व टेंडर्स (Live Leads)", post_b: "+ नवीन काम पोस्ट करा",
+        card1_t: "काँक्रीट कॅनॉल व रिटेनिंग वॉल लायनिंग (3.5 KM)",
+        card1_d: "साइटवर 1200 cum काँक्रीटिंगसाठी Ajax Fiori मिक्सर (SLCM) आणि कुशल मजुरांची तातडीने गरज आहे.",
+        card2_t: "कमर्शियल प्लाझा शटरिंग काम (45,000 Sq.Ft)",
+        card2_d: "मटेरियल मुख्य कंत्राटदाराचे असेल, केवळ लेबर विथ टूल्स पेटी कंत्राटदार हवा. दर 15 दिवसांनी बिलिंग.",
+        mach_h: "उपलब्ध कन्स्ट्रक्शन मशिनरी (Rental Hub)",
+        m1_p: "भाडे: ₹1,40,000 / महिना", m1_s: "ऑपरेटर उपलब्ध • डिझेल साइटवर",
+        m2_p: "भाडे: ₹950 / तास (किंवा ₹75,000/महिना)", m2_s: "अनुभवी ऑपरेटरसह",
+        oper_h: "प्रमाणित ऑपरेटर व चालक",
+        lab_h: "मजूर पुरवठादार व पेटी कंत्राटदार डायरेक्टरी",
+        budget: "अंदाजपत्रक", bid: "दर / कोटेशन द्या", avail: "उपलब्ध", call: "📞 थेट कॉल करा",
+        exp: "अनुभव", sal: "अपेक्षित पगार", op_b: "ऑपरेटरशी संपर्क साधा", lab_b: "दर व उपलब्धता विचारा",
+        footer: "प्रत्येक साइटचा खरा साथीदार — मशीन, कंत्राट आणि कामगार"
+      },
+      gu: {
+        subtag: "મશીનરી, કોન્ટ્રાક્ટ, મજૂર અને ડ્રાઈવર નેટવર્ક",
+        t_work: "સાઇટ વર્ક અને કોન્ટ્રાક્ટ", t_mach: "મશીન ભાડે આપો/લો (JCB, AJAX)", t_oper: "ઓપરેટર અને ડ્રાઈવર", t_lab: "મજૂર અને પેટી કોન્ટ્રાક્ટર",
+        badge: "ભારતનું પ્રથમ સંપૂર્ણ કન્સ્ટ્રક્શન નેટવર્ક",
+        h1: "દરેક સાઇટની જરૂરિયાત, હવે ", h2: "એક જ જગ્યાએ",
+        desc: "મશીન ભાડે આપો કે લો, નવું કામ પોસ્ટ કરો, પેટી કોન્ટ્રાક્ટર પાસેથી રેટ મેળવો, અથવા ડ્રાઈવર શોધો.",
+        work_h: "ચાલુ કામ અને ટેન્ડર્સ (Live Leads)", post_b: "+ નવું કામ પોસ્ટ કરો",
+        card1_t: "કોંક્રિટ કેનાલ અને રિટેઈનિંગ વોલ લાઇનિંગ (3.5 KM)",
+        card1_d: "સાઇટ પર 1200 cum કોંક્રિટિંગ માટે Ajax Fiori મિક્સર (SLCM) અને કુશળ મજૂરોની તાત્કાલિક જરૂર છે.",
+        card2_t: "કોમર્શિયલ પ્લાઝા શટરિંગ કામ (45,000 Sq.Ft)",
+        card2_d: "મટિરિયલ કોન્ટ્રાક્ટરનું રહેશે, ફક્ત લેબર વિથ ટૂલ્સ પેટી કોન્ટ્રાક્ટર જોઈએ. દર 15 દિવસે બિલિંગ.",
+        mach_h: "ઉપલબ્ધ કન્સ્ટ્રક્શન મશીનરી (Rental Hub)",
+        m1_p: "ભાડું: ₹1,40,000 / મહિનો", m1_s
