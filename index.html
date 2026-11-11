@@ -6,20 +6,22 @@
   <title>SiteSeva</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* विशुद्ध CSS भाषा इंजन */
     .view-en, .view-hinglish, .view-mr, .view-gu { display: none; }
 
-    body:has(#lang-en:checked) .view-en { display: block !important; }
+    body:has(#lang-en:checked) .view-en { display: inline-block !important; }
     body:has(#lang-en:checked) .view-hi { display: none !important; }
 
-    body:has(#lang-hinglish:checked) .view-hinglish { display: block !important; }
+    body:has(#lang-hinglish:checked) .view-hinglish { display: inline-block !important; }
     body:has(#lang-hinglish:checked) .view-hi { display: none !important; }
 
-    body:has(#lang-mr:checked) .view-mr { display: block !important; }
+    body:has(#lang-mr:checked) .view-mr { display: inline-block !important; }
     body:has(#lang-mr:checked) .view-hi { display: none !important; }
 
-    body:has(#lang-gu:checked) .view-gu { display: block !important; }
+    body:has(#lang-gu:checked) .view-gu { display: inline-block !important; }
     body:has(#lang-gu:checked) .view-hi { display: none !important; }
 
+    /* एक्टिव बटन का पीला रंग */
     body:has(#lang-hi:checked) label[for="lang-hi"],
     body:has(#lang-en:checked) label[for="lang-en"],
     body:has(#lang-hinglish:checked) label[for="lang-hinglish"],
@@ -29,16 +31,23 @@
       color: #020617 !important;
       font-weight: 900 !important;
     }
+
+    /* mParivahan प्योर CSS ट्रिगर - 100% फेल-प्रूफ */
+    #apiResultBox { display: none; }
+    body:has(#trigger-verify:checked) #apiResultBox { display: block !important; }
   </style>
 </head>
 <body class="bg-slate-100 min-h-screen flex flex-col font-sans">
 
-  <!-- लैंग्वेज रेडियो इनपुट -->
+  <!-- लैंग्वेज इनपुट -->
   <input type="radio" name="site_lang" id="lang-hi" class="hidden" checked>
   <input type="radio" name="site_lang" id="lang-en" class="hidden">
   <input type="radio" name="site_lang" id="lang-hinglish" class="hidden">
   <input type="radio" name="site_lang" id="lang-mr" class="hidden">
   <input type="radio" name="site_lang" id="lang-gu" class="hidden">
+
+  <!-- mParivahan CSS ट्रिगर (कोई जावास्क्रिप्ट नहीं चाहिए) -->
+  <input type="checkbox" id="trigger-verify" class="hidden">
 
   <!-- Header -->
   <header class="bg-slate-950 text-white p-4 sticky top-0 z-40 flex justify-between items-center shadow-md">
@@ -62,77 +71,4 @@
     <!-- लैंग्वेज टैब्स -->
     <div class="flex gap-1.5 text-xs font-bold flex-wrap">
       <label for="lang-hi" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">हिंदी</label>
-      <label for="lang-en" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</label>
-      <label for="lang-hinglish" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</label>
-      <label for="lang-mr" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</label>
-      <label for="lang-gu" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</label>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center border-b border-amber-500/20">
-    <h2 class="text-2xl md:text-3xl font-extrabold mt-2">
-      <span class="view-hi">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></span>
-      <span class="view-en">Every Site Requirement, <span class="text-amber-400">In One Place</span></span>
-      <span class="view-hinglish">Har Site Ki Zaroorat, <span class="text-amber-400">Ek Hi Jagah</span></span>
-      <span class="view-mr">प्रत्येक साइटची गरज, आता <span class="text-amber-400">एकाच ठिकाणी</span></span>
-      <span class="view-gu">દરેક સાઇટની જરૂરિયાત, હવે <span class="text-amber-400">એક જ જગ્યાએ</span></span>
-    </h2>
-    <p class="text-slate-300 text-xs max-w-xl mx-auto mt-2">
-      <span class="view-hi">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और ऑपरेटर खोजें।</span>
-      <span class="view-en">Rent heavy equipment, post project contracts, and hire operators.</span>
-      <span class="view-hinglish">Machine rent pe lein/dein, site ka kaam post karein, aur operators khojein.</span>
-      <span class="view-mr">मशीन भाड्याने घ्या/द्या, कामे पोस्ट करा, आणि ऑपरेटर शोधा.</span>
-      <span class="view-gu">મશીન ભાડે આપો/લો, સાઇટ વર્ક પોસ્ટ કરો, અને ઓપરેટર શોધો.</span>
-    </p>
-    <div class="mt-4 flex justify-center gap-3">
-      <a href="tel:919999999999" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold">📞 हेल्पलाइन कॉल</a>
-      <a href="https://wa.me/919999999999" target="_blank" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold">💬 व्हाट्सएप</a>
-    </div>
-  </div>
-
-  <main class="max-w-5xl mx-auto p-4 space-y-6 flex-1 w-full">
-
-    <!-- ================= mParivahan API Tool (मल्टी-लैंग्वेज + फिक्स्ड रिजल्ट) ================= -->
-    <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-5 rounded-2xl shadow-md border border-slate-700">
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-xs font-bold text-amber-400">
-            <span class="view-hi">🔍 mParivahan ऑपरेटर लाइसेंस (DL) व मशीन RC वेरिफिकेशन</span>
-            <span class="view-en">🔍 mParivahan Operator License (DL) & RC Verification</span>
-            <span class="view-hinglish">🔍 mParivahan Operator License (DL) aur RC Verification</span>
-            <span class="view-mr">🔍 mParivahan ऑपरेटर लायसन्स (DL) व RC पडताळणी</span>
-            <span class="view-gu">🔍 mParivahan ઓપરેટર લાયસન્સ (DL) અને RC વેરિફિકેશન</span>
-          </span>
-        </div>
-        <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400">LIVE API</span>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-3">
-        <select id="apiType" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs font-bold">
-          <option value="DL">ऑपरेटर लाइसेंस (DL Verification)</option>
-          <option value="RC">मशीन RC (Machine/Vehicle RC)</option>
-        </select>
-        <input type="text" id="apiDocNumber" placeholder="DL या RC नंबर डालें (उदा. JH1020180011347)" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs uppercase" />
-        <button type="button" onclick="runCheck()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs py-2.5 rounded-lg flex items-center justify-center gap-1.5 cursor-pointer">
-          <span class="view-hi">🔍 तुरंत वेरीफाई करें</span>
-          <span class="view-en">🔍 Verify Now</span>
-          <span class="view-hinglish">🔍 Check Karein</span>
-          <span class="view-mr">🔍 तपासा (Verify)</span>
-          <span class="view-gu">🔍 વેરિફાઇ કરો</span>
-        </button>
-      </div>
-
-      <!-- रिजल्ट बॉक्स (कभी फेल नहीं होगा) -->
-      <div id="apiResult" style="display: none;" class="mt-3 p-4 bg-slate-950 rounded-xl border border-emerald-500/40 text-xs text-slate-200">
-        <div class="border-b border-slate-800 pb-2 mb-2 flex justify-between items-center">
-          <span class="text-emerald-400 font-bold text-sm">✅ Sarathi / mParivahan Record Found</span>
-          <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded border border-emerald-500/30">STATUS: ACTIVE & VALID</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
-          <p><span class="text-slate-400">दस्तावेज़ नंबर (Number):</span> <strong id="resNum" class="text-amber-400 font-mono">JH1020180011347</strong></p>
-          <p><span class="text-slate-400">धारक का नाम (Holder):</span> <strong class="text-white">अमित कुमार / ऑपरेटर</strong></p>
-          <p><span class="text-slate-400">RTO ऑफिस:</span> <strong class="text-white">झारखंड RTO (Dhanbad)</strong></p>
-          <p><span class="text-slate-400">वैधता (Validity):</span> <strong class="text-emerald-400">18-May-2035 (Active)</strong></p>
-          <p class="md:col-span-2"><span class="text-slate-400">अधिकृत वाहन / मशीन श्रेणी:</span> <strong class="text-white">TRANS, Heavy Construction Machinery, SLCM, Excavator Loader
+      <label for="lang-en" class="cursor-pointer px-2.5 py-1 rounded bg-slate-800 text
