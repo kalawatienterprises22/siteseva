@@ -7,13 +7,13 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .lang-active { background-color: #f59e0b !important; color: #020617 !important; font-weight: 800 !important; }
-    .site-modal { display: none; position: fixed; inset: 0; background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center; padding: 16px; }
+    .site-popup-bg { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; align-items: center; justify-content: center; padding: 15px; }
   </style>
 </head>
 <body class="bg-slate-100 min-h-screen flex flex-col font-sans text-slate-900">
 
   <!-- Header -->
-  <header class="bg-slate-950 text-white p-3 md:p-4 sticky top-0 z-40 flex justify-between items-center shadow-md border-b border-slate-800">
+  <header class="bg-slate-950 text-white p-3 md:p-4 sticky top-0 z-40 flex justify-between items-center shadow-md">
     <div class="flex items-center gap-2">
       <div class="w-9 h-9 bg-amber-500 rounded-lg flex items-center justify-center font-black text-slate-950 text-lg">SS</div>
       <div>
@@ -25,23 +25,22 @@
       </div>
     </div>
     
-    <!-- Language Selection Buttons -->
-    <div class="flex gap-1.5 text-xs font-bold flex-wrap justify-end" id="lang-btns">
-      <button type="button" onclick="setLanguage('hi')" id="btn-hi" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">हिंदी</button>
-      <button type="button" onclick="setLanguage('en')" id="btn-en" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</button>
-      <button type="button" onclick="setLanguage('hinglish')" id="btn-hinglish" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</button>
-      <button type="button" onclick="setLanguage('mr')" id="btn-mr" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</button>
-      <button type="button" onclick="setLanguage('gu')" id="btn-gu" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</button>
+    <!-- 5 Languages Single Click Buttons -->
+    <div class="flex gap-1.5 text-xs font-bold flex-wrap justify-end">
+      <button type="button" onclick="switchLang('hi')" id="btn-hi" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">हिंदी</button>
+      <button type="button" onclick="switchLang('en')" id="btn-en" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</button>
+      <button type="button" onclick="switchLang('hinglish')" id="btn-hinglish" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</button>
+      <button type="button" onclick="switchLang('mr')" id="btn-mr" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</button>
+      <button type="button" onclick="switchLang('gu')" id="btn-gu" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</button>
     </div>
   </header>
 
-  <!-- Action Subheader -->
+  <!-- Action Bar -->
   <div class="bg-slate-900 text-white px-4 py-2 flex flex-wrap justify-between items-center gap-2 text-xs border-b border-slate-800">
-    <span class="text-slate-300" data-i18n="sub_bar_text">साइट पर मशीन चाहिए या टेंडर डालना है?</span>
+    <span class="text-slate-300" data-i18n="action_title">साइट पर मशीन चाहिए या टेंडर डालना है?</span>
     <div class="flex gap-2">
-      <button type="button" onclick="openPopup('tenderModal')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-3 py-1.5 rounded shadow" data-i18n="post_tender_btn">+ नया टेंडर / काम पोस्ट करें</button>
-      <button type="button" onclick="openPopup('operatorModal')" class="bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/30 font-bold px-3 py-1.5 rounded" data-i18n="op_reg_btn">👷 ऑपरेटर रजिस्ट्रेशन</button>
-      <button type="button" onclick="alert('फिलहाल कोई नया नोटिफिकेशन नहीं है।')" class="bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-1 rounded font-bold">🔔 अलर्ट</button>
+      <button type="button" onclick="showPopup('tenderModal')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-3 py-1.5 rounded shadow" data-i18n="post_tender_btn">+ नया टेंडर / काम पोस्ट करें</button>
+      <button type="button" onclick="showPopup('operatorModal')" class="bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/30 font-bold px-3 py-1.5 rounded" data-i18n="op_reg_btn">👷 ऑपरेटर रजिस्ट्रेशन</button>
     </div>
   </div>
 
@@ -51,8 +50,8 @@
     <h2 data-i18n="hero_title" class="text-2xl md:text-3xl font-extrabold mt-3">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></h2>
     <p data-i18n="hero_desc" class="text-slate-300 text-xs max-w-xl mx-auto mt-2">मशीन किराए पर लें/दें, साइट का काम और टेंडर पोस्ट करें, और वेरीफाइड ऑपरेटर व लेबर टीम खोजें।</p>
     <div class="mt-4 flex justify-center gap-3">
-      <button type="button" onclick="callOwner()" data-i18n="call_btn" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold shadow hover:bg-amber-400">📞 हेल्पलाइन पर कॉल करें</button>
-      <button type="button" onclick="waCustom('नमस्ते SiteSeva, मुझे साइट के लिए मशीन व काम की जानकारी चाहिए।')" data-i18n="wa_btn" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold shadow hover:bg-emerald-500">💬 व्हाट्सएप सहायता</button>
+      <button type="button" onclick="directCall()" data-i18n="call_btn" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold shadow hover:bg-amber-400">📞 हेल्पलाइन पर कॉल करें</button>
+      <button type="button" onclick="directWa('नमस्ते SiteSeva, मुझे साइट मशीन व काम की सहायता चाहिए।')" data-i18n="wa_btn" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold shadow hover:bg-emerald-500">💬 व्हाट्सएप सहायता</button>
     </div>
   </div>
 
@@ -62,7 +61,7 @@
     <section>
       <div class="flex justify-between items-center mb-3">
         <h3 data-i18n="sec_leads" class="font-extrabold text-slate-900 text-lg">📋 साइट काम व टेंडर (Live Work Leads)</h3>
-        <button type="button" onclick="openPopup('tenderModal')" class="text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded hover:bg-amber-200" data-i18n="post_work_short">+ काम पोस्ट करें</button>
+        <button type="button" onclick="showPopup('tenderModal')" class="text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded hover:bg-amber-200" data-i18n="post_short">+ काम पोस्ट करें</button>
       </div>
       <div class="grid md:grid-cols-2 gap-4" id="leads-grid">
         <!-- Lead 1 -->
@@ -80,7 +79,7 @@
           </div>
           <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
             <span class="text-xs text-slate-500 font-medium">शर्मा इंफ्रास्ट्रक्चर</span>
-            <button type="button" onclick="triggerBid('कैनाल लाइनिंग कार्य (3.5 KM)', 'शर्मा इंफ्रास्ट्रक्चर')" class="bg-slate-900 hover:bg-slate-800 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold" data-i18n="quote_btn">कोटेशन / रेट डालें</button>
+            <button type="button" onclick="openBidForm('कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)', 'शर्मा इंफ्रास्ट्रक्चर')" class="bg-slate-900 hover:bg-slate-800 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold" data-i18n="quote_btn">कोटेशन / रेट डालें</button>
           </div>
         </div>
 
@@ -99,6 +98,60 @@
           </div>
           <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
             <span class="text-xs text-slate-500 font-medium">RK बिल्डर्स</span>
-            <button type="button" onclick="triggerBid('कमर्शियल प्लाजा शटरिंग कार्य', 'RK बिल्डर्स')" class="bg-slate-900 hover:bg-slate-800 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold" data-i18n="quote_btn">कोटेशन / रेट डालें</button>
+            <button type="button" onclick="openBidForm('कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)', 'RK बिल्डर्स')" class="bg-slate-900 hover:bg-slate-800 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold" data-i18n="quote_btn">कोटेशन / रेट डालें</button>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- 2. Machinery Rental Section -->
+    <section>
+      <div class="flex justify-between items-center mb-3">
+        <h3 data-i18n="sec_mach" class="font-extrabold text-slate-900 text-lg">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</h3>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded" data-i18n="avail_badge">तुरंत उपलब्ध</span>
+            <span class="text-xs font-bold text-slate-900">₹1,40,000 / महीना</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mt-2">Self-Loading Concrete Mixer (SLCM)</h4>
+          <p class="text-xs text-slate-500">Ajax Fiori Argo 4000 • 4.0 Cum • 2022 मॉडल</p>
+          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">वेल-मेंटेंड मशीन, अनुभवी ऑपरेटर और हेल्पर सहित। मासिक किराये पर उपलब्ध।</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
+            <button type="button" onclick="directCall()" class="flex-1 bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold" data-i18n="mach_call">📞 डायरेक्ट कॉल करें</button>
+            <button type="button" onclick="directWa('नमस्ते SiteSeva, मुझे Ajax Fiori SLCM किराए पर लेने के संबंध में बात करनी है।')" class="flex-1 bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold" data-i18n="mach_wa">💬 व्हाट्सएप करें</button>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded" data-i18n="avail_badge">तुरंत उपलब्ध</span>
+            <span class="text-xs font-bold text-slate-900">₹950 / घंटा (या ₹75,000/माह)</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mt-2">JCB 3DX Super Backhoe Loader</h4>
+          <p class="text-xs text-slate-500">4WD • 2023 मॉडल • 6-in-1 बकेट</p>
+          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">खुदाई, लेवलिंग और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
+            <button type="button" onclick="directCall()" class="flex-1 bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold" data-i18n="mach_call">📞 डायरेक्ट कॉल करें</button>
+            <button type="button" onclick="directWa('नमस्ते SiteSeva, मुझे JCB 3DX बैकहो लोडर किराए पर चाहिए।')" class="flex-1 bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold" data-i18n="mach_wa">💬 व्हाट्सएप करें</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Workforce Section -->
+    <section>
+      <div class="flex justify-between items-center mb-3">
+        <h3 data-i18n="sec_work" class="font-extrabold text-slate-900 text-lg">👷 ऑपरेटर व लेबर टीम (Workforce)</h3>
+        <button type="button" onclick="showPopup('operatorModal')" class="text-xs bg-slate-200 text-slate-800 font-bold px-2.5 py-1 rounded hover:bg-slate-300" data-i18n="op_short">+ ऑपरेटर जुड़ें</button>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <span class="text-[10px] bg-slate-100 text-slate-800 font-bold px-2 py-0.5 rounded" data-i18n="op_badge">वेरीफाइड ऑपरेटर</span>
+            <h4 class="font-bold text-slate-900 text-sm mt-1">रमेश कुमार (SLCM ऑपरेटर)</h4>
+            <p class="text-xs text-slate-500">अनुभव: 6 वर्ष • Ajax एक्सपर्ट</p>
+            <p class="text-xs text-emerald-600 font-bold mt-1">उपलब्ध: तुरंत जॉइनिंग</p>
+          </div>
+          <button type="button" onclick="directWa('रमेश
