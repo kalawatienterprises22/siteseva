@@ -2,119 +2,96 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>SiteSeva - Dynamic Verification Hub</title>
+  <title>SiteSeva - Live mParivahan Verification</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background: #0b0f19; color: #f1f5f9; padding: 15px; }
-    .box { max-width: 650px; margin: 0 auto; }
-    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f59e0b; padding-bottom: 12px; margin-bottom: 20px; }
-    .logo { font-size: 20px; font-weight: 900; color: #f59e0b; }
-    .lang-btns { display: flex; gap: 5px; }
-    .l-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 5px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; }
-    .l-btn.active { background: #f59e0b; color: #020617; border-color: #f59e0b; }
-    .hero { text-align: center; margin-bottom: 20px; }
-    .hero h1 { font-size: 20px; margin-bottom: 5px; color: #fff; }
-    .hero p { font-size: 12px; color: #94a3b8; }
-    .card { background: #161e2e; border: 1px solid #334155; border-radius: 10px; padding: 18px; margin-bottom: 15px; }
-    .field { margin-bottom: 12px; }
-    .field label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #cbd5e1; }
-    select, input { width: 100%; background: #0b0f19; border: 1px solid #475569; color: #fff; padding: 10px; border-radius: 6px; font-size: 13px; text-transform: uppercase; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .btn-verify { width: 100%; background: #f59e0b; color: #020617; font-weight: 900; border: none; padding: 11px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-top: 5px; }
-    .res-box { display: none; background: #020617; border: 1px solid #10b981; border-radius: 8px; padding: 14px; margin-top: 15px; font-size: 12px; line-height: 1.7; }
-    .res-title { color: #10b981; font-weight: bold; border-bottom: 1px solid #1e293b; padding-bottom: 5px; margin-bottom: 8px; font-size: 13px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+    body { background: #0f172a; color: #fff; padding: 20px; }
+    .box { max-width: 550px; margin: auto; }
+    .nav { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f59e0b; padding-bottom: 10px; margin-bottom: 20px; }
+    .card { background: #1e293b; padding: 18px; border-radius: 8px; border: 1px solid #334155; }
+    select, input, .btn { width: 100%; padding: 10px; margin: 6px 0; border-radius: 5px; font-size: 13px; }
+    select, input { background: #0b0f19; color: #fff; border: 1px solid #475569; text-transform: uppercase; }
+    .btn { background: #f59e0b; color: #000; font-weight: bold; border: none; cursor: pointer; }
+    .res { display: none; background: #020617; border: 1px solid #10b981; padding: 14px; border-radius: 6px; margin-top: 15px; font-size: 13px; line-height: 1.7; }
+    .loading { display: none; text-align: center; color: #f59e0b; margin-top: 10px; font-weight: bold; }
   </style>
   <script>
-    var rtoDatabase = {
-      "JH10": "Dhanbad RTO, Jharkhand",
-      "JH01": "Ranchi RTO, Jharkhand",
-      "JH05": "Jamshedpur RTO, Jharkhand",
-      "UP65": "Varanasi RTO, Uttar Pradesh",
-      "UP67": "Chandauli RTO, Uttar Pradesh",
-      "UP63": "Mirzapur RTO, Uttar Pradesh",
-      "UP64": "Sonbhadra RTO, Uttar Pradesh",
-      "DL01": "Mall Road RTO, Delhi North",
-      "KA05": "Jayanagar RTO, Bengaluru South",
-      "MH12": "Pune RTO, Maharashtra",
-      "GJ01": "Ahmedabad RTO, Gujarat",
-      "BR01": "Patna RTO, Bihar"
-    };
+    async function verifyLive() {
+      var type = document.getElementById('docType').value;
+      var num = document.getElementById('docNum').value.trim();
+      var resBox = document.getElementById('resBox');
+      var loader = document.getElementById('loader');
 
-    var dict = {
-      hi: {
-        t: "SiteSeva - नेटवर्क",
-        ht: "हर साइट की ज़रूरत, अब एक ही जगह",
-        hd: "मशीन, ठेका व ऑपरेटर वेरिफिकेशन",
-        optDL: "ड्राइविंग लाइसेंस (DL Verification)",
-        optRC: "गाड़ी / मशीन RC (Vehicle RC Verification)",
-        lblNum: "नंबर दर्ज करें (DL या गाड़ी नंबर):",
-        lblCat: "वाहन श्रेणी (केवल RC के लिए):",
-        btn: "🔍 तुरंत वेरीफाई करें (Live Check)"
-      },
-      en: {
-        t: "SiteSeva - Network",
-        ht: "Every Site Requirement, In One Place",
-        hd: "Machinery, Contracts & Operator Verification",
-        optDL: "Driving License (DL Verification)",
-        optRC: "Vehicle / Equipment RC (RC Verification)",
-        lblNum: "Enter Number (DL or Vehicle Registration):",
-        lblCat: "Vehicle Type (For RC only):",
-        btn: "🔍 Verify Now (Live Check)"
-      },
-      hinglish: {
-        t: "SiteSeva - Network",
-        ht: "Har Site Ki Zaroorat, Ek Hi Jagah",
-        hd: "Machine, Theka aur Operator Verification",
-        optDL: "Driving License (DL Verification)",
-        optRC: "Vehicle / Machine RC Verification",
-        lblNum: "Number dalein (DL ya Gaadi Number):",
-        lblCat: "Gaadi Category (Sirf RC ke liye):",
-        btn: "🔍 Check Karein (Live Check)"
-      }
-    };
-
-    function setLanguage(lang) {
-      var d = dict[lang] || dict.hi;
-      document.getElementById('txt_title').innerText = d.t;
-      document.getElementById('txt_ht').innerText = d.ht;
-      document.getElementById('txt_hd').innerText = d.hd;
-      document.getElementById('opt_dl').innerText = d.optDL;
-      document.getElementById('opt_rc').innerText = d.optRC;
-      document.getElementById('lbl_num').innerText = d.lblNum;
-      document.getElementById('lbl_cat').innerText = d.lblCat;
-      document.getElementById('btn_action').innerText = d.btn;
-
-      ['hi','en','hinglish'].forEach(function(l){
-        document.getElementById('b_' + l).className = (l === lang) ? 'l-btn active' : 'l-btn';
-      });
-    }
-
-    function toggleCategoryBox() {
-      var docType = document.getElementById('docType').value;
-      var catDiv = document.getElementById('catDiv');
-      var input = document.getElementById('docInput');
-      if (docType === 'RC') {
-        catDiv.style.display = 'block';
-        input.placeholder = "उदा. JH10CU8403 या UP65AB1234";
-      } else {
-        catDiv.style.display = 'none';
-        input.placeholder = "उदा. JH1020180011347";
-      }
-    }
-
-    function verifyInput() {
-      var rawNum = document.getElementById('docInput').value.trim();
-      var docType = document.getElementById('docType').value;
-      var vehicleType = document.getElementById('vehType').value;
-      var outBox = document.getElementById('resBox');
-
-      if (!rawNum) {
-        alert("कृपया वैध नंबर दर्ज करें!");
+      if (!num) {
+        alert("कृपया नंबर दर्ज करें!");
         return;
       }
 
-      var num = rawNum.toUpperCase().replace(/[^A-Z0-9]/g, '');
-      var rtoCode = num.substring(0, 4);
-      var detectedRTO = rtoDatabase[rtoCode] || (rtoCode.substring(0, 2) + " RTO Office, State Transport Dept");
+      loader.style.display = 'block';
+      resBox.style.display = 'none';
 
-      outBox.style.display = "block";
+      try {
+        var resp = await fetch('/api/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: type, number: num })
+        });
+
+        var data = await resp.json();
+        loader.style.display = 'none';
+        resBox.style.display = 'block';
+
+        if (data.data) {
+          var d = data.data;
+          if (type === 'RC') {
+            resBox.innerHTML = '<div style="color:#10b981; font-weight:bold; margin-bottom:6px;">✅ Live Vahan RC Verified</div>' +
+              '<div><strong>गाड़ी नंबर:</strong> <span style="color:#f59e0b;">' + (d.rc_number || num.toUpperCase()) + '</span></div>' +
+              '<div><strong>मालिक का नाम:</strong> ' + (d.owner_name || 'N/A') + '</div>' +
+              '<div><strong>मेकर / मॉडल:</strong> ' + (d.maker_description || d.maker_model || 'N/A') + '</div>' +
+              '<div><strong>वाहन श्रेणी (Class):</strong> <span style="color:#38bdf8;">' + (d.vehicle_category || d.vehicle_class || 'N/A') + '</span></div>' +
+              '<div><strong>पंजीकृत RTO:</strong> ' + (d.registered_at || 'N/A') + '</div>' +
+              '<div><strong>फिटनेस वैधता:</strong> ' + (d.fitness_upto || d.rc_expiry_date || 'Active') + '</div>';
+          } else {
+            resBox.innerHTML = '<div style="color:#10b981; font-weight:bold; margin-bottom:6px;">✅ Live Sarathi DL Verified</div>' +
+              '<div><strong>लाइसेंस नंबर:</strong> <span style="color:#f59e0b;">' + (d.dl_number || num.toUpperCase()) + '</span></div>' +
+              '<div><strong>धारक का नाम:</strong> ' + (d.name || 'N/A') + '</div>' +
+              '<div><strong>अधिकृत श्रेणी (COV):</strong> <span style="color:#38bdf8;">' + JSON.stringify(d.cov_details || d.class_of_vehicle || 'LMV / MCWG') + '</span></div>' +
+              '<div><strong>जारीकर्ता RTO:</strong> ' + (d.issuing_authority || 'N/A') + '</div>' +
+              '<div><strong>वैधता:</strong> ' + (d.validity ? d.validity.non_transport : (d.nt_validity || 'Valid')) + '</div>';
+          }
+        } else {
+          resBox.innerHTML = '<div style="color:#ef4444;">⚠️ रिकॉर्ड नहीं मिला: ' + (data.message || 'Error fetching data') + '</div>';
+        }
+      } catch (err) {
+        loader.style.display = 'none';
+        resBox.style.display = 'block';
+        resBox.innerHTML = '<div style="color:#ef4444;">सर्वर से संपर्क नहीं हो सका।</div>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="box">
+    <div class="nav">
+      <h2 style="color:#f59e0b;">SiteSeva</h2>
+      <span style="font-size:12px; color:#94a3b8;">लाइव mParivahan सत्यापन</span>
+    </div>
+
+    <div class="card">
+      <label style="font-size:12px; font-weight:bold;">दस्तावेज़ प्रकार चुनें:</label>
+      <select id="docType">
+        <option value="RC">गाड़ी / मशीन RC (Live Vahan)</option>
+        <option value="DL">ऑपरेटर लाइसेंस DL (Live Sarathi)</option>
+      </select>
+
+      <label style="font-size:12px; font-weight:bold; margin-top:8px; display:block;">नंबर दर्ज करें:</label>
+      <input type="text" id="docNum" placeholder="उदा. JH10CU8403 या DL नंबर">
+
+      <button class="btn" onclick="verifyLive()">🔍 लाइव सरकारी डेटा फेच करें</button>
+
+      <div class="loading" id="loader">⏳ mParivahan सर्वर से लाइव डेटा लोड हो रहा है...</div>
+      <div class="res" id="resBox"></div>
+    </div>
+  </div>
+</body>
+</html>
