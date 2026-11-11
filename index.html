@@ -1,18 +1,449 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SiteSeva | Tender, Machinery & Operator Network</title>
+<title>SiteSeva | India's Construction Network</title>
+<meta name="description" content="India's construction network for equipment rental, tenders, quotations and operators.">
 <style>
+:root{
+ --navy:#081a33;--navy2:#102d50;--orange:#ffad32;
+ --cream:#f5f7fb;--white:#fff;--ink:#172b45;
+ --muted:#718096;--line:#e5eaf1;--green:#15965a;
+ --shadow:0 12px 35px rgba(15,35,65,.09);
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#17243a}
-header{background:#123c70;color:white;text-align:center;padding:28px 15px}
-header h1{margin:0;font-size:34px}
-nav{background:white;padding:12px;display:flex;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid #dce4ed}
-main{max-width:950px;margin:24px auto;padding:0 14px}
-section,.card{background:white;padding:20px;margin-bottom:18px;border-radius:12px;box-shadow:0 2px 12px #0001}
-h2{color:#123c70;margin-top:0}
-button,.btn{border:0;border-radius:8px;background:#0876b2;color:white;padding:12px 16px;cursor:pointer;text-decoration:none;display:inline-block;font-size:15px;font-weight:bold}
-button:hover,.btn:hover{background:#075887}
-input,textarea,select{width:100%;padding:12px;margin:7px 0 14px;border:
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);font-family:Arial,sans-serif;color:var(--ink)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.topbar{background:#061329;color:#d5deeb;padding:9px 5%;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px}
+.topbar b{color:var(--orange)}
+header{position:sticky;top:0;z-index:20;background:#091d38f5;backdrop-filter:blur(12px);padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;box-shadow:0 5px 20px #0002}
+.logo{font-size:29px;font-weight:900;color:white;text-decoration:none;letter-spacing:-1px}
+.logo span{color:var(--orange)}
+.nav{display:flex;align-items:center;gap:17px;flex-wrap:wrap}
+.nav a{color:#e1e9f3;text-decoration:none;font-size:13px;font-weight:600}
+.nav a:hover{color:var(--orange)}
+.lang{background:#142d4e;color:white;border:1px solid #526987;border-radius:8px;padding:10px}
+.btn{border:0;border-radius:9px;padding:12px 18px;background:var(--orange);color:#17263c;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.2s;box-shadow:0 5px 13px #ffad322b}
+.btn:hover{transform:translateY(-2px);background:#ffc05e}
+.btn.dark{background:#102d50;color:white;box-shadow:none}
+.btn.dark:hover{background:#1b416c}
+.btn.green{background:var(--green);color:white;box-shadow:none}
+.btn.green:hover{background:#107c49}
+.btn.light{background:white;color:var(--navy);border:1px solid var(--line);box-shadow:none}
+.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 85% 18%,#365a8266,transparent 30%),linear-gradient(125deg,#07172e,#102f55 62%,#091b34);color:white;padding:83px 5% 75px}
+.hero:after{content:"";position:absolute;width:360px;height:360px;border:1px solid #ffffff16;border-radius:50%;right:-100px;bottom:-210px;box-shadow:0 0 0 45px #ffffff08,0 0 0 90px #ffffff05}
+.hero-inner{max-width:1160px;margin:auto;position:relative;z-index:1}
+.hero-copy{max-width:780px}
+.eyebrow{display:inline-block;border:1px solid #ffad3266;background:#ffad321a;color:#ffc66e;border-radius:30px;padding:10px 16px;font-size:12px;font-weight:800;letter-spacing:.5px;margin-bottom:22px}
+.hero h1{font-size:clamp(39px,6vw,68px);line-height:1.1;letter-spacing:-2px;margin:0 0 20px}
+.hero h1 span{color:var(--orange)}
+.hero p{max-width:670px;color:#c8d5e5;font-size:17px;line-height:1.8;margin:0 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-note{margin-top:26px;color:#9eb0c6;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);background:#102746}
+.stat{text-align:center;padding:23px 10px;color:white;border-right:1px solid #ffffff12}
+.stat strong{display:block;color:var(--orange);font-size:22px;margin-bottom:5px}
+.stat span{font-size:12px;color:#c3d0df}
+.container{max-width:1160px;margin:auto;padding:65px 20px}
+.section-head{text-align:center;margin-bottom:32px}
+.kicker{font-size:11px;letter-spacing:2px;color:#bd760d;font-weight:900}
+.section-head h2{font-size:clamp(26px,4vw,35px);color:var(--navy);margin:10px 0}
+.section-head p{color:var(--muted);font-size:14px;line-height:1.7;margin:0}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.service{background:white;border:1px solid var(--line);border-radius:15px;padding:24px 20px;box-shadow:var(--shadow);transition:.2s}
+.service:hover{transform:translateY(-5px);box-shadow:0 17px 35px #102d5018}
+.symbol{width:51px;height:51px;display:grid;place-items:center;border-radius:14px;background:#fff2df;font-size:25px;margin-bottom:17px}
+.service h3{font-size:17px;color:var(--navy);margin:0 0 10px}
+.service p{font-size:13px;line-height:1.7;color:var(--muted);min-height:44px;margin:0 0 17px}
+.tender-section{background:#edf2f8}
+.tender-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.tender-card{background:white;border:1px solid var(--line);border-radius:15px;padding:23px;box-shadow:0 7px 22px #102d500a}
+.tender-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.tag{display:inline-block;padding:7px 11px;border-radius:30px;background:#fff1dc;color:#925700;font-size:11px;font-weight:800}
+.tag.urgent{background:#ffebeb;color:#b12e36}
+.tender-card h3{font-size:19px;color:var(--navy);line-height:1.4;margin:16px 0 8px}
+.tender-location{color:#758399;font-size:12px}
+.tender-description{font-size:13px;line-height:1.8;color:#58677c}
+.tender-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px;margin-top:15px}
+.budget{font-size:11px;color:var(--muted)}
+.budget strong{display:block;color:var(--navy);font-size:19px;margin-top:4px}
+.post-panel{margin-top:25px;background:white;border:1px solid var(--line);border-radius:15px;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.post-panel h3{margin:0 0 6px;color:var(--navy)}
+.post-panel p{margin:0;color:var(--muted);font-size:13px}
+.cta{background:linear-gradient(115deg,#102e52,#07182f);padding:55px 20px;text-align:center;color:white}
+.cta h2{font-size:30px;margin:0 0 10px}
+.cta p{color:#c3d0df;margin:0 0 23px;line-height:1.7}
+.cta .actions{justify-content:center}
+footer{background:#061329;color:#aebbd0;text-align:center;padding:26px 15px;font-size:12px}
+footer strong{color:white}
+.modal{display:none;position:fixed;inset:0;z-index:100;background:#061329d9;align-items:center;justify-content:center;padding:15px;backdrop-filter:blur(4px)}
+.modal.show{display:flex}
+.modal-box{position:relative;background:white;border-radius:17px;padding:27px;width:100%;max-width:510px;max-height:91vh;overflow:auto;box-shadow:0 25px 80px #0004}
+.modal-box h2{font-size:23px;color:var(--navy);margin:0 35px 8px 0}
+.modal-intro{font-size:13px;color:var(--muted);margin:0 0 20px;line-height:1.6}
+.close{position:absolute;right:14px;top:13px;border:0;background:#edf1f6;color:#33445a;border-radius:8px;font-size:21px;width:34px;height:34px}
+label{display:block;font-size:12px;font-weight:800;color:#35475e;margin-top:11px}
+input,textarea{display:block;width:100%;padding:12px 13px;margin-top:7px;border:1px solid #dbe3ed;border-radius:9px;background:#fbfcfe;color:var(--ink);outline:none}
+input:focus,textarea:focus{border-color:#4d83b5;box-shadow:0 0 0 3px #4d83b51a}
+textarea{resize:vertical}
+.submit{width:100%;margin-top:19px;padding:14px}
+.notice{font-size:11px;color:#8290a1;line-height:1.6;margin-top:12px}
+.empty{background:white;padding:25px;border-radius:12px;color:var(--muted);text-align:center;grid-column:1/-1}
+@media(max-width:850px){.services{grid-template-columns:repeat(2,1fr)}.tender-grid{grid-template-columns:1fr}}
+@media(max-width:600px){
+ header{align-items:flex-start}.nav{gap:10px}.nav a{font-size:12px}
+ .hero{padding:58px 20px}.hero h1{letter-spacing:-1px}
+ .stats{grid-template-columns:1fr}.stat{padding:15px;border-bottom:1px solid #ffffff12}
+ .container{padding:45px 15px}.services{grid-template-columns:1fr}
+ .service p{min-height:0}.modal-box{padding:22px 18px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<span><b>●</b> India's Construction Marketplace</span>
+<span>Equipment • Contracts • Tenders • Operators</span>
+</div>
+
+<header>
+<a class="logo" href="#">Site<span>Seva</span></a>
+<nav class="nav">
+<a href="#services">Services</a>
+<a href="#tenders">Tenders</a>
+<a href="#contact">Contact</a>
+<select class="lang" id="language" aria-label="Choose language">
+<option value="en">English</option>
+<option value="hi">हिन्दी</option>
+<option value="hinglish">Hinglish</option>
+<option value="mr">मराठी</option>
+<option value="gu">ગુજરાતી</option>
+<option value="ta">தமிழ்</option>
+<option value="kn">ಕನ್ನಡ</option>
+<option value="te">తెలుగు</option>
+</select>
+<button class="btn" data-open="requirementModal">＋ Post Requirement</button>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-copy">
+<div class="eyebrow" data-i="badge">🇮🇳 India's #1 Construction Network</div>
+<h1 data-i="heroTitle">Every Site Requirement,<br><span>In One Place.</span></h1>
+<p data-i="heroText">Rent heavy equipment, post contracts, get quotations, or hire verified operators. Your complete construction network — all in one place.</p>
+<div class="actions">
+<button class="btn" data-open="requirementModal">＋ Post a Requirement</button>
+<a class="btn dark" href="#tenders">Explore Tenders →</a>
+</div>
+<div class="hero-note">Connecting contractors, suppliers and skilled operators across India.</div>
+</div>
+</div>
+</section>
+
+<div class="stats">
+<div class="stat"><strong>All-in-One</strong><span>Construction Marketplace</span></div>
+<div class="stat"><strong>Pan India</strong><span>Connecting Project Sites</span></div>
+<div class="stat"><strong>24 × 7</strong><span>Post Your Requirements</span></div>
+</div>
+
+<section class="container" id="services">
+<div class="section-head">
+<div class="kicker">WHAT WE OFFER</div>
+<h2>Everything Your Site Needs</h2>
+<p>One professional platform for your construction requirements.</p>
+</div>
+<div class="services">
+<article class="service">
+<div class="symbol">🚜</div><h3>Heavy Equipment Rental</h3>
+<p>Find machinery and equipment for your project requirements.</p>
+<button class="btn" data-open="quoteModal">Get a Quote →</button>
+</article>
+<article class="service">
+<div class="symbol">📋</div><h3>Post Contracts & Tenders</h3>
+<p>Publish your project requirements and connect with suppliers.</p>
+<button class="btn" data-open="tenderModal">＋ Post Tender</button>
+</article>
+<article class="service">
+<div class="symbol">🤝</div><h3>Get Quotations</h3>
+<p>Share your requirement and receive responses from our network.</p>
+<button class="btn" data-open="quoteModal">Request Quote →</button>
+</article>
+<article class="service">
+<div class="symbol">👷</div><h3>Hire Operators</h3>
+<p>Connect with equipment operators for your site work.</p>
+<button class="btn" data-open="operatorModal">Register Operator →</button>
+</article>
+</div>
+</section>
+
+<section class="tender-section" id="tenders">
+<div class="container">
+<div class="section-head">
+<div class="kicker">PROJECT OPPORTUNITIES</div>
+<h2>Live Site Requirements</h2>
+<p>Explore requirements, submit your quotation, or post a new tender.</p>
+</div>
+<div class="tender-grid" id="tenderList">
+<article class="tender-card">
+<div class="tender-top"><span class="tag">RCC & Concrete Work</span><span class="tag urgent">Urgent Requirement</span></div>
+<h3>Concrete Canal & Retaining Wall Lining (3.5 KM)</h3>
+<div class="tender-location">📍 Sohbada / Mirzapur, UP</div>
+<p class="tender-description">Urgent requirement of SICM concrete mixer and 12-member mason gang for 1200 cum concreting. Sharma Infrastructure.</p>
+<div class="tender-bottom">
+<div class="budget">Budget<strong>₹8.5 Lakh</strong></div>
+<button class="btn" data-quote-title="Concrete Canal & Retaining Wall Lining (3.5 KM)">Submit Quote / Bid →</button>
+</div>
+</article>
+</div>
+<div class="post-panel">
+<div><h3>Have a new project or tender?</h3><p>Post your requirement and connect with interested contractors and suppliers.</p></div>
+<button class="btn" data-open="tenderModal">＋ Post Your Tender</button>
+</div>
+</div>
+</section>
+
+<section class="cta" id="contact">
+<h2>Build Better. Connect Faster.</h2>
+<p>Tell us what your project needs. Let's connect you with the right people.</p>
+<div class="actions">
+<button class="btn" data-open="requirementModal">Post Requirement</button>
+<button class="btn dark" data-open="tenderModal">Post Tender</button>
+<button class="btn green" data-open="operatorModal">Register Operator</button>
+<a class="btn light" href="https://wa.me/919741833711" target="_blank" rel="noopener">WhatsApp Us</a>
+</div>
+</section>
+
+<footer><strong>SiteSeva</strong> © <span id="year"></span> · India's Construction Network. All Rights Reserved.</footer>
+
+<!-- REQUIREMENT FORM -->
+<div class="modal" id="requirementModal">
+<div class="modal-box">
+<button class="close" data-close>×</button>
+<h2>Post Your Site Requirement</h2>
+<p class="modal-intro">Share your project details. Our team can connect you with the right network.</p>
+<form id="requirementForm">
+<label>Your Name</label><input id="reqName" required placeholder="Enter your name">
+<label>Mobile Number</label><input id="reqPhone" type="tel" required placeholder="Enter mobile number">
+<label>Requirement / Project Name</label><input id="reqWork" required placeholder="e.g. JCB, Excavator, RCC work">
+<label>Project Location</label><input id="reqLocation" required placeholder="City, District, State">
+<label>Requirement Details</label><textarea id="reqDetails" rows="3" placeholder="Quantity, duration, budget, etc."></textarea>
+<button class="btn green submit" type="submit">Post Requirement on WhatsApp →</button>
+</form>
+<p class="notice">Your details will be sent to SiteSeva on WhatsApp.</p>
+</div>
+</div>
+
+<!-- TENDER POST FORM -->
+<div class="modal" id="tenderModal">
+<div class="modal-box">
+<button class="close" data-close>×</button>
+<h2>＋ Post a Tender / Contract</h2>
+<p class="modal-intro">Add your project details. A tender card will appear on this page during this visit, and details will be sent to WhatsApp.</p>
+<form id="tenderForm">
+<label>Company / Contact Name</label><input id="tenName" required placeholder="Company or your name">
+<label>Mobile Number</label><input id="tenPhone" type="tel" required placeholder="Mobile number">
+<label>Tender / Work Title</label><input id="tenTitle" required placeholder="e.g. Road construction work">
+<label>Work Category</label><input id="tenCategory" required placeholder="Civil, RCC, machinery, labour...">
+<label>Project Location</label><input id="tenLocation" required placeholder="City, District, State">
+<label>Budget (Optional)</label><input id="tenBudget" placeholder="e.g. ₹5 lakh">
+<label>Work Details</label><textarea id="tenDetails" rows="4" required placeholder="Describe work, quantity, deadline, requirements..."></textarea>
+<button class="btn submit" type="submit">Post Tender & Send on WhatsApp →</button>
+</form>
+<p class="notice">Note: Page par naya tender dikh jayega. Permanent online publishing ke liye database/admin system ki zaroorat hogi.</p>
+</div>
+</div>
+
+<!-- OPERATOR REGISTRATION -->
+<div class="modal" id="operatorModal">
+<div class="modal-box">
+<button class="close" data-close>×</button>
+<h2>👷 Operator Registration</h2>
+<p class="modal-intro">Register your skills and equipment experience with SiteSeva.</p>
+<form id="operatorForm">
+<label>Operator Name</label><input id="opName" required placeholder="Enter your name">
+<label>Mobile Number</label><input id="opPhone" type="tel" required placeholder="Enter mobile number">
+<label>City / District</label><input id="opCity" required placeholder="Your location">
+<label>Machine / Equipment</label><input id="opMachine" required placeholder="JCB, crane, excavator, etc.">
+<label>Experience</label><textarea id="opExperience" rows="3" placeholder="Years of experience and skills"></textarea>
+<button class="btn green submit" type="submit">Register Operator on WhatsApp →</button>
+</form>
+<p class="notice">Registration request will be sent to SiteSeva on WhatsApp. Verification is subject to review.</p>
+</div>
+</div>
+
+<!-- QUOTATION FORM -->
+<div class="modal" id="quoteModal">
+<div class="modal-box">
+<button class="close" data-close>×</button>
+<h2>Request a Quotation</h2>
+<p class="modal-intro">Tell us what you need and send your quotation request.</p>
+<form id="quoteForm">
+<label>Your Name</label><input id="quoteName" required placeholder="Enter your name">
+<label>Mobile Number</label><input id="quotePhone" type="tel" required placeholder="Enter mobile number">
+<label>Requirement / Tender</label><input id="quoteWork" required placeholder="What do you need?">
+<label>Location</label><input id="quoteLocation" required placeholder="Project location">
+<label>Details</label><textarea id="quoteDetails" rows="3" placeholder="Quantity, duration, budget, etc."></textarea>
+<button class="btn green submit" type="submit">Send Quotation Request →</button>
+</form>
+</div>
+</div>
+
+<script>
+const PHONE="919741833711";
+document.getElementById("year").textContent=new Date().getFullYear();
+
+/* LANGUAGE SUPPORT */
+const translations={
+en:{badge:"🇮🇳 India's #1 Construction Network",heroTitle:'Every Site Requirement,<br><span>In One Place.</span>',heroText:"Rent heavy equipment, post contracts, get quotations, or hire verified operators. Your complete construction network — all in one place."},
+hi:{badge:"🇮🇳 भारत का नंबर 1 कंस्ट्रक्शन नेटवर्क",heroTitle:'साइट की हर जरूरत,<br><span>एक ही जगह।</span>',heroText:"भारी मशीनरी किराए पर लें, कॉन्ट्रैक्ट और टेंडर पोस्ट करें, कोटेशन पाएँ या ऑपरेटर रखें। आपका पूरा कंस्ट्रक्शन नेटवर्क एक ही जगह।"},
+hinglish:{badge:"🇮🇳 India's #1 Construction Network",heroTitle:'Har Site Ki Requirement,<br><span>Ek Hi Jagah.</span>',heroText:"Heavy equipment rent karein, contracts post karein, quotations paayein aur operators hire karein."},
+mr:{badge:"🇮🇳 भारताचे नंबर 1 कन्स्ट्रक्शन नेटवर्क",heroTitle:'साइटची प्रत्येक गरज,<br><span>एकाच ठिकाणी.</span>',heroText:"जड उपकरणे भाड्याने घ्या, कॉन्ट्रॅक्ट पोस्ट करा, कोटेशन मिळवा आणि ऑपरेटर नियुक्त करा."},
+gu:{badge:"🇮🇳 ભારતનું નંબર 1 કન્સ્ટ્રક્શન નેટવર્ક",heroTitle:'સાઇટની દરેક જરૂરિયાત,<br><span>એક જ જગ્યાએ.</span>',heroText:"ભારે સાધનો ભાડે લો, કોન્ટ્રાક્ટ પોસ્ટ કરો, ક્વોટેશન મેળવો અને ઓપરેટર રાખો."},
+ta:{badge:"🇮🇳 இந்தியாவின் முன்னணி கட்டுமான நெட்வொர்க்",heroTitle:'ஒவ்வொரு தளத் தேவையும்,<br><span>ஒரே இடத்தில்.</span>',heroText:"கனரக உபகரணங்களை வாடகைக்கு எடுக்கவும், ஒப்பந்தங்களைப் பதிவிடவும், விலைப்புள்ளிகளைப் பெறவும்."},
+kn:{badge:"🇮🇳 ಭಾರತದ ಪ್ರಮುಖ ನಿರ್ಮಾಣ ಜಾಲ",heroTitle:'ಪ್ರತಿ ಸೈಟ್ ಅಗತ್ಯವೂ,<br><span>ಒಂದೇ ಸ್ಥಳದಲ್ಲಿ.</span>',heroText:"ಭಾರೀ ಉಪಕರಣಗಳನ್ನು ಬಾಡಿಗೆಗೆ ಪಡೆಯಿರಿ, ಗುತ್ತಿಗೆಗಳನ್ನು ಪೋಸ್ಟ್ ಮಾಡಿ ಮತ್ತು ದರಗಳನ್ನು ಪಡೆಯಿರಿ."},
+te:{badge:"🇮🇳 భారతదేశపు ప్రముఖ నిర్మాణ నెట్‌వర్క్",heroTitle:'ప్రతి సైట్ అవసరం,<br><span>ఒకే చోట.</span>',heroText:"భారీ పరికరాలను అద్దెకు తీసుకోండి, కాంట్రాక్టులను పోస్ట్ చేయండి మరియు కొటేషన్లు పొందండి."}
+};
+const langSelect=document.getElementById("language");
+try{langSelect.value=localStorage.getItem("siteseva-language")||"en"}catch(e){}
+function setLanguage(lang){
+ const t=translations[lang]||translations.en;
+ document.querySelector('[data-i="badge"]').innerHTML=t.badge;
+ document.querySelector('[data-i="heroTitle"]').innerHTML=t.heroTitle;
+ document.querySelector('[data-i="heroText"]').textContent=t.heroText;
+ try{localStorage.setItem("siteseva-language",lang)}catch(e){}
+}
+langSelect.addEventListener("change",()=>setLanguage(langSelect.value));
+setLanguage(langSelect.value);
+
+/* MODALS */
+function openModal(id){
+ const m=document.getElementById(id);
+ if(m)m.classList.add("show");
+}
+function closeModal(m){if(m)m.classList.remove("show")}
+document.addEventListener("click",e=>{
+ const open=e.target.closest("[data-open]");
+ const close=e.target.closest("[data-close]");
+ const quote=e.target.closest("[data-quote-title]");
+ if(open)openModal(open.dataset.open);
+ if(close)closeModal(close.closest(".modal"));
+ if(e.target.classList.contains("modal"))closeModal(e.target);
+ if(quote){
+  document.getElementById("quoteWork").value=quote.dataset.quoteTitle;
+  openModal("quoteModal");
+ }
+});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape")document.querySelectorAll(".modal.show").forEach(closeModal);
+});
+
+/* WHATSAPP */
+function sendWhatsApp(message){
+ const url="https://wa.me/"+PHONE+"?text="+encodeURIComponent(message);
+ window.open(url,"_blank");
+}
+function value(id){return document.getElementById(id).value.trim()}
+
+/* POST REQUIREMENT */
+document.getElementById("requirementForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const message=[
+ "SITESEVA - NEW SITE REQUIREMENT",
+ "Name: "+value("reqName"),
+ "Mobile: "+value("reqPhone"),
+ "Requirement: "+value("reqWork"),
+ "Location: "+value("reqLocation"),
+ "Details: "+value("reqDetails")
+ ].join("\n");
+ sendWhatsApp(message);
+});
+
+/* POST TENDER AND SHOW CARD ON PAGE */
+document.getElementById("tenderForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const name=value("tenName"),phone=value("tenPhone");
+ const title=value("tenTitle"),category=value("tenCategory");
+ const location=value("tenLocation"),budget=value("tenBudget")||"Contact for budget";
+ const details=value("tenDetails");
+
+ const card=document.createElement("article");
+ card.className="tender-card";
+
+ const top=document.createElement("div");
+ top.className="tender-top";
+ const tag=document.createElement("span");
+ tag.className="tag";tag.textContent=category;
+ const urgent=document.createElement("span");
+ urgent.className="tag urgent";urgent.textContent="New Listing";
+ top.append(tag,urgent);
+
+ const heading=document.createElement("h3");heading.textContent=title;
+ const place=document.createElement("div");place.className="tender-location";
+ place.textContent="📍 "+location;
+ const desc=document.createElement("p");desc.className="tender-description";desc.textContent=details;
+
+ const bottom=document.createElement("div");bottom.className="tender-bottom";
+ const budgetBox=document.createElement("div");budgetBox.className="budget";
+ budgetBox.textContent="Budget";
+ const budgetStrong=document.createElement("strong");budgetStrong.textContent=budget;
+ budgetBox.appendChild(budgetStrong);
+
+ const bid=document.createElement("button");bid.className="btn";
+ bid.textContent="Submit Quote / Bid →";
+ bid.addEventListener("click",()=>{
+  document.getElementById("quoteWork").value=title;
+  openModal("quoteModal");
+ });
+ bottom.append(budgetBox,bid);
+ card.append(top,heading,place,desc,bottom);
+ document.getElementById("tenderList").prepend(card);
+
+ const message=[
+ "SITESEVA - NEW TENDER POST",
+ "Contact: "+name,
+ "Mobile: "+phone,
+ "Title: "+title,
+ "Category: "+category,
+ "Location: "+location,
+ "Budget: "+budget,
+ "Details: "+details
+ ].join("\n");
+ closeModal(document.getElementById("tenderModal"));
+ e.target.reset();
+ sendWhatsApp(message);
+});
+
+/* OPERATOR REGISTRATION */
+document.getElementById("operatorForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const message=[
+ "SITESEVA - OPERATOR REGISTRATION",
+ "Name: "+value("opName"),
+ "Mobile: "+value("opPhone"),
+ "City: "+value("opCity"),
+ "Machine: "+value("opMachine"),
+ "Experience: "+value("opExperience")
+ ].join("\n");
+ sendWhatsApp(message);
+});
+
+/* QUOTATION REQUEST */
+document.getElementById("quoteForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const message=[
+ "SITESEVA - QUOTATION REQUEST",
+ "Name: "+value("quoteName"),
+ "Mobile: "+value("quotePhone"),
+ "Requirement: "+value("quoteWork"),
+ "Location: "+value("quoteLocation"),
+ "Details: "+value("quoteDetails")
+ ].join("\n");
+ sendWhatsApp(message);
+});
+</script>
+</body>
+</html>
