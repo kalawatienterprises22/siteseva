@@ -1,157 +1,310 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SiteSeva - कंस्ट्रक्शन व मशीनरी नेटवर्क</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .lang-active { background-color: #f59e0b !important; color: #020617 !important; font-weight: 800 !important; }
-    .site-popup-bg { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; align-items: center; justify-content: center; padding: 15px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SiteSeva | Tender & Quotation Services</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#17243a}
+header{background:#123c70;color:white;text-align:center;padding:28px 15px}
+header h1{margin:0;font-size:34px}
+nav{background:white;padding:12px;display:flex;justify-content:center;gap:9px;flex-wrap:wrap}
+main{max-width:950px;margin:24px auto;padding:0 14px}
+section,.card{background:white;padding:20px;margin-bottom:18px;border-radius:12px;box-shadow:0 2px 12px #0001}
+h2{color:#123c70}
+button,.btn{border:0;border-radius:8px;background:#0876b2;color:white;padding:12px 16px;cursor:pointer;text-decoration:none;display:inline-block;font-size:15px}
+button:hover,.btn:hover{background:#075887}
+input,textarea,select{width:100%;padding:12px;margin:7px 0 14px;border:1px solid #ccd5df;border-radius:7px;font-size:15px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.tender-card{border:1px solid #dce4ed;padding:15px;border-radius:9px;margin:12px 0}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:99;align-items:center;justify-content:center;padding:14px}
+.modal.show{display:flex}
+.modal-box{position:relative;background:white;padding:22px;border-radius:12px;width:100%;max-width:480px;max-height:90vh;overflow:auto}
+.close{position:absolute;right:12px;top:10px;background:#e5eaf0;color:#17243a;padding:7px 12px}
+.submit{width:100%}
+.green{background:#168b4b}
+footer{background:#123c70;color:white;text-align:center;padding:22px}
+.small{font-size:13px;color:#64748b}
+</style>
 </head>
-<body class="bg-slate-100 min-h-screen flex flex-col font-sans text-slate-900">
+<body>
 
-  <!-- Header -->
-  <header class="bg-slate-950 text-white p-3 md:p-4 sticky top-0 z-40 flex justify-between items-center shadow-md">
-    <div class="flex items-center gap-2">
-      <div class="w-9 h-9 bg-amber-500 rounded-lg flex items-center justify-center font-black text-slate-950 text-lg">SS</div>
-      <div>
-        <div class="flex items-center gap-1.5">
-          <span class="text-xl font-black text-amber-400">SiteSeva</span>
-          <span class="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-1.5 py-0.5 rounded">LIVE</span>
-        </div>
-        <p data-i18n="tagline" class="text-[10px] text-slate-400">मशीन, ठेका व ऑपरेटर नेटवर्क</p>
-      </div>
-    </div>
-    
-    <!-- 5 Languages Single Click Buttons -->
-    <div class="flex gap-1.5 text-xs font-bold flex-wrap justify-end">
-      <button type="button" onclick="switchLang('hi')" id="btn-hi" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">हिंदी</button>
-      <button type="button" onclick="switchLang('en')" id="btn-en" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</button>
-      <button type="button" onclick="switchLang('hinglish')" id="btn-hinglish" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</button>
-      <button type="button" onclick="switchLang('mr')" id="btn-mr" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</button>
-      <button type="button" onclick="switchLang('gu')" id="btn-gu" class="lang-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</button>
-    </div>
-  </header>
+<header>
+<h1>SiteSeva</h1>
+<p data-t="tagline">आपकी Tender और Quotation सेवा</p>
+</header>
 
-  <!-- Action Bar -->
-  <div class="bg-slate-900 text-white px-4 py-2 flex flex-wrap justify-between items-center gap-2 text-xs border-b border-slate-800">
-    <span class="text-slate-300" data-i18n="action_title">साइट पर मशीन चाहिए या टेंडर डालना है?</span>
-    <div class="flex gap-2">
-      <button type="button" onclick="showPopup('tenderModal')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-3 py-1.5 rounded shadow" data-i18n="post_tender_btn">+ नया टेंडर / काम पोस्ट करें</button>
-      <button type="button" onclick="showPopup('operatorModal')" class="bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/30 font-bold px-3 py-1.5 rounded" data-i18n="op_reg_btn">👷 ऑपरेटर रजिस्ट्रेशन</button>
-    </div>
-  </div>
+<nav>
+<select id="language" style="width:auto;margin:0">
+<option value="hi">हिन्दी</option>
+<option value="en">English</option>
+<option value="hinglish">Hinglish</option>
+<option value="mr">मराठी</option>
+<option value="gu">ગુજરાતી</option>
+<option value="ta">தமிழ்</option>
+<option value="kn">ಕನ್ನಡ</option>
+<option value="te">తెలుగు</option>
+</select>
+<button data-open="tenderModal" data-t="addTender">Tender जोड़ें</button>
+<button data-open="quoteModal" data-t="quote">Quotation माँगें</button>
+<button data-open="operatorModal" data-t="operator">Operator Registration</button>
+</nav>
 
-  <!-- Hero Banner -->
-  <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center border-b border-amber-500/20">
-    <span data-i18n="hero_badge" class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold">भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क</span>
-    <h2 data-i18n="hero_title" class="text-2xl md:text-3xl font-extrabold mt-3">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></h2>
-    <p data-i18n="hero_desc" class="text-slate-300 text-xs max-w-xl mx-auto mt-2">मशीन किराए पर लें/दें, साइट का काम और टेंडर पोस्ट करें, और वेरीफाइड ऑपरेटर व लेबर टीम खोजें।</p>
-    <div class="mt-4 flex justify-center gap-3">
-      <button type="button" onclick="directCall()" data-i18n="call_btn" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold shadow hover:bg-amber-400">📞 हेल्पलाइन पर कॉल करें</button>
-      <button type="button" onclick="directWa('नमस्ते SiteSeva, मुझे साइट मशीन व काम की सहायता चाहिए।')" data-i18n="wa_btn" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold shadow hover:bg-emerald-500">💬 व्हाट्सएप सहायता</button>
-    </div>
-  </div>
+<main>
+<section>
+<h2 data-t="welcome">SiteSeva में आपका स्वागत है</h2>
+<p data-t="intro">Tender, Quotation और Operator की सेवाएँ एक ही जगह।</p>
+<div class="actions">
+<button data-open="tenderModal" data-t="addTender">Tender जोड़ें</button>
+<button data-open="quoteModal" data-t="quote">Quotation माँगें</button>
+<button data-open="operatorModal" data-t="operator">Operator Registration</button>
+</div>
+</section>
 
-  <main class="max-w-5xl mx-auto p-4 space-y-8 flex-1 w-full">
+<section>
+<h2 data-t="available">Available Tenders</h2>
+<div id="tenderList"><p data-t="empty">अभी कोई Tender उपलब्ध नहीं है।</p></div>
+</section>
 
-    <!-- 1. Live Leads Section -->
-    <section>
-      <div class="flex justify-between items-center mb-3">
-        <h3 data-i18n="sec_leads" class="font-extrabold text-slate-900 text-lg">📋 साइट काम व टेंडर (Live Work Leads)</h3>
-        <button type="button" onclick="showPopup('tenderModal')" class="text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded hover:bg-amber-200" data-i18n="post_short">+ काम पोस्ट करें</button>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4" id="leads-grid">
-        <!-- Lead 1 -->
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-start">
-              <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">RCC & Concrete</span>
-              <span class="text-xs font-bold text-amber-600">बजट: ₹8.5 लाख</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mt-2">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</h4>
-            <p class="text-xs text-slate-500 mt-1">📍 सोनभद्र / मिर्जापुर, UP</p>
-            <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
-              साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की तुरंत आवश्यकता है।
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
-            <span class="text-xs text-slate-500 font-medium">शर्मा इंफ्रास्ट्रक्चर</span>
-            <button type="button" onclick="openBidForm('कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)', 'शर्मा इंफ्रास्ट्रक्चर')" class="bg-slate-900 hover:bg-slate-800 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold" data-i18n="quote_btn">कोटेशन / रेट डालें</button>
-          </div>
-        </div>
+<section>
+<h2 data-t="contact">हमसे संपर्क करें</h2>
+<p data-t="contactText">अधिक जानकारी के लिए WhatsApp पर संपर्क करें।</p>
+<a class="btn green" href="https://wa.me/919741833711" target="_blank" rel="noopener" data-t="whatsapp">WhatsApp पर संपर्क करें</a>
+</section>
+</main>
 
-        <!-- Lead 2 -->
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-start">
-              <span class="text-xs bg-green-100 text-green-800 font-bold px-2 py-0.5 rounded">Shuttering & Civil</span>
-              <span class="text-xs font-bold text-amber-600">बजट: ₹22 / Sq.Ft</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base mt-2">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</h4>
-            <p class="text-xs text-slate-500 mt-1">📍 इलेक्ट्रॉनिक सिटी, बेंगलुरु</p>
-            <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
-              मटेरियल मुख्य ठेकेदार का रहेगा, केवल लेबर विद टूल्स पेटी ठेकेदार चाहिए। रनिंग बिलिंग हर 15 दिन में।
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
-            <span class="text-xs text-slate-500 font-medium">RK बिल्डर्स</span>
-            <button type="button" onclick="openBidForm('कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)', 'RK बिल्डर्स')" class="bg-slate-900 hover:bg-slate-800 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold" data-i18n="quote_btn">कोटेशन / रेट डालें</button>
-          </div>
-        </div>
-      </div>
-    </section>
+<footer>© <span id="year"></span> SiteSeva. All Rights Reserved.</footer>
 
-    <!-- 2. Machinery Rental Section -->
-    <section>
-      <div class="flex justify-between items-center mb-3">
-        <h3 data-i18n="sec_mach" class="font-extrabold text-slate-900 text-lg">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</h3>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-center">
-            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded" data-i18n="avail_badge">तुरंत उपलब्ध</span>
-            <span class="text-xs font-bold text-slate-900">₹1,40,000 / महीना</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base mt-2">Self-Loading Concrete Mixer (SLCM)</h4>
-          <p class="text-xs text-slate-500">Ajax Fiori Argo 4000 • 4.0 Cum • 2022 मॉडल</p>
-          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">वेल-मेंटेंड मशीन, अनुभवी ऑपरेटर और हेल्पर सहित। मासिक किराये पर उपलब्ध।</p>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
-            <button type="button" onclick="directCall()" class="flex-1 bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold" data-i18n="mach_call">📞 डायरेक्ट कॉल करें</button>
-            <button type="button" onclick="directWa('नमस्ते SiteSeva, मुझे Ajax Fiori SLCM किराए पर लेने के संबंध में बात करनी है।')" class="flex-1 bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold" data-i18n="mach_wa">💬 व्हाट्सएप करें</button>
-          </div>
-        </div>
+<div class="modal" id="tenderModal">
+<div class="modal-box">
+<button class="close" data-close>×</button>
+<h2 data-t="addTitle">नया Tender जोड़ें</h2>
+<form id="tenderForm">
+<label data-t="tname">Tender का नाम</label>
+<input id="tname" required>
+<label data-t="dept">विभाग / कंपनी</label>
+<input id="dept">
+<label data-t="date">अंतिम तारीख</label>
+<input id="date" type="date">
+<label data-t="details">विवरण</label>
+<textarea id="details" rows="3"></textarea>
+<button class="submit" type="submit" data-t="publish">Tender जोड़ें</button>
+</form>
+</div>
+</div>
 
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-center">
-            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded" data-i18n="avail_badge">तुरंत उपलब्ध</span>
-            <span class="text-xs font-bold text-slate-900">₹950 / घंटा (या ₹75,000/माह)</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base mt-2">JCB 3DX Super Backhoe Loader</h4>
-          <p class="text-xs text-slate-500">4WD • 2023 मॉडल • 6-in-1 बकेट</p>
-          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">खुदाई, लेवलिंग और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।</p>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
-            <button type="button" onclick="directCall()" class="flex-1 bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold" data-i18n="mach_call">📞 डायरेक्ट कॉल करें</button>
-            <button type="button" onclick="directWa('नमस्ते SiteSeva, मुझे JCB 3DX बैकहो लोडर किराए पर चाहिए।')" class="flex-1 bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold" data-i18n="mach_wa">💬 व्हाट्सएप करें</button>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="modal" id="quoteModal">
+<div class="modal-box">
+<button class="close" data-close>×</button>
+<h2 data-t="quoteTitle">Quotation / Bid Request</h2>
+<form id="quoteForm">
+<label data-t="name">आपका नाम</label>
+<input id="qname" required>
+<label data-t="mobile">मोबाइल नंबर</label>
+<input id="qphone" type="tel" required>
+<label data-t="work">Tender / काम का नाम</label>
+<input id="qwork" required>
+<label data-t="message">आपका संदेश</label>
+<textarea id="qmessage" rows="3"></textarea>
+<button class="submit green" type="submit" data-t="send">WhatsApp से भेजें</button>
+</form>
+</div>
+</div>
 
-    <!-- 3. Workforce Section -->
-    <section>
-      <div class="flex justify-between items-center mb-3">
-        <h3 data-i18n="sec_work" class="font-extrabold text-slate-900 text-lg">👷 ऑपरेटर व लेबर टीम (Workforce)</h3>
-        <button type="button" onclick="showPopup('operatorModal')" class="text-xs bg-slate-200 text-slate-800 font-bold px-2.5 py-1 rounded hover:bg-slate-300" data-i18n="op_short">+ ऑपरेटर जुड़ें</button>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-          <div>
-            <span class="text-[10px] bg-slate-100 text-slate-800 font-bold px-2 py-0.5 rounded" data-i18n="op_badge">वेरीफाइड ऑपरेटर</span>
-            <h4 class="font-bold text-slate-900 text-sm mt-1">रमेश कुमार (SLCM ऑपरेटर)</h4>
-            <p class="text-xs text-slate-500">अनुभव: 6 वर्ष • Ajax एक्सपर्ट</p>
-            <p class="text-xs text-emerald-600 font-bold mt-1">उपलब्ध: तुरंत जॉइनिंग</p>
-          </div>
-          <button type="button" onclick="directWa('रमेश
+<div class="modal" id="operatorModal">
+<div class="modal-box">
+<button class="close" data-close>×</button>
+<h2 data-t="operatorTitle">Operator Registration</h2>
+<form id="operatorForm">
+<label data-t="name">आपका नाम</label>
+<input id="oname" required>
+<label data-t="mobile">मोबाइल नंबर</label>
+<input id="ophone" type="tel" required>
+<label data-t="city">शहर / जिला</label>
+<input id="ocity" required>
+<label data-t="experience">Machine / Operator Experience</label>
+<input id="oexperience">
+<button class="submit green" type="submit" data-t="register">WhatsApp से रजिस्टर करें</button>
+</form>
+</div>
+</div>
+
+<script>
+const PHONE="919741833711";
+
+const words={
+hi:{
+tagline:"आपकी Tender और Quotation सेवा",welcome:"SiteSeva में आपका स्वागत है",intro:"Tender, Quotation और Operator की सेवाएँ एक ही जगह।",
+addTender:"Tender जोड़ें",quote:"Quotation माँगें",operator:"Operator Registration",available:"Available Tenders",empty:"अभी कोई Tender उपलब्ध नहीं है।",
+contact:"हमसे संपर्क करें",contactText:"अधिक जानकारी के लिए WhatsApp पर संपर्क करें।",whatsapp:"WhatsApp पर संपर्क करें",
+addTitle:"नया Tender जोड़ें",tname:"Tender का नाम",dept:"विभाग / कंपनी",date:"अंतिम तारीख",details:"विवरण",publish:"Tender जोड़ें",
+quoteTitle:"Quotation / Bid Request",name:"आपका नाम",mobile:"मोबाइल नंबर",work:"Tender / काम का नाम",message:"आपका संदेश",send:"WhatsApp से भेजें",
+operatorTitle:"Operator Registration",city:"शहर / जिला",experience:"Machine / Operator Experience",register:"WhatsApp से रजिस्टर करें",department:"विभाग",lastDate:"अंतिम तारीख",noDate:"नहीं दी गई"
+},
+en:{
+tagline:"Your Tender and Quotation Service",welcome:"Welcome to SiteSeva",intro:"Tender, Quotation and Operator services in one place.",
+addTender:"Add Tender",quote:"Request Quotation",operator:"Operator Registration",available:"Available Tenders",empty:"No tenders available yet.",
+contact:"Contact Us",contactText:"Contact us on WhatsApp for more information.",whatsapp:"Contact on WhatsApp",
+addTitle:"Add New Tender",tname:"Tender Name",dept:"Department / Company",date:"Last Date",details:"Details",publish:"Add Tender",
+quoteTitle:"Quotation / Bid Request",name:"Your Name",mobile:"Mobile Number",work:"Tender / Work Name",message:"Your Message",send:"Send on WhatsApp",
+operatorTitle:"Operator Registration",city:"City / District",experience:"Machine / Operator Experience",register:"Register on WhatsApp",department:"Department",lastDate:"Last Date",noDate:"Not specified"
+},
+hinglish:{
+tagline:"Aapki Tender aur Quotation Service",welcome:"SiteSeva mein aapka swagat hai",intro:"Tender, Quotation aur Operator services ek hi jagah.",
+addTender:"Tender Add Karein",quote:"Quotation Maangein",operator:"Operator Registration",available:"Available Tenders",empty:"Abhi koi Tender available nahi hai.",
+contact:"Contact Karein",contactText:"Zyada jaankari ke liye WhatsApp karein.",whatsapp:"WhatsApp par Contact Karein",
+addTitle:"Naya Tender Add Karein",tname:"Tender ka Naam",dept:"Department / Company",date:"Last Date",details:"Details",publish:"Tender Add Karein",
+quoteTitle:"Quotation / Bid Request",name:"Aapka Naam",mobile:"Mobile Number",work:"Tender / Kaam ka Naam",message:"Aapka Message",send:"WhatsApp se Bhejein",
+operatorTitle:"Operator Registration",city:"City / District",experience:"Machine / Operator Experience",register:"WhatsApp se Register Karein",department:"Department",lastDate:"Last Date",noDate:"Mention nahi hai"
+},
+mr:{
+tagline:"तुमची टेंडर आणि कोटेशन सेवा",welcome:"SiteSeva मध्ये आपले स्वागत आहे",intro:"टेंडर, कोटेशन आणि ऑपरेटर सेवा एकाच ठिकाणी.",
+addTender:"टेंडर जोडा",quote:"कोटेशन मागवा",operator:"ऑपरेटर नोंदणी",available:"उपलब्ध टेंडर",empty:"सध्या कोणतेही टेंडर उपलब्ध नाही.",
+contact:"संपर्क करा",contactText:"अधिक माहितीसाठी WhatsApp वर संपर्क करा.",whatsapp:"WhatsApp वर संपर्क करा",
+addTitle:"नवीन टेंडर जोडा",tname:"टेंडरचे नाव",dept:"विभाग / कंपनी",date:"शेवटची तारीख",details:"माहिती",publish:"टेंडर जोडा",
+quoteTitle:"कोटेशन / बिड विनंती",name:"तुमचे नाव",mobile:"मोबाईल नंबर",work:"टेंडर / कामाचे नाव",message:"तुमचा संदेश",send:"WhatsApp वर पाठवा",
+operatorTitle:"ऑपरेटर नोंदणी",city:"शहर / जिल्हा",experience:"मशीन / ऑपरेटर अनुभव",register:"WhatsApp वर नोंदणी करा",department:"विभाग",lastDate:"शेवटची तारीख",noDate:"नमूद नाही"
+},
+gu:{
+tagline:"તમારી ટેન્ડર અને ક્વોટેશન સેવા",welcome:"SiteSeva માં આપનું સ્વાગત છે",intro:"ટેન્ડર, ક્વોટેશન અને ઓપરેટર સેવાઓ એક જ જગ્યાએ.",
+addTender:"ટેન્ડર ઉમેરો",quote:"ક્વોટેશન માંગો",operator:"ઓપરેટર રજીસ્ટ્રેશન",available:"ઉપલબ્ધ ટેન્ડર",empty:"હજુ કોઈ ટેન્ડર ઉપલબ્ધ નથી.",
+contact:"સંપર્ક કરો",contactText:"વધુ માહિતી માટે WhatsApp પર સંપર્ક કરો.",whatsapp:"WhatsApp પર સંપર્ક કરો",
+addTitle:"નવું ટેન્ડર ઉમેરો",tname:"ટેન્ડરનું નામ",dept:"વિભાગ / કંપની",date:"છેલ્લી તારીખ",details:"વિગતો",publish:"ટેન્ડર ઉમેરો",
+quoteTitle:"ક્વોટેશન / બિડ વિનંતી",name:"તમારું નામ",mobile:"મોબાઇલ નંબર",work:"ટેન્ડર / કામનું નામ",message:"તમારો સંદેશ",send:"WhatsApp પર મોકલો",
+operatorTitle:"ઓપરેટર રજીસ્ટ્રેશન",city:"શહેર / જિલ્લો",experience:"મશીન / ઓપરેટર અનુભવ",register:"WhatsApp પર રજીસ્ટર કરો",department:"વિભાગ",lastDate:"છેલ્લી તારીખ",noDate:"ઉલ્લેખ નથી"
+},
+ta:{
+tagline:"உங்கள் டெண்டர் மற்றும் மேற்கோள் சேவை",welcome:"SiteSeva-க்கு வரவேற்கிறோம்",intro:"டெண்டர், மேற்கோள் மற்றும் ஆபரேட்டர் சேவைகள் ஒரே இடத்தில்.",
+addTender:"டெண்டர் சேர்க்க",quote:"மேற்கோள் கோர",operator:"ஆபரேட்டர் பதிவு",available:"கிடைக்கும் டெண்டர்கள்",empty:"தற்போது டெண்டர்கள் இல்லை.",
+contact:"தொடர்பு கொள்ள",contactText:"மேலும் தகவலுக்கு WhatsApp-ல் தொடர்பு கொள்ளுங்கள்.",whatsapp:"WhatsApp-ல் தொடர்பு கொள்ள",
+addTitle:"புதிய டெண்டர் சேர்க்க",tname:"டெண்டர் பெயர்",dept:"துறை / நிறுவனம்",date:"கடைசி தேதி",details:"விவரங்கள்",publish:"டெண்டர் சேர்க்க",
+quoteTitle:"மேற்கோள் / ஏலக் கோரிக்கை",name:"உங்கள் பெயர்",mobile:"மொபைல் எண்",work:"டெண்டர் / வேலை பெயர்",message:"உங்கள் செய்தி",send:"WhatsApp-ல் அனுப்ப",
+operatorTitle:"ஆபரேட்டர் பதிவு",city:"நகரம் / மாவட்டம்",experience:"இயந்திரம் / ஆபரேட்டர் அனுபவம்",register:"WhatsApp-ல் பதிவு செய்ய",department:"துறை",lastDate:"கடைசி தேதி",noDate:"குறிப்பிடப்படவில்லை"
+},
+kn:{
+tagline:"ನಿಮ್ಮ ಟೆಂಡರ್ ಮತ್ತು ಕೊಟೇಶನ್ ಸೇವೆ",welcome:"SiteSeva ಗೆ ಸ್ವಾಗತ",intro:"ಟೆಂಡರ್, ಕೊಟೇಶನ್ ಮತ್ತು ಆಪರೇಟರ್ ಸೇವೆಗಳು ಒಂದೇ ಸ್ಥಳದಲ್ಲಿ.",
+addTender:"ಟೆಂಡರ್ ಸೇರಿಸಿ",quote:"ಕೊಟೇಶನ್ ಕೇಳಿ",operator:"ಆಪರೇಟರ್ ನೋಂದಣಿ",available:"ಲಭ್ಯವಿರುವ ಟೆಂಡರ್‌ಗಳು",empty:"ಇನ್ನೂ ಟೆಂಡರ್‌ಗಳು ಲಭ್ಯವಿಲ್ಲ.",
+contact:"ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ",contactText:"ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ WhatsApp ಸಂಪರ್ಕಿಸಿ.",whatsapp:"WhatsApp ಸಂಪರ್ಕಿಸಿ",
+addTitle:"ಹೊಸ ಟೆಂಡರ್ ಸೇರಿಸಿ",tname:"ಟೆಂಡರ್ ಹೆಸರು",dept:"ಇಲಾಖೆ / ಕಂಪನಿ",date:"ಕೊನೆಯ ದಿನಾಂಕ",details:"ವಿವರಗಳು",publish:"ಟೆಂಡರ್ ಸೇರಿಸಿ",
+quoteTitle:"ಕೊಟೇಶನ್ / ಬಿಡ್ ವಿನಂತಿ",name:"ನಿಮ್ಮ ಹೆಸರು",mobile:"ಮೊಬೈಲ್ ಸಂಖ್ಯೆ",work:"ಟೆಂಡರ್ / ಕೆಲಸದ ಹೆಸರು",message:"ನಿಮ್ಮ ಸಂದೇಶ",send:"WhatsApp ಮೂಲಕ ಕಳುಹಿಸಿ",
+operatorTitle:"ಆಪರೇಟರ್ ನೋಂದಣಿ",city:"ನಗರ / ಜಿಲ್ಲೆ",experience:"ಯಂತ್ರ / ಆಪರೇಟರ್ ಅನುಭವ",register:"WhatsApp ನಲ್ಲಿ ನೋಂದಾಯಿಸಿ",department:"ಇಲಾಖೆ",lastDate:"ಕೊನೆಯ ದಿನಾಂಕ",noDate:"ನಮೂದಿಸಿಲ್ಲ"
+},
+te:{
+tagline:"మీ టెండర్ మరియు కొటేషన్ సేవ",welcome:"SiteSeva కు స్వాగతం",intro:"టెండర్, కొటేషన్ మరియు ఆపరేటర్ సేవలు ఒకే చోట.",
+addTender:"టెండర్ జోడించండి",quote:"కొటేషన్ అడగండి",operator:"ఆపరేటర్ నమోదు",available:"అందుబాటులో ఉన్న టెండర్లు",empty:"ఇంకా టెండర్లు అందుబాటులో లేవు.",
+contact:"మమ్మల్ని సంప్రదించండి",contactText:"మరింత సమాచారం కోసం WhatsApp లో సంప్రదించండి.",whatsapp:"WhatsApp లో సంప్రదించండి",
+addTitle:"కొత్త టెండర్ జోడించండి",tname:"టెండర్ పేరు",dept:"విభాగం / కంపెనీ",date:"చివరి తేదీ",details:"వివరాలు",publish:"టెండర్ జోడించండి",
+quoteTitle:"కొటేషన్ / బిడ్ అభ్యర్థన",name:"మీ పేరు",mobile:"మొబైల్ నంబర్",work:"టెండర్ / పని పేరు",message:"మీ సందేశం",send:"WhatsApp ద్వారా పంపండి",
+operatorTitle:"ఆపరేటర్ నమోదు",city:"నగరం / జిల్లా",experience:"యంత్రం / ఆపరేటర్ అనుభవం",register:"WhatsApp లో నమోదు చేయండి",department:"విభాగం",lastDate:"చివరి తేదీ",noDate:"పేర్కొనలేదు"
+}
+};
+
+const $=id=>document.getElementById(id);
+let currentLang="hi";
+
+function applyLanguage(lang){
+ currentLang=words[lang]?lang:"hi";
+ document.documentElement.lang=currentLang;
+ document.querySelectorAll("[data-t]").forEach(el=>{
+  const key=el.getAttribute("data-t");
+  if(words[currentLang][key])el.textContent=words[currentLang][key];
+ });
+ try{localStorage.setItem("siteseva-language",currentLang)}catch(e){}
+}
+$("language").addEventListener("change",e=>applyLanguage(e.target.value));
+try{
+ const saved=localStorage.getItem("siteseva-language");
+ if(saved && words[saved])$("language").value=saved;
+}catch(e){}
+applyLanguage($("language").value);
+$("year").textContent=new Date().getFullYear();
+
+function openModal(id){
+ const modal=$(id);
+ if(modal){modal.classList.add("show")}
+}
+function closeModal(modal){modal.classList.remove("show")}
+
+document.addEventListener("click",e=>{
+ const opener=e.target.closest("[data-open]");
+ const closer=e.target.closest("[data-close]");
+ if(opener)openModal(opener.dataset.open);
+ if(closer)closeModal(closer.closest(".modal"));
+ if(e.target.classList.contains("modal"))closeModal(e.target);
+});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape")document.querySelectorAll(".modal.show").forEach(closeModal);
+});
+
+function sendWhatsApp(message){
+ const url="https://wa.me/"+PHONE+"?text="+encodeURIComponent(message);
+ window.open(url,"_blank");
+}
+
+$("tenderForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const name=$("tname").value.trim();
+ const dept=$("dept").value.trim();
+ const date=$("date").value;
+ const details=$("details").value.trim();
+ if(!name){alert(words[currentLang].required);return}
+ const card=document.createElement("article");
+ card.className="tender-card";
+ const title=document.createElement("h3");
+ title.textContent=name;
+ card.appendChild(title);
+ if(dept){
+  const p=document.createElement("p");
+  p.textContent=words[currentLang].department+": "+dept;
+  card.appendChild(p);
+ }
+ const d=document.createElement("p");
+ d.textContent=words[currentLang].lastDate+": "+(date||words[currentLang].noDate);
+ card.appendChild(d);
+ if(details){
+  const p=document.createElement("p");
+  p.textContent=details;
+  card.appendChild(p);
+ }
+ const btn=document.createElement("button");
+ btn.textContent=words[currentLang].quote;
+ btn.addEventListener("click",()=>{
+  $("qwork").value=name;
+  openModal("quoteModal");
+ });
+ card.appendChild(btn);
+ const list=$("tenderList");
+ if(list.querySelector("[data-t='empty']"))list.replaceChildren();
+ list.prepend(card);
+ e.target.reset();
+ closeModal($("tenderModal"));
+ alert(words[currentLang].tenderAdded||"Tender added");
+});
+
+$("quoteForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const msg=[
+ "SiteSeva - Quotation Request",
+ "Name: "+$("qname").value,
+ "Mobile: "+$("qphone").value,
+ "Work: "+$("qwork").value,
+ "Message: "+$("qmessage").value
+ ].join("\n");
+ sendWhatsApp(msg);
+});
+
+$("operatorForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const msg=[
+ "SiteSeva - Operator Registration",
+ "Name: "+$("oname").value,
+ "Mobile: "+$("ophone").value,
+ "City: "+$("ocity").value,
+ "Experience: "+$("oexperience").value
+ ].join("\n");
+ sendWhatsApp(msg);
+});
+</script>
+</body>
+</html>
