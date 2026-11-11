@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   const apiSecret = "secret_live_bed1d5fddb2c43bfaa1b8356c2f78bd1";
 
   try {
-    // 1. Authenticate with Sandbox
+    // 1. Sandbox Authenticate
     const authRes = await fetch("https://api.sandbox.co.in/authenticate", {
       method: "POST",
       headers: {
@@ -35,26 +35,33 @@ export default async function handler(req, res) {
       "Authorization": token,
       "x-api-key": apiKey,
       "x-api-version": "1.0",
-      "accept": "application/json",
-      "Content-Type": "application/json"
+      "accept": "application/json"
     };
 
     let verifyData = null;
 
     if (type === 'RC') {
-      // Endpoint Option A: Standard Sandbox RC Search
-      let r = await fetch(`https://api.sandbox.co.in/kyc/rc/search?vehicle_number=${cleanNum}&consent=Y&reason=Verification`, {
+      // 1. Sandbox का स्टैंडर्ड RC Search एंडपॉइंट
+      let r = await fetch(`https://api.sandbox.co.in/kyc/vehicle/rc/search?vehicle_number=${cleanNum}&consent=Y&reason=Verification`, {
         method: "GET",
         headers: headers
       });
       verifyData = await r.json();
 
-      // If Option A returns 404, try Option B: KYC Vehicles RC
+      // 2. अगर 404 आए तो अल्टरनेटिव KYC Vahan एंडपॉइंट
       if (verifyData.code === 404 || verifyData.message === "Not Found") {
-        r = await fetch("https://api.sandbox.co.in/kyc/vehicles/rc", {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify({ vehicle_number: cleanNum, consent: "Y", reason: "Verification" })
+        r = await fetch(`https://api.sandbox.co.in/kyc/vahan/search?vehicle_number=${cleanNum}&consent=Y&reason=Verification`, {
+          method: "GET",
+          headers: headers
+        });
+        verifyData = await r.json();
+      }
+
+      // 3. अगर फिर भी 404 आए तो v1 RC Verify
+      if (verifyData.code === 404 || verifyData.message === "Not Found") {
+        r = await fetch(`https://api.sandbox.co.in/kyc/rc/verify?vehicle_number=${cleanNum}&consent=Y&reason=Verification`, {
+          method: "GET",
+          headers: headers
         });
         verifyData = await r.json();
       }
@@ -67,10 +74,9 @@ export default async function handler(req, res) {
       verifyData = await r.json();
 
       if (verifyData.code === 404 || verifyData.message === "Not Found") {
-        r = await fetch("https://api.sandbox.co.in/kyc/dl", {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify({ dl_number: cleanNum, consent: "Y", reason: "Verification" })
+        r = await fetch(`https://api.sandbox.co.in/kyc/dl/search?dl_number=${cleanNum}&consent=Y&reason=Verification`, {
+          method: "GET",
+          headers: headers
         });
         verifyData = await r.json();
       }
