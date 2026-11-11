@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SiteSeva</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* CSS बेस्ड लैंग्वेज स्विचर - कभी फेल नहीं होता */
+    .tab-content { display: none; }
+    .tab-content:target { display: block; }
+    #tab-hi { display: block; }
+    body:has(#tab-en:target) #tab-hi,
+    body:has(#tab-hinglish:target) #tab-hi,
+    body:has(#tab-mr:target) #tab-hi,
+    body:has(#tab-gu:target) #tab-hi { display: none; }
+  </style>
 </head>
 <body class="bg-slate-100 min-h-screen flex flex-col font-sans">
 
@@ -15,236 +25,94 @@
       <div>
         <span class="text-xl font-black text-amber-400">SiteSeva</span>
         <span class="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-1.5 py-0.5 rounded ml-1">LIVE</span>
-        <p id="t_tag" class="text-[10px] text-slate-400">मशीन, ठेका व ऑपरेटर नेटवर्क</p>
       </div>
     </div>
     
-    <!-- Language Switcher Buttons -->
-    <div class="flex gap-1 text-xs font-bold flex-wrap">
-      <button onclick="setLang('hi')" id="btn-hi" class="px-2 py-1 rounded bg-amber-500 text-slate-950 font-black">हिंदी</button>
-      <button onclick="setLang('en')" id="btn-en" class="px-2 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</button>
-      <button onclick="setLang('hinglish')" id="btn-hinglish" class="px-2 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</button>
-      <button onclick="setLang('mr')" id="btn-mr" class="px-2 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</button>
-      <button onclick="setLang('gu')" id="btn-gu" class="px-2 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</button>
+    <!-- 5 Pure Links (0% Failure) -->
+    <div class="flex gap-1.5 text-xs font-bold flex-wrap">
+      <a href="#tab-hi" class="px-2.5 py-1 rounded bg-amber-500 text-slate-950 font-black">हिंदी</a>
+      <a href="#tab-en" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 hover:text-white">English</a>
+      <a href="#tab-hinglish" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 hover:text-white">Hinglish</a>
+      <a href="#tab-mr" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 hover:text-white">मराठी</a>
+      <a href="#tab-gu" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 hover:text-white">ગુજરાતી</a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center border-b border-amber-500/20">
-    <span id="t_hero_badge" class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold">भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क</span>
-    <h2 id="t_hero_title" class="text-2xl md:text-3xl font-extrabold mt-3">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></h2>
-    <p id="t_hero_desc" class="text-slate-300 text-xs max-w-xl mx-auto mt-2">मशीन किराए पर लें/दें, साइट का काम और टेंडर पोस्ट करें, और वेरीफाइड ऑपरेटर खोजें।</p>
-    <div class="mt-4 flex justify-center gap-3">
-      <a href="tel:919999999999" id="t_btn_call" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold shadow hover:bg-amber-400">📞 हेल्पलाइन पर कॉल करें</a>
-      <a href="https://wa.me/919999999999" id="t_btn_wa" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold shadow hover:bg-emerald-500">💬 व्हाट्सएप सहायता</a>
+  <!-- ================= 1. HINDI ================= -->
+  <div id="tab-hi" class="tab-content flex-1">
+    <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center border-b border-amber-500/20">
+      <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold">भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क</span>
+      <h2 class="text-2xl md:text-3xl font-extrabold mt-3">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></h2>
+      <p class="text-slate-300 text-xs max-w-xl mx-auto mt-2">मशीन किराए पर लें/दें, साइट का काम और टेंडर पोस्ट करें, और वेरीफाइड ऑपरेटर खोजें।</p>
+      <div class="mt-4 flex justify-center gap-3">
+        <a href="tel:919999999999" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold">📞 हेल्पलाइन पर कॉल करें</a>
+        <a href="https://wa.me/919999999999" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold">💬 व्हाट्सएप सहायता</a>
+      </div>
     </div>
+
+    <main class="max-w-5xl mx-auto p-4 space-y-6">
+      <section>
+        <h3 class="font-extrabold text-slate-900 text-lg mb-3">📋 साइट काम व टेंडर (Live Work Leads)</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+            <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">RCC व कंक्रीट</span>
+            <span class="text-xs font-bold text-amber-600 float-right">बजट: ₹8.5 लाख</span>
+            <h4 class="font-bold text-slate-900 text-base mt-2">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</h4>
+            <p class="text-xs text-slate-500">📍 सोनभद्र / मिर्जापुर, UP</p>
+            <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">1200 cum कंक्रीटिंग हेतु Ajax Fiori SLCM मिक्सर और लेबर टीम चाहिए।</p>
+            <div class="mt-3 text-right"><a href="tel:919999999999" class="bg-slate-900 text-amber-400 text-xs px-3 py-1.5 rounded-lg font-bold">रेट डालें</a></div>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+            <span class="text-xs bg-green-100 text-green-800 font-bold px-2 py-0.5 rounded">शटरिंग व सिविल</span>
+            <span class="text-xs font-bold text-amber-600 float-right">बजट: ₹22/Sq.Ft</span>
+            <h4 class="font-bold text-slate-900 text-base mt-2">कमर्शियल प्लाजा शटरिंग (45,000 Sq.Ft)</h4>
+            <p class="text-xs text-slate-500">📍 इलेक्ट्रॉनिक सिटी, बेंगलुरु</p>
+            <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">मटेरियल ठेकेदार का रहेगा, केवल लेबर विद टूल्स पेटीदार चाहिए।</p>
+            <div class="mt-3 text-right"><a href="tel:919999999999" class="bg-slate-900 text-amber-400 text-xs px-3 py-1.5 rounded-lg font-bold">रेट डालें</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="font-extrabold text-slate-900 text-lg mb-3">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">उपलब्ध</span>
+            <span class="text-xs font-bold text-slate-900 float-right">₹1,40,000 / माह</span>
+            <h4 class="font-bold text-slate-900 text-base mt-2">Self-Loading Concrete Mixer (SLCM)</h4>
+            <p class="text-xs text-slate-500">Ajax Fiori 4000 • 4.0 Cum • ऑपरेटर सहित</p>
+            <div class="mt-3 flex gap-2"><a href="tel:919999999999" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 कॉल करें</a><a href="https://wa.me/919999999999" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 व्हाट्सएप</a></div>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">उपलब्ध</span>
+            <span class="text-xs font-bold text-slate-900 float-right">₹950 / घंटा</span>
+            <h4 class="font-bold text-slate-900 text-base mt-2">JCB 3DX Super Backhoe Loader</h4>
+            <p class="text-xs text-slate-500">4WD • 2023 मॉडल • तुरंत डिलीवरी</p>
+            <div class="mt-3 flex gap-2"><a href="tel:919999999999" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 कॉल करें</a><a href="https://wa.me/919999999999" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 व्हाट्सएप</a></div>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
 
-  <main class="max-w-5xl mx-auto p-4 space-y-8 flex-1 w-full">
-
-    <!-- 1. Live Leads Section -->
-    <section>
-      <div class="flex justify-between items-center mb-3">
-        <h3 id="t_sec_leads" class="font-extrabold text-slate-900 text-lg">📋 साइट काम व टेंडर (Live Work Leads)</h3>
-        <span id="t_lead_count" class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-1 rounded">2 नए काम एक्टिव</span>
+  <!-- ================= 2. ENGLISH ================= -->
+  <div id="tab-en" class="tab-content flex-1">
+    <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center border-b border-amber-500/20">
+      <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold">India's #1 Construction Network</span>
+      <h2 class="text-2xl md:text-3xl font-extrabold mt-3">Every Site Need, <span class="text-amber-400">In One Place</span></h2>
+      <p class="text-slate-300 text-xs max-w-xl mx-auto mt-2">Rent machinery, post project contracts, get petty quotes, and hire operators.</p>
+      <div class="mt-4 flex justify-center gap-3">
+        <a href="tel:919999999999" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold">📞 Call Helpline</a>
+        <a href="https://wa.me/919999999999" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold">💬 WhatsApp Support</a>
       </div>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-start">
+    </div>
+
+    <main class="max-w-5xl mx-auto p-4 space-y-6">
+      <section>
+        <h3 class="font-extrabold text-slate-900 text-lg mb-3">📋 Live Work Leads & Tenders</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">RCC & Concrete</span>
-            <span id="t_lead1_b" class="text-xs font-bold text-amber-600">बजट: ₹8.5 लाख</span>
-          </div>
-          <h4 id="t_lead1_t" class="font-bold text-slate-900 text-base mt-2">कैनाल व रिटेनिंग वॉल कंक्रीट लाइनिंग (3.5 KM)</h4>
-          <p class="text-xs text-slate-500 mt-1">📍 सोनभद्र / मिर्जापुर, UP</p>
-          <p id="t_lead1_d" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
-            साइट पर 1200 cum कंक्रीटिंग के लिए SLCM कंक्रीट मिक्सर और 12 कुशल मजदूरों की तुरंत आवश्यकता है।
-          </p>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
-            <span class="text-xs text-slate-500">शर्मा इंफ्रास्ट्रक्चर</span>
-            <a href="tel:919999999999" id="t_btn_quote1" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">रेट / कोटेशन डालें</a>
-          </div>
-        </div>
-
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-start">
-            <span class="text-xs bg-green-100 text-green-800 font-bold px-2 py-0.5 rounded">Shuttering & Civil</span>
-            <span id="t_lead2_b" class="text-xs font-bold text-amber-600">बजट: ₹22 / Sq.Ft</span>
-          </div>
-          <h4 id="t_lead2_t" class="font-bold text-slate-900 text-base mt-2">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</h4>
-          <p class="text-xs text-slate-500 mt-1">📍 इलेक्ट्रॉनिक सिटी, बेंगलुरु</p>
-          <p id="t_lead2_d" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
-            मटेरियल मुख्य ठेकेदार का रहेगा, लेबर विद टूल्स पेटी ठेकेदार चाहिए। रनिंग बिलिंग हर 15 दिन में।
-          </p>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
-            <span class="text-xs text-slate-500">RK बिल्डर्स</span>
-            <a href="tel:919999999999" id="t_btn_quote2" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">रेट / कोटेशन डालें</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. Machinery Rental Section -->
-    <section>
-      <div class="flex justify-between items-center mb-3">
-        <h3 id="t_sec_mach" class="font-extrabold text-slate-900 text-lg">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</h3>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-center">
-            <span id="t_avail1" class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">उपलब्ध</span>
-            <span id="t_mach1_p" class="text-xs font-bold text-slate-900">₹1,40,000 / महीना</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base mt-2">Self-Loading Concrete Mixer (SLCM)</h4>
-          <p class="text-xs text-slate-500">Ajax Fiori Argo 4000 • 4.0 Cum • 2022 मॉडल</p>
-          <p id="t_mach1_d" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">वेल-मेंटेंड मशीन, ऑपरेटर और हेल्पर सहित। मासिक किराये पर उपलब्ध।</p>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
-            <a href="tel:919999999999" id="t_btn_call_m1" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 डायरेक्ट कॉल करें</a>
-            <a href="https://wa.me/919999999999" id="t_btn_wa_m1" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 व्हाट्सएप करें</a>
-          </div>
-        </div>
-
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex justify-between items-center">
-            <span id="t_avail2" class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">उपलब्ध</span>
-            <span id="t_mach2_p" class="text-xs font-bold text-slate-900">₹950 / घंटा (या ₹75,000/माह)</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base mt-2">JCB 3DX Super Backhoe Loader</h4>
-          <p class="text-xs text-slate-500">4WD • 2023 मॉडल • 6-in-1 बकेट</p>
-          <p id="t_mach2_d" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">खुदाई, लेवलिंग और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।</p>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
-            <a href="tel:919999999999" id="t_btn_call_m2" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 डायरेक्ट कॉल करें</a>
-            <a href="https://wa.me/919999999999" id="t_btn_wa_m2" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 व्हाट्सएप करें</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-slate-950 text-slate-400 py-6 border-t border-slate-800 text-center text-xs">
-    <p class="font-bold text-slate-300">SiteSeva © 2026</p>
-    <p id="t_foot" class="mt-1">हर कंस्ट्रक्शन साइट का सच्चा साथी — मशीन, ठेका और कामगार</p>
-  </footer>
-
-  <script>
-    var D = {
-      hi: {
-        tag: "मशीन, ठेका व ऑपरेटर नेटवर्क",
-        hbadge: "भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क",
-        htitle: 'हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span>',
-        hdesc: "मशीन किराए पर लें/दें, साइट का काम और टेंडर पोस्ट करें, और वेरीफाइड ऑपरेटर खोजें।",
-        bcall: "📞 हेल्पलाइन पर कॉल करें",
-        bwa: "💬 व्हाट्सएप सहायता",
-        sleads: "📋 साइट काम व टेंडर (Live Work Leads)",
-        lcount: "2 नए काम एक्टिव",
-        l1b: "बजट: ₹8.5 लाख",
-        l1t: "कैनाल व रिटेनिंग वॉल कंक्रीट लाइनिंग (3.5 KM)",
-        l1d: "साइट पर 1200 cum कंक्रीटिंग के लिए SLCM कंक्रीट मिक्सर और 12 कुशल मजदूरों की तुरंत आवश्यकता है।",
-        l2b: "बजट: ₹22 / Sq.Ft",
-        l2t: "कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)",
-        l2d: "मटेरियल मुख्य ठेकेदार का रहेगा, लेबर विद टूल्स पेटी ठेकेदार चाहिए। रनिंग बिलिंग हर 15 दिन में।",
-        bquote: "रेट / कोटेशन डालें",
-        smach: "🚜 किराए पर उपलब्ध मशीनें (Rental Hub)",
-        avail: "उपलब्ध",
-        m1p: "₹1,40,000 / महीना",
-        m1d: "वेल-मेंटेंड मशीन, ऑपरेटर और हेल्पर सहित। मासिक किराये पर उपलब्ध।",
-        m2p: "₹950 / घंटा (या ₹75,000/माह)",
-        m2d: "खुदाई, लेवलिंग और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।",
-        bcallm: "📞 डायरेक्ट कॉल करें",
-        bwam: "💬 व्हाट्सएप करें",
-        foot: "हर कंस्ट्रक्शन साइट का सच्चा साथी — मशीन, ठेका और कामगार"
-      },
-      en: {
-        tag: "Machinery, Contracts & Operators",
-        hbadge: "India's #1 Construction Network",
-        htitle: 'Every Site Need, <span class="text-amber-400">In One Place</span>',
-        hdesc: "Rent heavy equipment, post project contracts, get petty quotes, and hire operators.",
-        bcall: "📞 Call Helpline",
-        bwa: "💬 WhatsApp Support",
-        sleads: "📋 Live Work Leads & Tenders",
-        lcount: "2 Active Leads",
-        l1b: "Budget: ₹8.5 Lakh",
-        l1t: "Canal & Retaining Wall Concrete Lining (3.5 KM)",
-        l1d: "Urgent requirement of SLCM concrete mixer and 12-member skilled mason team for 1200 cum concreting.",
-        l2b: "Budget: ₹22 / Sq.Ft",
-        l2t: "Commercial Plaza Shuttering Work (45,000 Sq.Ft)",
-        l2d: "Material provided by contractor. Need labor with tools on petty contract. 15-day billing.",
-        bquote: "Submit Quote",
-        smach: "🚜 Available Machinery (Rental Hub)",
-        avail: "Available Now",
-        m1p: "₹1,40,000 / Month",
-        m1d: "Well-maintained machine with operator and helper. Available on monthly rent.",
-        m2p: "₹950 / Hour (or ₹75,000/Mo)",
-        m2d: "Ready for digging, trenching, and material loading. Immediate site delivery.",
-        bcallm: "📞 Direct Call Owner",
-        bwam: "💬 WhatsApp",
-        foot: "Your Trusted Construction Partner — Machinery, Contracts & Workforce"
-      },
-      hinglish: {
-        tag: "Machine, Theka aur Operator Network",
-        hbadge: "Bharat Ka #1 Construction Network",
-        htitle: 'Har Site Ki Zaroorat, <span class="text-amber-400">Ek Hi Jagah</span>',
-        hdesc: "Machine rent pe lein/dein, site ka kaam post karein, aur verified operators khojein.",
-        bcall: "📞 Helpline Call Karein",
-        bwa: "💬 WhatsApp Support",
-        sleads: "📋 Site Kaam aur Tenders (Live Leads)",
-        lcount: "2 Kaam Active",
-        l1b: "Budget: ₹8.5 Lakh",
-        l1t: "Canal aur Retaining Wall Concrete Lining (3.5 KM)",
-        l1d: "Site par 1200 cum concreting ke liye SLCM mixer aur 12 labour team urgently chahiye.",
-        l2b: "Budget: ₹22 / Sq.Ft",
-        l2t: "Commercial Plaza Shuttering Kaam (45,000 Sq.Ft)",
-        l2d: "Material contractor ka rahega, petty contractor chahiye labour with tools. Har 15 din billing.",
-        bquote: "Apna Rate Dalein",
-        smach: "🚜 Available Machines (Rental Hub)",
-        avail: "Available Now",
-        m1p: "₹1,40,000 / Month",
-        m1d: "Well-maintained machine, operator aur helper ke sath. Monthly rent par available.",
-        m2p: "₹950 / Ghanta (ya ₹75,000/Month)",
-        m2d: "Khudai, trenching aur loading ke liye fully ready. Turant delivery.",
-        bcallm: "📞 Direct Call Karein",
-        bwam: "💬 WhatsApp Karein",
-        foot: "Machine, Theka aur Kaamgaar Network"
-      },
-      mr: {
-        tag: "मशीनरी, कंत्राट आणि ऑपरेटर नेटवर्क",
-        hbadge: "भारतातील पहिले संपूर्ण कन्स्ट्रक्शन नेटवर्क",
-        htitle: 'प्रत्येक साइटची गरज, आता <span class="text-amber-400">एकाच ठिकाणी</span>',
-        hdesc: "मशीन भाड्याने घ्या/द्या, साइटवरील कामे पोस्ट करा, आणि कुशल ऑपरेटर शोधा.",
-        bcall: "📞 हेल्पलाईनवर कॉल करा",
-        bwa: "💬 व्हॉट्सअ‍ॅप सपोर्ट",
-        sleads: "📋 साइटवरील कामे आणि कंत्राट (Live Leads)",
-        lcount: "2 नवीन कामे",
-        l1b: "अंदाजपत्रक: ₹8.5 लाख",
-        l1t: "कॅनॉल व रिटेनिंग वॉल काँक्रीट लायनिंग (3.5 KM)",
-        l1d: "साइटवर 1200 cum काँक्रीटिंगसाठी SLCM मिक्सर आणि 12 मजुरांची तातडीने गरज आहे.",
-        l2b: "अंदाजपत्रक: ₹22 / Sq.Ft",
-        l2t: "कमर्शियल प्लाझा शटरिंग काम (45,000 Sq.Ft)",
-        l2d: "मटेरियल मुख्य कंत्राटदाराचे असेल, केवळ लेबर विथ टूल्स पेटी कंत्राटदार हवा. दर 15 दिवसांनी बिलिंग.",
-        bquote: "दर / कोटेशन द्या",
-        smach: "🚜 भाड्याने उपलब्ध मशिन्स (Rental Hub)",
-        avail: "सध्या उपलब्ध",
-        m1p: "₹1,40,000 / महिना",
-        m1d: "उत्तम स्थितीतील मशीन, ऑपरेटर व हेल्परसह. मासिक भाड्याने उपलब्ध.",
-        m2p: "₹950 / तास (किंवा ₹75,000/महिना)",
-        m2d: "खोदकाम व लोडिंगसाठी सज्ज. साइटवर त्वरित डिलिव्हरी.",
-        bcallm: "📞 थेट कॉल करा",
-        bwam: "💬 व्हॉट्सअ‍ॅप करा",
-        foot: "मशीनरी, कंत्राट आणि कामगार नेटवर्क"
-      },
-      gu: {
-        tag: "મશીનરી, કોન્ટ્રાક્ટ અને ઓપરેટર નેટવર્ક",
-        hbadge: "ભારતનું પ્રથમ સંપૂર્ણ કન્સ્ટ્રક્શન નેટવર્ક",
-        htitle: 'દરેક સાઇટની જરૂરિયાત, હવે <span class="text-amber-400">એક જ જગ્યાએ</span>',
-        hdesc: "મશીન ભાડે આપો/લો, સાઇટ વર્ક પોસ્ટ કરો, અને વેરિફાઇડ ડ્રાઈવર શોધો.",
-        bcall: "📞 હેલ્પલાઇન કોલ કરો",
-        bwa: "💬 વોટ્સએપ સપોર્ટ",
-        sleads: "📋 સાઇટ વર્ક અને ટેન્ડર્સ (Live Leads)",
-        lcount: "2 કામ એક્ટિવ",
-        l1b: "બજેટ: ₹8.5 લાખ",
-        l1t: "કેનાલ અને વોલ કોંક્રિટ લાઇનિંગ (3.5 KM)",
-        l1d: "સાઇટ પર 1200 cum કોંક્રિટિંગ માટે SLCM મિક્સર અને 12 કુશળ મજૂરોની તાત્કાલિક જરૂર છે.",
-        l2b: "બજેટ: ₹22 / Sq.Ft",
-        l2t: "કોમર્શિયલ પ્લાઝા શટરિંગ કામ (45,000 Sq.Ft)",
-        l2d
+            <span class="text-xs font-bold text-amber-600 float-right">Budget: ₹8.5 Lakh</span>
+            <h4 class="font-bold text-slate-900 text-base mt-2">Canal & Retaining Wall Lining (3.5 KM)</h4>
+            <p
