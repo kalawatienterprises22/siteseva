@@ -1,42 +1,41 @@
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
+  // CORS Headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { type, number } = req.body || {};
-  if (!number) {
-    return res.status(400).json({ message: 'कृपया नंबर दर्ज करें' });
-  }
-
-  const cleanNum = number.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
-
-  // Attestr Auth Token
-  const ATTESTR_TOKEN = "T1gwUlNQRGNnNnhycnJ1TmdHLjk0NTE1NDE4ODZiNzZkYmM2MTViMGI5NzRhZDY5M2ZiOjYwNGQ3YzUxMjIxNzkzZDk5NmIwMjc4NmQ4NDQwZGZmMDdhOWE1MDQxNmYxNTNjOA==";
-
   try {
-    let endpoint = "";
-    let requestBody = {};
-
-    if (type === 'rc') {
-      endpoint = "https://api.attestr.com/api/v3/public/checkx/rc";
-      requestBody = {
-        reg: cleanNum
-      };
-    } else {
-      // Driving License Check
-      endpoint = "https://api.attestr.com/api/v3/public/checkx/dl";
-      requestBody = {
-        dl: cleanNum
-      };
+    const { type, number } = req.body || {};
+    if (!number) {
+      return res.status(400).json({ message: 'कृपया नंबर दर्ज करें' });
     }
 
+    const cleanNum = String(number).replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+    const token = "T1gwUlNQRGNnNnhycnJ1TmdHLjk0NTE1NDE4ODZiNzZkYmM2MTViMGI5NzRhZDY5M2ZiOjYwNGQ3YzUxMjIxNzkzZDk5NmIwMjc4NmQ4NDQwZGZmMDdhOWE1MDQxNmYxNTNjOA==";
+
+    const endpoint = (type === 'rc')
+      ? "https://api.attestr.com/api/v3/public/checkx/rc"
+      : "https://api.attestr.com/api/v3/public/checkx/dl";
+
+    const payload = (type === 'rc') 
+      ? { reg: cleanNum } 
+      : { dl: cleanNum };
+
     const response = await fetch(endpoint, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Basic ${ATTESTR_TOKEN}`
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${token}`
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify(payload)
     });
 
     const data = await response.json();
@@ -48,7 +47,6 @@ export default async function handler(req, res) {
       });
     }
 
-    // Attestr Data Mapping
     return res.status(200).json({
       status: 'success',
       data: {
@@ -59,4 +57,15 @@ export default async function handler(req, res) {
         fuelType: data.fuelType || data.fuel || 'उपलब्ध नहीं',
         regDate: data.regDate || data.issueDate || data.registrationDate || 'उपलब्ध नहीं',
         fitness: data.fitnessUpto || data.validUpto || data.fitness || 'उपलब्ध नहीं',
-        insurance:
+        insurance: data.insuranceUpto || data.insuranceExpiryDate || 'उपलब्ध नहीं',
+        raw: data
+      }
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      message: 'सर्वर में समस्या आई',
+      error: error.message
+    });
+  }
+};
