@@ -3,223 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SiteSeva</title>
+  <title>SiteSeva - Construction & Machinery Network</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background: #f8fafc; color: #0f172a; padding-bottom: 60px; }
+
+    /* भाषा स्विच इंजन */
+    .view-en, .view-hinglish, .view-mr, .view-gu { display: none !important; }
+    .view-hi { display: inline-block; }
+
+    body:has(#r-en:checked) .view-en { display: inline-block !important; }
+    body:has(#r-en:checked) .view-hi { display: none !important; }
+
+    body:has(#r-hinglish:checked) .view-hinglish { display: inline-block !important; }
+    body:has(#r-hinglish:checked) .view-hi { display: none !important; }
+
+    body:has(#r-mr:checked) .view-mr { display: inline-block !important; }
+    body:has(#r-mr:checked) .view-hi { display: none !important; }
+
+    body:has(#r-gu:checked) .view-gu { display: inline-block !important; }
+    body:has(#r-gu:checked) .view-hi { display: none !important; }
+
+    /* एक्टिव बटन का पीला रंग */
+    body:has(#r-hi:checked) label[for="r-hi"],
+    body:has(#r-en:checked) label[for="r-en"],
+    body:has(#r-hinglish:checked) label[for="r-hinglish"],
+    body:has(#r-mr:checked) label[for="r-mr"],
+    body:has(#r-gu:checked) label[for="r-gu"] {
+      background: #f59e0b !important;
+      color: #020617 !important;
+      border-color: #f59e0b !important;
+    }
+
     header { background: #020617; color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; }
     .logo-area { display: flex; align-items: center; gap: 8px; }
     .logo-icon { background: #f59e0b; color: #020617; font-weight: 900; padding: 5px 8px; border-radius: 6px; font-size: 15px; }
-    .lang-bar { display: flex; gap: 5px; }
-    .btn-l { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer; }
-    .btn-l.active { background: #f59e0b; color: #020617; border-color: #f59e0b; }
+    .lang-bar { display: flex; gap: 5px; flex-wrap: wrap; }
+    .lbl-btn { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer; user-select: none; }
     
     .hero { background: #0f172a; color: white; padding: 30px 15px; text-align: center; border-bottom: 2px solid #f59e0b; }
     .hero h1 { font-size: 22px; margin-bottom: 8px; }
     .hero p { font-size: 12px; color: #94a3b8; max-width: 550px; margin: 0 auto 15px auto; }
     .hero-links { display: flex; justify-content: center; gap: 10px; }
     .btn-c { background: #f59e0b; color: #020617; font-weight: bold; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 12px; }
-    .btn-w { background: #16a34a; color: white; font-weight: bold; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 12px; }
-
-    .content-box { max-width: 850px; margin: 20px auto; padding: 0 15px; }
-    .verify-box { background: #020617; color: white; border-radius: 12px; padding: 18px; margin-bottom: 25px; border: 1px solid #1e293b; }
-    .verify-inputs { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-    .verify-inputs select, .verify-inputs input { background: #0f172a; border: 1px solid #334155; color: white; padding: 9px; border-radius: 6px; font-size: 12px; flex: 1; min-width: 140px; }
-    .btn-check { background: #f59e0b; color: #020617; font-weight: bold; border: none; padding: 9px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; }
-
-    .result-panel { background: #0f172a; border: 1px solid #10b981; border-radius: 8px; padding: 12px; margin-top: 14px; }
-    .res-head { color: #10b981; font-weight: bold; font-size: 13px; margin-bottom: 6px; border-bottom: 1px solid #1e293b; padding-bottom: 4px; }
-    .res-item { font-size: 12px; margin: 4px 0; color: #cbd5e1; }
-
-    .sec-h { font-size: 16px; font-weight: bold; margin-bottom: 10px; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-    @media(max-width: 650px) { .grid-2 { grid-template-columns: 1fr; } }
-    .item-card { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; }
-  </style>
-</head>
-<body>
-
-  <!-- Header -->
-  <header>
-    <div class="logo-area">
-      <div class="logo-icon">SS</div>
-      <div>
-        <div style="font-weight: 900; color: #f59e0b; font-size: 16px;">SiteSeva</div>
-        <div id="u_tag" style="font-size: 10px; color: #94a3b8;">मशीन, ठेका व वेरीफाइड ऑपरेटर</div>
-      </div>
-    </div>
-    <div class="lang-bar">
-      <button class="btn-l active" id="btn_hi" onclick="setAppLang('hi')">हिंदी</button>
-      <button class="btn-l" id="btn_en" onclick="setAppLang('en')">English</button>
-      <button class="btn-l" id="btn_hinglish" onclick="setAppLang('hinglish')">Hinglish</button>
-      <button class="btn-l" id="btn_mr" onclick="setAppLang('mr')">मराठी</button>
-      <button class="btn-l" id="btn_gu" onclick="setAppLang('gu')">ગુજરાતી</button>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <div class="hero">
-    <h1 id="u_hero_t">हर साइट की ज़रूरत, अब <span style="color: #f59e0b;">एक ही जगह</span></h1>
-    <p id="u_hero_d">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और ऑपरेटर खोजें।</p>
-    <div class="hero-links">
-      <a href="tel:919999999999" id="u_call" class="btn-c">📞 हेल्पलाइन कॉल</a>
-      <a href="https://wa.me/919999999999" class="btn-w">💬 व्हाट्सएप</a>
-    </div>
-  </div>
-
-  <div class="content-box">
-
-    <!-- mParivahan Tool -->
-    <div class="verify-box">
-      <div style="font-weight: bold; color: #f59e0b; font-size: 13px;" id="u_api_t">🔍 mParivahan ऑपरेटर लाइसेंस (DL) व मशीन RC वेरिफिकेशन</div>
-      <div class="verify-inputs">
-        <select id="selDoc">
-          <option value="DL">ऑपरेटर लाइसेंस (DL)</option>
-          <option value="RC">मशीन RC (Vehicle RC)</option>
-        </select>
-        <input type="text" id="inpDoc" value="JH1020180011347">
-        <button type="button" class="btn-check" id="u_btn_v" onclick="runVerification()">🔍 तुरंत वेरीफाई करें</button>
-      </div>
-
-      <div id="resCard" class="result-panel">
-        <div class="res-head">✅ Sarathi / mParivahan Live Record Verified (Active)</div>
-        <div class="res-item">नंबर: <strong id="rNum" style="color: #f59e0b;">JH1020180011347</strong></div>
-        <div class="res-item">धारक का नाम: <strong id="rName" style="color: white;">अमित कुमार / ऑपरेटर</strong></div>
-        <div class="res-item">RTO: <strong style="color: white;">झारखंड RTO (Dhanbad - JH10)</strong></div>
-        <div class="res-item">वैधता: <strong style="color: #10b981;">18-May-2035 (Active & Valid)</strong></div>
-        <div class="res-item">श्रेणी: <strong id="rCat" style="color: white;">TRANS, Heavy Construction Machinery (SLCM, JCB Loader)</strong></div>
-      </div>
-    </div>
-
-    <!-- Live Work Leads -->
-    <div class="sec-h" id="u_sec_leads">📋 साइट काम व टेंडर (Live Work Leads)</div>
-    <div class="grid-2">
-      <div class="item-card">
-        <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px;">
-          <span style="background: #e0f2fe; color: #0369a1; font-weight: bold; padding: 2px 5px; border-radius: 4px;">RCC & Concrete</span>
-          <span style="font-weight: bold; color: #d97706;">₹8.5 Lakh</span>
-        </div>
-        <h3 id="u_l1_t" style="font-size: 14px; margin-bottom: 4px;">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</h3>
-        <p style="font-size: 11px; color: #64748b; margin-bottom: 6px;">📍 Sonbhadra / Mirzapur, UP</p>
-        <p id="u_l1_d" style="font-size: 11px; color: #475569; background: #f8fafc; padding: 6px; border-radius: 4px;">साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की आवश्यकता है।</p>
-      </div>
-
-      <div class="item-card">
-        <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px;">
-          <span style="background: #dcfce7; color: #15803d; font-weight: bold; padding: 2px 5px; border-radius: 4px;">Shuttering</span>
-          <span style="font-weight: bold; color: #d97706;">₹22 / Sq.Ft</span>
-        </div>
-        <h3 id="u_l2_t" style="font-size: 14px; margin-bottom: 4px;">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</h3>
-        <p style="font-size: 11px; color: #64748b; margin-bottom: 6px;">📍 Electronic City, Bengaluru</p>
-        <p id="u_l2_d" style="font-size: 11px; color: #475569; background: #f8fafc; padding: 6px; border-radius: 4px;">मटेरियल मुख्य ठेकेदार का रहेगा, लेबर विद टूल्स पेटी ठेकेदार चाहिए।</p>
-      </div>
-    </div>
-
-    <!-- Machinery Hub -->
-    <div class="sec-h" id="u_sec_mach">🚜 किराए पर उपलब्ध मशीनें (Rental Hub)</div>
-    <div class="grid-2">
-      <div class="item-card">
-        <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px;">
-          <span style="background: #dcfce7; color: #15803d; font-weight: bold; padding: 2px 5px; border-radius: 4px;">Available</span>
-          <span style="font-weight: bold;">₹1,40,000 / Mo</span>
-        </div>
-        <h3 style="font-size: 14px; margin-bottom: 4px;">Self-Loading Concrete Mixer (SLCM)</h3>
-        <p style="font-size: 11px; color: #64748b; margin-bottom: 6px;">Ajax Fiori Argo 4000 • 4.0 Cum</p>
-        <p id="u_m1_d" style="font-size: 11px; color: #475569; background: #f8fafc; padding: 6px; border-radius: 4px;">वेल-मेंटेंड मशीन, ऑपरेटर और हेल्पर सहित। मासिक किराये पर।</p>
-      </div>
-
-      <div class="item-card">
-        <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px;">
-          <span style="background: #dcfce7; color: #15803d; font-weight: bold; padding: 2px 5px; border-radius: 4px;">Available</span>
-          <span style="font-weight: bold;">₹950 / Hr</span>
-        </div>
-        <h3 style="font-size: 14px; margin-bottom: 4px;">JCB 3DX Super Backhoe Loader</h3>
-        <p style="font-size: 11px; color: #64748b; margin-bottom: 6px;">4WD • 2023 Model</p>
-        <p id="u_m2_d" style="font-size: 11px; color: #475569; background: #f8fafc; padding: 6px; border-radius: 4px;">खुदाई और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।</p>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    var Lang = {
-      hi: {
-        tag: "मशीन, ठेका व वेरीफाइड ऑपरेटर",
-        ht: 'हर साइट की ज़रूरत, अब <span style="color: #f59e0b;">एक ही जगह</span>',
-        hd: "मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और ऑपरेटर खोजें।",
-        call: "📞 हेल्पलाइन कॉल",
-        api: "🔍 mParivahan ऑपरेटर लाइसेंस (DL) व मशीन RC वेरिफिकेशन",
-        btnv: "🔍 तुरंत वेरीफाई करें",
-        sleads: "📋 साइट काम व टेंडर (Live Work Leads)",
-        l1t: "कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)",
-        l1d: "साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की आवश्यकता है।",
-        l2t: "कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)",
-        l2d: "मटेरियल मुख्य ठेकेदार का रहेगा, लेबर विद टूल्स पेटी ठेकेदार चाहिए।",
-        smach: "🚜 किराए पर उपलब्ध मशीनें (Rental Hub)",
-        m1d: "वेल-मेंटेंड मशीन, ऑपरेटर और हेल्पर सहित। मासिक किराये पर।",
-        m2d: "खुदाई और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।"
-      },
-      en: {
-        tag: "Machinery, Contracts & Operators",
-        ht: 'Every Site Requirement, <span style="color: #f59e0b;">In One Place</span>',
-        hd: "Rent heavy equipment, post project contracts, and hire operators.",
-        call: "📞 Call Helpline",
-        api: "🔍 mParivahan Operator License (DL) & RC Verification",
-        btnv: "🔍 Verify Now",
-        sleads: "📋 Live Work Leads & Tenders",
-        l1t: "Canal & Retaining Wall Lining (3.5 KM)",
-        l1d: "Urgent requirement of SLCM concrete mixer and 12 masons for 1200 cum concreting.",
-        l2t: "Commercial Plaza Shuttering (45,000 Sq.Ft)",
-        l2d: "Material provided by contractor. Petty labor contractor needed.",
-        smach: "🚜 Available Machinery (Rental Hub)",
-        m1d: "Well maintained machine with operator & helper. On monthly rent.",
-        m2d: "Ready for digging and loading. Immediate site delivery."
-      },
-      hinglish: {
-        tag: "Machine, Theka aur Operators",
-        ht: 'Har Site Ki Zaroorat, <span style="color: #f59e0b;">Ek Hi Jagah</span>',
-        hd: "Machine rent pe lein/dein, site ka kaam post karein, aur operators khojein.",
-        call: "📞 Helpline Call",
-        api: "🔍 mParivahan Operator License (DL) aur RC Verification",
-        btnv: "🔍 Check Karein",
-        sleads: "📋 Site Kaam aur Live Leads",
-        l1t: "Canal aur Wall Concreting (3.5 KM)",
-        l1d: "Site par 1200 cum concreting ke liye SLCM mixer aur 12 labour team urgently chahiye.",
-        l2t: "Plaza Shuttering Kaam (45,000 Sq.Ft)",
-        l2d: "Material contractor ka rahega, petty contractor chahiye.",
-        smach: "🚜 Available Machine Rental Hub",
-        m1d: "Well maintained machine, operator ke sath. Monthly rent par.",
-        m2d: "Khudai aur loading ke liye fully ready."
-      },
-      mr: {
-        tag: "मशीनरी, कंत्राट आणि ऑपरेटर",
-        ht: 'प्रत्येक साइटची गरज, आता <span style="color: #f59e0b;">एकाच ठिकाणी</span>',
-        hd: "मशीन भाड्याने घ्या/द्या, कामे पोस्ट करा, आणि ऑपरेटर शोधा.",
-        call: "📞 हेल्पलाईन कॉल",
-        api: "🔍 mParivahan ऑपरेटर लायसन्स (DL) व RC पडताळणी",
-        btnv: "🔍 तपासा (Verify)",
-        sleads: "📋 साइटवरील कामे (Live Leads)",
-        l1t: "कॅनॉल व रिटेनिंग वॉल काम (3.5 KM)",
-        l1d: "साइटवर 1200 cum काँक्रीटिंगसाठी SLCM मिक्सर आणि 12 मजुरांची तातडीने गरज आहे.",
-        l2t: "कमर्शियल प्लाझा शटरिंग काम (45,000 Sq.Ft)",
-        l2d: "मटेरियल मुख्य कंत्राटदाराचे असेल, लेबर कंत्राटदार हवा.",
-        smach: "🚜 भाड्याने उपलब्ध मशिन्स (Rental Hub)",
-        m1d: "उत्तम स्थितीतील मशीन, ऑपरेटरसह. मासिक भाड्याने.",
-        m2d: "खोदकाम व लोडिंगसाठी सज्ज. त्वरित डिलिव्हरी."
-      },
-      gu: {
-        tag: "મશીનરી, કોન્ટ્રાક્ટ અને ઓપરેટર",
-        ht: 'દરેક સાઇટની જરૂરિયાત, હવે <span style="color: #f59e0b;">એક જ જગ્યાએ</span>',
-        hd: "મશીન ભાડે આપો/લો, સાઇટ વર્ક પોસ્ટ કરો, અને ઓપરેટર શોધો.",
-        call: "📞 હેલ્પલાઇન કોલ",
-        api: "🔍 mParivahan ઓપરેટર લાયસન્સ (DL) અને RC વેરિફિકેશન",
-        btnv: "🔍 વેરિફાઇ કરો",
-        sleads: "📋 સાઇટ વર્ક અને ટેન્ડર્સ (Live Leads)",
-        l1t: "કેનાલ અને વોલ કોંક્રિટ લાઇનિંગ (3.5 KM)",
-        l1d: "સાઇટ પર 1200 cum કોંક્રિટિંગ માટે SLCM મિક્સર અને 12 કુશળ મજૂરોની જરૂર છે.",
-        l2t: "પ્લાઝા શટરિંગ કામ (45,000 Sq.Ft)",
-        l2d: "મટિરિયલ કોન્ટ્રાક્ટરનું રહેશે, ફક્ત લેબર કોન્ટ્રાક્ટર જોઈએ.",
-        smach: "🚜 ઉપલબ્ધ મશીનરી (Rental Hub)",
-        m1d: "વેલ મેન્ટેઇન્ડ મશીન, ઓપરેટર સાથે. માસિક ભાડે.",
-        m2d: "ખોદકામ અને લોડિંગ માટે તૈયાર. તાત્કાલિક ડિલિવરી."
-      }
+    .btn-w { background: #16a34a; color: white; font-weight: bold; padding: 8px 14px; border-radius: 6
