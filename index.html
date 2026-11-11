@@ -17,24 +17,72 @@
           <span class="text-xl font-black text-amber-400">SiteSeva</span>
           <span class="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-1.5 py-0.5 rounded">LIVE</span>
         </div>
-        <p id="ui-tagline" class="text-[10px] text-slate-400"></p>
+        <p class="text-[10px] text-slate-400">
+          <span class="l-hi">मशीन, ठेका व वेरीफाइड ऑपरेटर नेटवर्क</span>
+          <span class="l-en hidden">Machinery, Contracts & Verified Operators</span>
+          <span class="l-hinglish hidden">Machine, Theka aur Operator Network</span>
+          <span class="l-mr hidden">मशीनरी, कंत्राट आणि ऑपरेटर नेटवर्क</span>
+          <span class="l-gu hidden">મશીનરી, કોન્ટ્રાક્ટ અને ઓપરેટર નેટવર્ક</span>
+        </p>
       </div>
     </div>
     
-    <!-- 5 Language Buttons -->
-    <div class="flex gap-1.5 text-xs font-bold flex-wrap" id="lang-buttons-container"></div>
+    <!-- 5 Instant Switch Buttons -->
+    <div class="flex gap-1.5 text-xs font-bold flex-wrap">
+      <button onclick="setLanguage('hi')" id="btn-hi" class="px-2.5 py-1 rounded bg-amber-500 text-slate-950 font-black">हिंदी</button>
+      <button onclick="setLanguage('en')" id="btn-en" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">English</button>
+      <button onclick="setLanguage('hinglish')" id="btn-hinglish" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Hinglish</button>
+      <button onclick="setLanguage('mr')" id="btn-mr" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">मराठी</button>
+      <button onclick="setLanguage('gu')" id="btn-gu" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">ગુજરાતી</button>
+    </div>
   </header>
 
   <!-- Hero Section -->
   <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white py-8 px-4 text-center border-b border-amber-500/20">
-    <span id="ui-hero-badge" class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold"></span>
-    <h2 id="ui-hero-title" class="text-2xl md:text-3xl font-extrabold mt-3"></h2>
-    <p id="ui-hero-desc" class="text-slate-300 text-xs max-w-xl mx-auto mt-2"></p>
+    <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-bold">
+      <span class="l-hi">भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क</span>
+      <span class="l-en hidden">India's #1 Construction Network</span>
+      <span class="l-hinglish hidden">Bharat Ka #1 Construction Network</span>
+      <span class="l-mr hidden">भारतातील पहिले संपूर्ण कन्स्ट्रक्शन नेटवर्क</span>
+      <span class="l-gu hidden">ભારતનું પ્રથમ સંપૂર્ણ કન્સ્ટ્રક્શન નેટવર્ક</span>
+    </span>
+    <h2 class="text-2xl md:text-3xl font-extrabold mt-3">
+      <span class="l-hi">हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span></span>
+      <span class="l-en hidden">Every Site Requirement, <span class="text-amber-400">In One Place</span></span>
+      <span class="l-hinglish hidden">Har Site Ki Zaroorat, <span class="text-amber-400">Ek Hi Jagah</span></span>
+      <span class="l-mr hidden">प्रत्येक साइटची गरज, आता <span class="text-amber-400">एकाच ठिकाणी</span></span>
+      <span class="l-gu hidden">દરેક સાઇટની જરૂરિયાત, હવે <span class="text-amber-400">એક જ જગ્યાએ</span></span>
+    </h2>
+    <p class="text-slate-300 text-xs max-w-xl mx-auto mt-2">
+      <span class="l-hi">मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और mParivahan वेरीफाइड ऑपरेटर खोजें।</span>
+      <span class="l-en hidden">Rent heavy equipment, post project contracts, and hire mParivahan verified operators.</span>
+      <span class="l-hinglish hidden">Machine rent pe lein/dein, site ka theka post karein, aur verified operators khojein.</span>
+      <span class="l-mr hidden">मशीन भाड्याने घ्या/द्या, साइटवरील कामे पोस्ट करा, आणि कुशल ऑपरेटर शोधा.</span>
+      <span class="l-gu hidden">મશીન ભાડે આપો/લો, સાઇટ વર્ક પોસ્ટ કરો, અને વેરિફાઇડ ડ્રાઈવર શોધો.</span>
+    </p>
     
     <div class="mt-5 flex flex-wrap justify-center gap-3">
-      <button onclick="openModal()" id="ui-btn-post" class="bg-amber-500 text-slate-950 px-5 py-2.5 rounded-lg text-xs font-black shadow-lg hover:bg-amber-400"></button>
-      <a href="tel:919999999999" id="ui-btn-call" class="bg-slate-800 border border-slate-700 text-white px-4 py-2.5 rounded-lg text-xs font-bold"></a>
-      <a href="https://wa.me/919999999999" target="_blank" id="ui-btn-wa" class="bg-emerald-600 text-white px-4 py-2.5 rounded-lg text-xs font-bold"></a>
+      <button onclick="openModal()" class="bg-amber-500 text-slate-950 px-5 py-2.5 rounded-lg text-xs font-black shadow-lg hover:bg-amber-400">
+        <span class="l-hi">➕ नई ज़रूरत / मशीन पोस्ट करें</span>
+        <span class="l-en hidden">➕ Post Requirement / Machine</span>
+        <span class="l-hinglish hidden">➕ Nayi Post Dalein</span>
+        <span class="l-mr hidden">➕ नवीन गरज पोस्ट करा</span>
+        <span class="l-gu hidden">➕ નવી પોસ્ટ મૂકો</span>
+      </button>
+      <a href="tel:919999999999" class="bg-slate-800 border border-slate-700 text-white px-4 py-2.5 rounded-lg text-xs font-bold">
+        <span class="l-hi">📞 डायरेक्ट कॉल</span>
+        <span class="l-en hidden">📞 Direct Call</span>
+        <span class="l-hinglish hidden">📞 Direct Call</span>
+        <span class="l-mr hidden">📞 थेट कॉल</span>
+        <span class="l-gu hidden">📞 સીધો કોલ</span>
+      </a>
+      <a href="https://wa.me/919999999999" target="_blank" class="bg-emerald-600 text-white px-4 py-2.5 rounded-lg text-xs font-bold">
+        <span class="l-hi">💬 व्हाट्सएप सहायता</span>
+        <span class="l-en hidden">💬 WhatsApp Support</span>
+        <span class="l-hinglish hidden">💬 WhatsApp Support</span>
+        <span class="l-mr hidden">💬 व्हॉट्सअ‍ॅप सपोर्ट</span>
+        <span class="l-gu hidden">💬 વોટ્સએપ સપોર્ટ</span>
+      </a>
     </div>
   </div>
 
@@ -42,11 +90,15 @@
 
     <!-- mParivahan Verification Tool -->
     <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-5 rounded-2xl shadow-md border border-slate-700">
-      <div class="flex flex-col md:flex-row justify-between md:items-center gap-2 mb-3">
-        <div>
-          <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-500/30">mParivahan / Vahan API Engine</span>
-          <h3 id="ui-parivahan-title" class="text-base font-extrabold text-amber-400 mt-1"></h3>
-        </div>
+      <div class="mb-3">
+        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-500/30">mParivahan API Engine</span>
+        <h3 class="text-base font-extrabold text-amber-400 mt-1">
+          <span class="l-hi">🔍 ऑपरेटर लाइसेंस (DL) व मशीन RC तुरंत वेरीफाई करें</span>
+          <span class="l-en hidden">🔍 Verify Operator License (DL) & Machine RC</span>
+          <span class="l-hinglish hidden">🔍 Operator License (DL) aur Machine RC Verify Karein</span>
+          <span class="l-mr hidden">🔍 ड्रायव्हिंग लायसन्स (DL) व मशीन RC तपासा</span>
+          <span class="l-gu hidden">🔍 ડ્રાઇવિંગ લાઇસન્સ (DL) અને મશીન RC તપાસો</span>
+        </h3>
       </div>
 
       <div class="grid md:grid-cols-3 gap-3">
@@ -55,401 +107,78 @@
           <option value="RC">मशीन RC (Vehicle RC)</option>
         </select>
         <input type="text" id="verifyNumber" placeholder="उदा. DL-0420110012345 या UP65AB1234" class="bg-slate-950 text-white border border-slate-700 rounded-lg p-2.5 text-xs uppercase" />
-        <button onclick="runVerify()" id="ui-btn-verify" class="bg-amber-500 text-slate-950 font-black text-xs py-2.5 rounded-lg hover:bg-amber-400"></button>
+        <button onclick="runVerify()" class="bg-amber-500 text-slate-950 font-black text-xs py-2.5 rounded-lg hover:bg-amber-400">
+          <span class="l-hi">जांचें (Verify)</span>
+          <span class="l-en hidden">Verify Now</span>
+          <span class="l-hinglish hidden">Check Karein</span>
+          <span class="l-mr hidden">तपासा</span>
+          <span class="l-gu hidden">તપાસો</span>
+        </button>
       </div>
-
       <div id="verifyResult" class="hidden mt-3 p-3 bg-slate-950 rounded-lg border border-slate-700 text-xs"></div>
     </section>
 
     <!-- 1. Live Leads Section -->
     <section>
       <div class="flex justify-between items-center mb-3">
-        <h3 id="ui-leads-heading" class="font-extrabold text-slate-900 text-lg"></h3>
-        <span id="ui-leads-count" class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-1 rounded"></span>
+        <h3 class="font-extrabold text-slate-900 text-lg">
+          <span class="l-hi">📋 साइट काम व टेंडर (Live Work Leads)</span>
+          <span class="l-en hidden">📋 Live Work Leads & Tenders</span>
+          <span class="l-hinglish hidden">📋 Site Kaam aur Live Leads</span>
+          <span class="l-mr hidden">📋 साइटवरील कामे आणि कंत्राट (Live Leads)</span>
+          <span class="l-gu hidden">📋 સાઇટ વર્ક અને ટેન્ડર્સ (Live Leads)</span>
+        </h3>
+        <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-1 rounded">2 Active Leads</span>
       </div>
-      <div class="grid md:grid-cols-2 gap-4" id="leads-list"></div>
-    </section>
 
-    <!-- 2. Machinery Rental Section -->
-    <section>
-      <div class="flex justify-between items-center mb-3">
-        <h3 id="ui-mach-heading" class="font-extrabold text-slate-900 text-lg"></h3>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4" id="mach-list"></div>
-    </section>
-
-    <!-- 3. Workforce Section -->
-    <section>
-      <div class="flex justify-between items-center mb-3">
-        <h3 id="ui-work-heading" class="font-extrabold text-slate-900 text-lg"></h3>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4" id="work-list"></div>
-    </section>
-
-  </main>
-
-  <!-- Modal / Form: Post Requirement -->
-  <div id="postModal" class="hidden fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl">
-      <div class="flex justify-between items-center pb-3 border-b">
-        <h3 class="font-bold text-slate-900 text-base" id="ui-modal-title"></h3>
-        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">✕</button>
-      </div>
-      <form onsubmit="handleFormSubmit(event)" class="space-y-3 mt-4 text-xs">
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">प्रकार / Type</label>
-          <select id="pCat" class="w-full border p-2 rounded-lg">
-            <option value="machine">मशीन रेंटल (Machinery Rental)</option>
-            <option value="lead">साइट का ठेका / टेंडर (Work Lead)</option>
-          </select>
+      <div class="grid md:grid-cols-2 gap-4" id="leads-container">
+        <!-- Lead 1 -->
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-start">
+            <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">RCC & Concrete</span>
+            <span class="text-xs font-bold text-amber-600">₹8.5 Lakh</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mt-2">
+            <span class="l-hi">कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)</span>
+            <span class="l-en hidden">Canal & Retaining Wall Lining (3.5 KM)</span>
+            <span class="l-hinglish hidden">Canal aur Wall Concreting (3.5 KM)</span>
+            <span class="l-mr hidden">कॅनॉल व रिटेनिंग वॉल काम (3.5 KM)</span>
+            <span class="l-gu hidden">કેનાલ અને વોલ કોંક્રિટ લાઇનિંગ (3.5 KM)</span>
+          </h4>
+          <p class="text-xs text-slate-500 mt-1">📍 Sonbhadra / Mirzapur, UP</p>
+          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
+            <span class="l-hi">साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की तुरंत आवश्यकता है।</span>
+            <span class="l-en hidden">Urgent requirement of SLCM concrete mixer and 12-member mason gang for 1200 cum concreting.</span>
+            <span class="l-hinglish hidden">Site par 1200 cum concreting ke liye SLCM mixer aur 12 labour team urgently chahiye.</span>
+            <span class="l-mr hidden">साइटवर 1200 cum काँक्रीटिंगसाठी SLCM मिक्सर आणि 12 मजुरांची तातडीने गरज आहे.</span>
+            <span class="l-gu hidden">સાઇટ પર 1200 cum કોંક્રિટિંગ માટે SLCM મિક્સર અને 12 કુશળ મજૂરોની જરૂર છે.</span>
+          </p>
+          <div class="mt-4 pt-3 border-t flex justify-between items-center">
+            <span class="text-xs text-slate-500">Sharma Infrastructure</span>
+            <a href="https://wa.me/919999999999" target="_blank" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">
+              <span class="l-hi">कोटेशन डालें</span>
+              <span class="l-en hidden">Submit Quote</span>
+              <span class="l-hinglish hidden">Rate Dalein</span>
+              <span class="l-mr hidden">दर द्या</span>
+              <span class="l-gu hidden">ભાવ મૂકો</span>
+            </a>
+          </div>
         </div>
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">टाइटल / विवरण</label>
-          <input type="text" id="pTitle" required placeholder="उदा. Ajax Fiori SLCM किराए पर उपलब्ध या कैनाल काम" class="w-full border p-2 rounded-lg" />
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <input type="text" id="pLoc" required placeholder="लोकेशन (उदा. मिर्जापुर, UP)" class="border p-2 rounded-lg" />
-          <input type="text" id="pRate" required placeholder="किराया / रेट (उदा. ₹1.40 लाख/माह)" class="border p-2 rounded-lg" />
-        </div>
-        <input type="tel" id="pPhone" required placeholder="मोबाइल नंबर (उदा. 9876543210)" class="w-full border p-2 rounded-lg" />
-        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-lg mt-2" id="ui-modal-submit"></button>
-      </form>
-    </div>
-  </div>
 
-  <!-- Footer -->
-  <footer class="bg-slate-950 text-slate-400 py-6 border-t border-slate-800 text-center text-xs">
-    <p class="font-bold text-slate-300">SiteSeva © 2026</p>
-    <p id="ui-footer-desc" class="mt-1"></p>
-  </footer>
-
-  <!-- Bulletproof Dynamic Engine -->
-  <script>
-    var currentLang = 'hi';
-
-    var LangConfig = {
-      hi: {
-        name: "हिंदी",
-        tagline: "मशीन, ठेका व वेरीफाइड ऑपरेटर नेटवर्क",
-        heroBadge: "भारत का पहला सम्पूर्ण कंस्ट्रक्शन नेटवर्क",
-        heroTitle: 'हर साइट की ज़रूरत, अब <span class="text-amber-400">एक ही जगह</span>',
-        heroDesc: "मशीन किराए पर लें/दें, टेंडर व काम पोस्ट करें, और mParivahan वेरीफाइड ऑपरेटर खोजें।",
-        btnPost: "➕ नई ज़रूरत / मशीन पोस्ट करें",
-        btnCall: "📞 डायरेक्ट कॉल",
-        btnWa: "💬 व्हाट्सएप सहायता",
-        parivahanTitle: "🔍 ऑपरेटर लाइसेंस (DL) व मशीन RC तुरंत वेरीफाई करें",
-        btnVerify: "जांचें (Verify)",
-        leadsHeading: "📋 साइट काम व टेंडर (Live Work Leads)",
-        leadsCount: "2 एक्टिव काम",
-        machHeading: "🚜 किराए पर उपलब्ध मशीनें (Rental Hub)",
-        workHeading: "👷 वेरीफाइड ऑपरेटर व लेबर टीम",
-        modalTitle: "➕ नई आवश्यकता पोस्ट करें",
-        modalSubmit: "तुरंत लाइव पोस्ट करें",
-        footerDesc: "हर कंस्ट्रक्शन साइट का सच्चा साथी — मशीन, ठेका और कामगार",
-        callText: "कॉल करें",
-        quoteText: "कोटेशन डालें",
-        availText: "तुरंत उपलब्ध"
-      },
-      en: {
-        name: "English",
-        tagline: "Machinery, Contracts & Verified Operators",
-        heroBadge: "India's #1 Construction Network",
-        heroTitle: 'Every Site Requirement, <span class="text-amber-400">In One Place</span>',
-        heroDesc: "Rent heavy equipment, post project contracts, and hire mParivahan verified operators.",
-        btnPost: "➕ Post Requirement / Machine",
-        btnCall: "📞 Direct Call",
-        btnWa: "💬 WhatsApp Support",
-        parivahanTitle: "🔍 Verify Operator License (DL) & Machine RC",
-        btnVerify: "Verify Now",
-        leadsHeading: "📋 Live Work Leads & Tenders",
-        leadsCount: "2 Active Leads",
-        machHeading: "🚜 Available Machinery (Rental Hub)",
-        workHeading: "👷 Verified Operators & Workforce",
-        modalTitle: "➕ Post New Requirement",
-        modalSubmit: "Publish Live Now",
-        footerDesc: "Your Trusted Construction Partner — Machinery, Contracts & Workforce",
-        callText: "Call Now",
-        quoteText: "Submit Quote",
-        availText: "Available Now"
-      },
-      hinglish: {
-        name: "Hinglish",
-        tagline: "Machine, Theka aur Operator Network",
-        heroBadge: "Bharat Ka #1 Construction Network",
-        heroTitle: 'Har Site Ki Zaroorat, <span class="text-amber-400">Ek Hi Jagah</span>',
-        heroDesc: "Machine rent pe lein/dein, site ka kaam post karein, aur verified operators khojein.",
-        btnPost: "➕ Nayi Post Dalein",
-        btnCall: "📞 Direct Call",
-        btnWa: "💬 WhatsApp Support",
-        parivahanTitle: "🔍 Operator License (DL) aur Machine RC Verify Karein",
-        btnVerify: "Check Karein",
-        leadsHeading: "📋 Site Kaam aur Live Leads",
-        leadsCount: "2 Kaam Active",
-        machHeading: "🚜 Available Machine Rental Hub",
-        workHeading: "👷 Verified Operators & Workforce",
-        modalTitle: "➕ Nayi Post Dalein",
-        modalSubmit: "Live Post Karein",
-        footerDesc: "Machine, Theka aur Kaamgaar Network",
-        callText: "Call Karein",
-        quoteText: "Apna Rate Dalein",
-        availText: "Available Now"
-      },
-      mr: {
-        name: "मराठी",
-        tagline: "मशीनरी, कंत्राट आणि ऑपरेटर नेटवर्क",
-        heroBadge: "भारतातील पहिले संपूर्ण कन्स्ट्रक्शन नेटवर्क",
-        heroTitle: 'प्रत्येक साइटची गरज, आता <span class="text-amber-400">एकाच ठिकाणी</span>',
-        heroDesc: "मशीन भाड्याने घ्या/द्या, साइटवरील कामे पोस्ट करा, आणि कुशल ऑपरेटर शोधा.",
-        btnPost: "➕ नवीन गरज पोस्ट करा",
-        btnCall: "📞 थेट कॉल",
-        btnWa: "💬 व्हॉट्सअ‍ॅप सपोर्ट",
-        parivahanTitle: "🔍 ड्रायव्हिंग लायसन्स (DL) व मशीन RC तपासा",
-        btnVerify: "तपासा (Verify)",
-        leadsHeading: "📋 साइटवरील कामे आणि कंत्राट (Live Leads)",
-        leadsCount: "2 नवीन कामे",
-        machHeading: "🚜 भाड्याने उपलब्ध मशिन्स (Rental Hub)",
-        workHeading: "👷 ऑपरेटर व कामगार (Workforce)",
-        modalTitle: "➕ नवीन पोस्ट तयार करा",
-        modalSubmit: "पोस्ट करा",
-        footerDesc: "मशीनरी, कंत्राट आणि कामगार नेटवर्क",
-        callText: "कॉल करा",
-        quoteText: "दर द्या",
-        availText: "सध्या उपलब्ध"
-      },
-      gu: {
-        name: "ગુજરાતી",
-        tagline: "મશીનરી, કોન્ટ્રાક્ટ અને ઓપરેટર નેટવર્ક",
-        heroBadge: "ભારતનું પ્રથમ સંપૂર્ણ કન્સ્ટ્રક્શન નેટવર્ક",
-        heroTitle: 'દરેક સાઇટની જરૂરિયાત, હવે <span class="text-amber-400">એક જ જગ્યાએ</span>',
-        heroDesc: "મશીન ભાડે આપો/લો, સાઇટ વર્ક પોસ્ટ કરો, અને વેરિફાઇડ ડ્રાઈવર શોધો.",
-        btnPost: "➕ નવી પોસ્ટ મૂકો",
-        btnCall: "📞 સીધો કોલ",
-        btnWa: "💬 વોટ્સએપ સપોર્ટ",
-        parivahanTitle: "🔍 ડ્રાઇવિંગ લાઇસન્સ (DL) અને મશીન RC તપાસો",
-        btnVerify: "તપાસો (Verify)",
-        leadsHeading: "📋 સાઇટ વર્ક અને ટેન્ડર્સ (Live Leads)",
-        leadsCount: "2 કામ એક્ટિવ",
-        machHeading: "🚜 ઉપલબ્ધ મશીનરી (Rental Hub)",
-        workHeading: "👷 વેરિફાઇડ ઓપરેટર અને વર્કફોર્સ",
-        modalTitle: "➕ નવી જરૂરિયાત મૂકો",
-        modalSubmit: "લાઇવ પોસ્ટ કરો",
-        footerDesc: "મશીનરી, કોન્ટ્રાક્ટ અને મજૂર નેટવર્ક",
-        callText: "કોલ કરો",
-        quoteText: "ભાવ મૂકો",
-        availText: "હાલમાં ઉપલબ્ધ"
-      }
-    };
-
-    var DataStore = {
-      leads: [
-        {
-          tag: "RCC & Concrete",
-          budget: { hi: "बजट: ₹8.5 लाख", en: "Budget: ₹8.5 Lakh", hinglish: "Budget: ₹8.5 Lakh", mr: "अंदाजपत्रक: ₹8.5 लाख", gu: "બજેટ: ₹8.5 લાખ" },
-          title: {
-            hi: "कैनाल व रिटेनिंग वॉल लाइनिंग (3.5 KM)",
-            en: "Canal & Retaining Wall Lining (3.5 KM)",
-            hinglish: "Canal aur Wall Concreting (3.5 KM)",
-            mr: "कॅनॉल व रिटेनिंग वॉल काम (3.5 KM)",
-            gu: "કેનાલ અને વોલ કોંક્રિટ લાઇનિંગ (3.5 KM)"
-          },
-          loc: "📍 Sonbhadra / Mirzapur, UP",
-          desc: {
-            hi: "साइट पर 1200 cum कंक्रीटिंग के लिए Ajax Fiori SLCM मिक्सर और 12 कुशल मजदूरों की तुरंत आवश्यकता है।",
-            en: "Urgent requirement of SLCM concrete mixer and 12-member mason gang for 1200 cum concreting.",
-            hinglish: "Site par 1200 cum concreting ke liye SLCM mixer aur 12 labour team urgently chahiye.",
-            mr: "साइटवर 1200 cum काँक्रीटिंगसाठी SLCM मिक्सर आणि 12 मजुरांची तातडीने गरज आहे.",
-            gu: "સાઇટ પર 1200 cum કોંક્રિટિંગ માટે SLCM મિક્સર અને 12 કુશળ મજૂરોની જરૂર છે."
-          },
-          company: "Sharma Infrastructure",
-          phone: "919999999999"
-        },
-        {
-          tag: "Shuttering & Civil",
-          budget: { hi: "बजट: ₹22 / Sq.Ft", en: "Budget: ₹22 / Sq.Ft", hinglish: "Budget: ₹22 / Sq.Ft", mr: "अंदाजपत्रक: ₹22 / Sq.Ft", gu: "બજેટ: ₹22 / Sq.Ft" },
-          title: {
-            hi: "कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)",
-            en: "Commercial Plaza Shuttering (45,000 Sq.Ft)",
-            hinglish: "Plaza Shuttering Kaam (45,000 Sq.Ft)",
-            mr: "कमर्शियल प्लाझा शटरिंग काम (45,000 Sq.Ft)",
-            gu: "પ્લાઝા શટરિંગ કામ (45,000 Sq.Ft)"
-          },
-          loc: "📍 Electronic City, Bengaluru",
-          desc: {
-            hi: "मटेरियल मुख्य ठेकेदार का रहेगा, केवल लेबर विद टूल्स पेटी ठेकेदार चाहिए। रनिंग बिलिंग हर 15 दिन में।",
-            en: "Material provided by contractor. Petty labor gang needed with tools. 15-day running billing.",
-            hinglish: "Material contractor ka rahega, petty contractor chahiye labour with tools. Har 15 din billing.",
-            mr: "मटेरियल मुख्य कंत्राटदाराचे असेल, केवळ लेबर विथ टूल्स पेटीदार हवा.",
-            gu: "મટિરિયલ કોન્ટ્રાક્ટરનું રહેશે, ફક્ત લેબર વિથ ટૂલ્સ પેટી કોન્ટ્રાક્ટર જોઈએ."
-          },
-          company: "RK Builders",
-          phone: "919999999999"
-        }
-      ],
-      machinery: [
-        {
-          title: "Self-Loading Concrete Mixer (SLCM)",
-          subtitle: "Ajax Fiori Argo 4000 • 4.0 Cum • 2022 Model",
-          rate: { hi: "₹1,40,000 / महीना", en: "₹1,40,000 / Month", hinglish: "₹1,40,000 / Month", mr: "₹1,40,000 / महिना", gu: "₹1,40,000 / મહિનો" },
-          desc: {
-            hi: "वेल-मेंटेंड मशीन, अनुभवी ऑपरेटर और हेल्पर सहित। मासिक किराये पर उपलब्ध।",
-            en: "Well-maintained machine with trained operator and helper. Available on monthly rent.",
-            hinglish: "Well-maintained machine, operator aur helper ke sath. Monthly rent par available.",
-            mr: "उत्तम स्थितीतील मशीन, ऑपरेटर व हेल्परसह. मासिक भाड्याने उपलब्ध.",
-            gu: "વેલ-મેન્ટેઇન્ડ મશીન, ઓપરેટર અને હેલ્પર સાથે. માસિક ભાડે ઉપલબ્ધ."
-          },
-          phone: "919999999999"
-        },
-        {
-          title: "JCB 3DX Super Backhoe Loader",
-          subtitle: "4WD • 2023 Model • 6-in-1 Bucket",
-          rate: { hi: "₹950 / घंटा", en: "₹950 / Hour", hinglish: "₹950 / Ghanta", mr: "₹950 / तास", gu: "₹950 / કલાક" },
-          desc: {
-            hi: "खुदाई, लेवलिंग और लोडिंग के लिए तैयार। साइट पर तुरंत डिलीवरी।",
-            en: "Ready for digging, trenching, and loading. Immediate site delivery.",
-            hinglish: "Khudai aur loading ke liye fully ready. Turant delivery.",
-            mr: "खोदकाम व लोडिंगसाठी सज्ज. साइटवर त्वरित डिलिव्हरी.",
-            gu: "ખોદકામ અને લોડિંગ માટે સંપૂર્ણ તૈયાર. સાઇટ પર તાત્કાલિક ડિલિવરી."
-          },
-          phone: "919999999999"
-        }
-      ],
-      workforce: [
-        {
-          badge: { hi: "वेरीफाइड ऑपरेटर", en: "Certified Operator", hinglish: "Verified Operator", mr: "प्रमाणित ऑपरेटर", gu: "સર્ટીફાઇડ ઓપરેટર" },
-          name: "Ramesh Kumar (SLCM Operator)",
-          exp: { hi: "अनुभव: 6 वर्ष • Ajax एक्सपर्ट", en: "Exp: 6 Years • Ajax Expert", hinglish: "Exp: 6 Saal • Ajax Expert", mr: "अनुभव: 6 वर्षे • Ajax तज्ज्ञ", gu: "અનુભવ: 6 વર્ષ • Ajax એક્સપર્ટ" },
-          phone: "919999999999"
-        },
-        {
-          badge: { hi: "कुशल लेबर टीम", en: "Skilled Mason Gang", hinglish: "Skilled Labour Gang", mr: "कुशल मजूर टीम", gu: "કુશળ મજૂર ગેંગ" },
-          name: "Sharma Mason Gang (14 Persons)",
-          exp: { hi: "स्पेशलाइजेशन: कंक्रीटिंग व प्लास्टर", en: "Specialization: Concreting & Plaster", hinglish: "Specialist: Concreting & Plaster", mr: "विशेषज्ञता: काँक्रीट व प्लास्टर", gu: "સ્પેશિયલાઇઝેશન: કોંક્રિટિંગ અને પ્લાસ્ટર" },
-          phone: "919999999999"
-        }
-      ]
-    };
-
-    function renderPage() {
-      var c = LangConfig[currentLang];
-
-      // Update static texts
-      document.getElementById('ui-tagline').innerText = c.tagline;
-      document.getElementById('ui-hero-badge').innerText = c.heroBadge;
-      document.getElementById('ui-hero-title').innerHTML = c.heroTitle;
-      document.getElementById('ui-hero-desc').innerText = c.heroDesc;
-      document.getElementById('ui-btn-post').innerText = c.btnPost;
-      document.getElementById('ui-btn-call').innerText = c.btnCall;
-      document.getElementById('ui-btn-wa').innerText = c.btnWa;
-      document.getElementById('ui-parivahan-title').innerText = c.parivahanTitle;
-      document.getElementById('ui-btn-verify').innerText = c.btnVerify;
-      document.getElementById('ui-leads-heading').innerText = c.leadsHeading;
-      document.getElementById('ui-leads-count').innerText = c.leadsCount;
-      document.getElementById('ui-mach-heading').innerText = c.machHeading;
-      document.getElementById('ui-work-heading').innerText = c.workHeading;
-      document.getElementById('ui-modal-title').innerText = c.modalTitle;
-      document.getElementById('ui-modal-submit').innerText = c.modalSubmit;
-      document.getElementById('ui-footer-desc').innerText = c.footerDesc;
-
-      // Render Language Buttons
-      var langContainer = document.getElementById('lang-buttons-container');
-      langContainer.innerHTML = '';
-      ['hi', 'en', 'hinglish', 'mr', 'gu'].forEach(function(code) {
-        var btn = document.createElement('button');
-        btn.innerText = LangConfig[code].name;
-        if (code === currentLang) {
-          btn.className = "px-2.5 py-1 rounded bg-amber-500 text-slate-950 font-black";
-        } else {
-          btn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 hover:text-white";
-        }
-        btn.onclick = function() {
-          currentLang = code;
-          renderPage();
-        };
-        langContainer.appendChild(btn);
-      });
-
-      // Render Live Leads
-      var leadsContainer = document.getElementById('leads-list');
-      leadsContainer.innerHTML = '';
-      DataStore.leads.forEach(function(item) {
-        var bText = item.budget[currentLang] || item.budget.hi;
-        var tText = item.title[currentLang] || item.title.hi;
-        var dText = item.desc[currentLang] || item.desc.hi;
-        var card = document.createElement('div');
-        card.className = "bg-white p-5 rounded-xl border border-slate-200 shadow-sm";
-        card.innerHTML = '<div class="flex justify-between items-start"><span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">' + item.tag + '</span><span class="text-xs font-bold text-amber-600">' + bText + '</span></div><h4 class="font-bold text-slate-900 text-base mt-2">' + tText + '</h4><p class="text-xs text-slate-500 mt-1">' + item.loc + '</p><p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">' + dText + '</p><div class="mt-4 pt-3 border-t flex justify-between items-center"><span class="text-xs text-slate-500">' + item.company + '</span><a href="https://wa.me/' + item.phone + '" target="_blank" class="bg-slate-900 text-amber-400 text-xs px-3.5 py-1.5 rounded-lg font-bold">' + c.quoteText + '</a></div>';
-        leadsContainer.appendChild(card);
-      });
-
-      // Render Machinery
-      var machContainer = document.getElementById('mach-list');
-      machContainer.innerHTML = '';
-      DataStore.machinery.forEach(function(item) {
-        var rText = item.rate[currentLang] || item.rate.hi;
-        var dText = item.desc[currentLang] || item.desc.hi;
-        var card = document.createElement('div');
-        card.className = "bg-white p-5 rounded-xl border border-slate-200 shadow-sm";
-        card.innerHTML = '<div class="flex justify-between items-center"><span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">' + c.availText + '</span><span class="text-xs font-bold text-slate-900">' + rText + '</span></div><h4 class="font-bold text-slate-900 text-base mt-2">' + item.title + '</h4><p class="text-xs text-slate-500">' + item.subtitle + '</p><p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">' + dText + '</p><div class="mt-4 pt-3 border-t flex gap-2"><a href="tel:' + item.phone + '" class="flex-1 text-center bg-amber-500 text-slate-950 text-xs py-2 rounded-lg font-bold">📞 ' + c.callText + '</a><a href="https://wa.me/' + item.phone + '" target="_blank" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-bold">💬 WhatsApp</a></div>';
-        machContainer.appendChild(card);
-      });
-
-      // Render Workforce
-      var workContainer = document.getElementById('work-list');
-      workContainer.innerHTML = '';
-      DataStore.workforce.forEach(function(item) {
-        var bText = item.badge[currentLang] || item.badge.hi;
-        var eText = item.exp[currentLang] || item.exp.hi;
-        var card = document.createElement('div');
-        card.className = "bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between";
-        card.innerHTML = '<div><span class="text-[10px] bg-slate-100 text-slate-800 font-bold px-2 py-0.5 rounded">' + bText + '</span><h4 class="font-bold text-slate-900 text-sm mt-1">' + item.name + '</h4><p class="text-xs text-slate-500">' + eText + '</p></div><a href="tel:' + item.phone + '" class="bg-slate-900 text-amber-400 text-xs px-3 py-2 rounded-lg font-bold">' + c.callText + '</a>';
-        workContainer.appendChild(card);
-      });
-    }
-
-    // Modal
-    function openModal() { document.getElementById('postModal').classList.remove('hidden'); }
-    function closeModal() { document.getElementById('postModal').classList.add('hidden'); }
-
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      var title = document.getElementById('pTitle').value;
-      var loc = document.getElementById('pLoc').value;
-      var rate = document.getElementById('pRate').value;
-      var phone = document.getElementById('pPhone').value;
-      var cat = document.getElementById('pCat').value;
-
-      if (cat === 'machine') {
-        DataStore.machinery.unshift({
-          title: title,
-          subtitle: "User Posted • Location: " + loc,
-          rate: { hi: rate, en: rate, hinglish: rate, mr: rate, gu: rate },
-          desc: { hi: "संपर्क: " + phone, en: "Contact: " + phone, hinglish: "Contact: " + phone, mr: "संपर्क: " + phone, gu: "સંપર્ક: " + phone },
-          phone: phone
-        });
-      } else {
-        DataStore.leads.unshift({
-          tag: "Live Requirement",
-          budget: { hi: rate, en: rate, hinglish: rate, mr: rate, gu: rate },
-          title: { hi: title, en: title, hinglish: title, mr: title, gu: title },
-          loc: "📍 " + loc,
-          desc: { hi: "संपर्क करें: " + phone, en: "Contact: " + phone, hinglish: "Contact: " + phone, mr: "संपर्क: " + phone, gu: "સંપર્ક: " + phone },
-          company: "Direct Owner",
-          phone: phone
-        });
-      }
-
-      alert("सफलतापूर्वक लाइव पोस्ट हो गया!");
-      closeModal();
-      renderPage();
-    }
-
-    // mParivahan Engine
-    function runVerify() {
-      var num = document.getElementById('verifyNumber').value.trim();
-      var type = document.getElementById('verifyType').value;
-      var res = document.getElementById('verifyResult');
-      if (!num) { alert("कृपया नंबर दर्ज करें!"); return; }
-
-      res.classList.remove('hidden');
-      if (type === 'DL') {
-        res.innerHTML = '<p class="text-emerald-400 font-bold">✅ mParivahan Verified Operator License</p><p class="text-slate-300 mt-1">DL No: <strong>' + num.toUpperCase() + '</strong> | Status: Active | Class: Heavy Machinery (
+        <!-- Lead 2 -->
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex justify-between items-start">
+            <span class="text-xs bg-green-100 text-green-800 font-bold px-2 py-0.5 rounded">Shuttering & Civil</span>
+            <span class="text-xs font-bold text-amber-600">₹22 / Sq.Ft</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mt-2">
+            <span class="l-hi">कमर्शियल प्लाजा शटरिंग कार्य (45,000 Sq.Ft)</span>
+            <span class="l-en hidden">Commercial Plaza Shuttering (45,000 Sq.Ft)</span>
+            <span class="l-hinglish hidden">Plaza Shuttering Kaam (45,000 Sq.Ft)</span>
+            <span class="l-mr hidden">कमर्शियल प्लाझा शटरिंग काम (45,000 Sq.Ft)</span>
+            <span class="l-gu hidden">પ્લાઝા શટરિંગ કામ (45,000 Sq.Ft)</span>
+          </h4>
+          <p class="text-xs text-slate-500 mt-1">📍 Electronic City, Bengaluru</p>
+          <p class="text-xs text-slate-600 mt-2 bg-slate-50 p-2.5 rounded">
+            <span class="l-hi">मटेरियल मुख्य ठेकेदार का रहेगा, केवल लेबर विद टूल्स पेटी ठेकेदार चाहिए। रनिंग बिलिंग हर 15 दिन में।</span>
+            <span class="l-en hidden">Material provided by contractor
